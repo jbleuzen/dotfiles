@@ -1,0 +1,10 @@
+[user]
+	name = Johan Bleuzen
+	email = johan.bleuzen@gmail.com
+[github]
+	user = jbleuzen
+	token = c782e86cd4a5b82e3c38dd8ad480ce56
+[color]
+	ui = true
+[core]
+	excludesfile = /Users/johan/.gitignore
