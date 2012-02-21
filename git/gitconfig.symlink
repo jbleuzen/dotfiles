@@ -5,6 +5,10 @@
 	user = jbleuzen
 	token = c782e86cd4a5b82e3c38dd8ad480ce56
 [color]
+	diff = auto
+	status = auto
+	branch = auto
 	ui = true
 [core]
+	editor = vim
 	excludesfile = /Users/johan/.gitignore
