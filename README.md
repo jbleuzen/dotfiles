@@ -9,11 +9,12 @@ _Please : don't forget that I am still building my dotfiles._
 
 ## Installation
 
-It's easy, it takes five sec and three commands :
+It's easy, it takes five seconds and only four commands :
 
 	git clone
 	cd .dot
 	rake
+	git submodule update
 
 
 ## Uninstalling
