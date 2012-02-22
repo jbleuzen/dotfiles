@@ -1,6 +1,12 @@
 [submodule "vim/vim.symlink/bundle/plugin-zencoding"]
 	path = vim/vim.symlink/bundle/plugin-zencoding
 	url = git://github.com/mattn/zencoding-vim.git
+	ignore = untracked
 [submodule "vim/vim.symlink/bundle/plugin-snipmate"]
 	path = vim/vim.symlink/bundle/plugin-snipmate
 	url = git://github.com/msanders/snipmate.vim.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/plugin-fugitive"]
+	path = vim/vim.symlink/bundle/plugin-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+	ignore = untracked
