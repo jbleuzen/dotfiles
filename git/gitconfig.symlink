@@ -1,3 +1,6 @@
+[alias]
+	revert = reset --hard HEAD
+	undo = reset --soft HEAD~1
 [user]
 	name = Johan Bleuzen
 	email = johan.bleuzen@gmail.com
