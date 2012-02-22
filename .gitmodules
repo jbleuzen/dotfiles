@@ -14,3 +14,7 @@
 	path = vim/vim.symlink/bundle/plugin-autoclose
 	url = git://github.com/Townk/vim-autoclose.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/plugin-nerdcommenter"]
+	path = vim/vim.symlink/bundle/plugin-nerdcommenter
+	url = git://github.com/ddollar/nerdcommenter.git
+	ignore = untracked
