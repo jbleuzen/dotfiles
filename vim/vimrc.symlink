@@ -5,6 +5,14 @@
 set nocompatible
 
 " ----------------------------------------------------------------------------
+"  Pathogen loading
+" ----------------------------------------------------------------------------
+filetype off 			" disable detection before pathogen loads
+call pathogen#infect()
+call pathogen#helptags()
+filetype plugin indent on       " enable detection, plugins and indenting in one step
+
+" ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
 
@@ -53,4 +61,12 @@ set nobackup
 set nowb
 set noswapfile
 
- 
+
+
+" ----------------------------------------------------------------------------
+" Plugins configuration 
+" ----------------------------------------------------------------------------
+
+""" ZenCoding
+let g:user_zen_expandabbr_key = '<c-e>'
+let g:use_zen_complete_tag = 1 
