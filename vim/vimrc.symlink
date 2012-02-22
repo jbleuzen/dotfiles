@@ -16,6 +16,7 @@ set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
 set guicursor=a:blinkon0   " disable blinking cursor	
 set cpoptions+=n	   " wrap long lines
+set display=lastline	   " prevent the @ when lines are too long
 if has("gui_running")
 	set showbreak=\ \ \ \ \ ↳\ 
 else
@@ -39,7 +40,7 @@ set visualbell             " shut the fuck up
 
 
 " ----------------------------------------------------------------------------
-" Backups sux
+" Backups
 " ----------------------------------------------------------------------------
 
 set nobackup
