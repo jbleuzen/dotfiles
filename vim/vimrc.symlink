@@ -14,8 +14,16 @@ set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
+set guicursor=a:blinkon0   " disable blinking cursor	
+set cpoptions+=n	   " wrap long lines
+if has("gui_running")
+	set showbreak=\ \ \ \ \ ↳\ 
+else
+	set showbreak=\ \ \ ↳\ 
+endif
 
 
+" dazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 " ----------------------------------------------------------------------------
 " Visual Cues
 " ----------------------------------------------------------------------------
@@ -24,6 +32,19 @@ set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
 set laststatus=2           " always show the status line
+set statusline=%<\ %F\ %m%r%y%=%-35.(line:\ %l\ /\ %L,\ col:\ %c%V\ (%P)%)
 set ignorecase             " ignore case when searching
-set nohlsearch             " don't highlight searches
+set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
+
+
+
+" ----------------------------------------------------------------------------
+" Backups sux
+" ----------------------------------------------------------------------------
+
+set nobackup
+set nowb
+set noswapfile
+
+ 
