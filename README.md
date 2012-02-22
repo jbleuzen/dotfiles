@@ -5,7 +5,7 @@ It helps me to have my beloved configuration on every computer I use.
 
 This dotfiles contain only things I use on daily basis, feel free to use every line to create your own.
 
-_ Please : don't forget that I am still building my dotfiles. _
+_Please : don't forget that I am still building my dotfiles._
 
 ## Installation
 
