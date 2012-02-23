@@ -11,7 +11,7 @@ _Please : don't forget that I am still building my dotfiles._
 
 It's easy, it takes five seconds and only five commands :
 
-	git clone
+	git clone git@github.com:jbleuzen/dotfiles.git
 	cd .dot
 	rake
 	git submodule init
