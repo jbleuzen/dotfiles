@@ -16,6 +16,9 @@ filetype plugin indent on       " enable detection, plugins and indenting in one
 "  UI
 " ----------------------------------------------------------------------------
 
+set background=dark
+colorscheme moria
+
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
