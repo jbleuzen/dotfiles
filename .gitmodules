@@ -30,3 +30,7 @@
 	path = vim/vim.symlink/bundle/color-mustang
 	url = git://github.com/vim-scripts/Mustang2.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/color-railscasts"]
+	path = vim/vim.symlink/bundle/color-railscasts
+	url = git://github.com/jpo/vim-railscasts-theme.git
+	ignore = untracked
