@@ -18,3 +18,15 @@
 	path = vim/vim.symlink/bundle/plugin-nerdcommenter
 	url = git://github.com/ddollar/nerdcommenter.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/color-molokai"]
+	path = vim/vim.symlink/bundle/color-molokai
+	url = git://github.com/mrtazz/molokai.vim.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/color-moria"]
+	path = vim/vim.symlink/bundle/color-moria
+	url = git://github.com/vim-scripts/moria.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/color-mustang"]
+	path = vim/vim.symlink/bundle/color-mustang
+	url = git://github.com/vim-scripts/Mustang2.git
+	ignore = untracked
