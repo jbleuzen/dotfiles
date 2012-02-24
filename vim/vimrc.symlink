@@ -34,6 +34,7 @@ set nostartofline          " don't jump to the start of line when scrolling
 set guicursor=a:blinkon0   " disable blinking cursor	
 set cpoptions+=n	   " wrap long lines
 set display=lastline	   " prevent the @ when lines are too long
+set tabstop=4			" Tabs width 
 if has("gui_running")
 	set showbreak=\ \ \ \ \ ↳\ 
 else
@@ -64,6 +65,13 @@ set nobackup
 set nowb
 set noswapfile
 
+
+" ----------------------------------------------------------------------------
+" Mac Hack
+" ----------------------------------------------------------------------------
+if has("gui_macvim")
+	    let macvim_hig_shift_movement = 1 "allow selection in insert mode
+endif
 
 
 " ----------------------------------------------------------------------------
