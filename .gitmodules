@@ -34,3 +34,7 @@
 	path = vim/vim.symlink/bundle/color-railscasts
 	url = git://github.com/jpo/vim-railscasts-theme.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/plugin-commandt"]
+	path = vim/vim.symlink/bundle/plugin-commandt
+	url = git://github.com/wincent/Command-T.git
+	ignore = untracked
