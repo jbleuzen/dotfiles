@@ -1,3 +1,7 @@
+# Autoload zsh functions completion
+fpath=(~/.dotfiles/zsh/functions $fpath)
+autoload -U ~/.dotfiles/zsh/functions/*(:t) 
+
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
