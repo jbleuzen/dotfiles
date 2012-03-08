@@ -38,3 +38,15 @@
 	path = vim/vim.symlink/bundle/plugin-commandt
 	url = git://github.com/wincent/Command-T.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/plugin-markdown"]
+	path = vim/vim.symlink/bundle/plugin-markdown
+	url = git://github.com/plasticboy/vim-markdown.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/syntax-html5"]
+	path = vim/vim.symlink/bundle/syntax-html5
+	url = git://github.com/othree/html5.vim.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/syntax-css3"]
+	path = vim/vim.symlink/bundle/syntax-css3
+	url = git://github.com/hail2u/vim-css3-syntax.git
+	ignore = untracked

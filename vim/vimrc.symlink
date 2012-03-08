@@ -36,7 +36,7 @@ set cpoptions+=n	   " wrap long lines
 set display=lastline	   " prevent the @ when lines are too long
 set tabstop=4			" Tabs width 
 if has("gui_running")
-	set showbreak=\ \ \ \ \ ↳\ 
+	set showbreak=\ \ \ \ ↳\ 
 else
 	set showbreak=\ \ \ ↳\ 
 endif
