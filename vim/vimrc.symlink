@@ -17,7 +17,9 @@ filetype plugin indent on       " enable detection, plugins and indenting in one
 " ----------------------------------------------------------------------------
 
 set background=dark
-colorscheme moria
+set t_Co=256
+syntax on
+colorscheme molokai
 
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
@@ -56,6 +58,11 @@ set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 
 
+" ----------------------------------------------------------------------------
+" 
+" ----------------------------------------------------------------------------
+
+set mouse=a         		" enable mouse support in console "
 
 " ----------------------------------------------------------------------------
 " Backups
