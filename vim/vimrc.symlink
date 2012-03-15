@@ -36,7 +36,10 @@ set nostartofline          " don't jump to the start of line when scrolling
 set guicursor=a:blinkon0   " disable blinking cursor	
 set cpoptions+=n	   " wrap long lines
 set display=lastline	   " prevent the @ when lines are too long
-set tabstop=4			" Tabs width 
+set tabstop=2			" Tabs width 
+set smartindent
+set shiftwidth=2
+set expandtab
 if has("gui_running")
 	set showbreak=\ \ ↳\ 
 else
