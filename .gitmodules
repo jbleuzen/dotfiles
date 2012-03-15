@@ -50,3 +50,7 @@
 	path = vim/vim.symlink/bundle/syntax-css3
 	url = git://github.com/hail2u/vim-css3-syntax.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/plugin-webindent"]
+	path = vim/vim.symlink/bundle/plugin-webindent
+	url = git://github.com/lukaszb/vim-web-indent.git
+	ignore = untracked
