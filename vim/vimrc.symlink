@@ -39,7 +39,7 @@ set display=lastline	   " prevent the @ when lines are too long
 set tabstop=4			" Tabs width 
 set smartindent
 set shiftwidth=4
-set expandtab
+set noexpandtab
 if has("gui_running")
 	set showbreak=\ \ ↳\ 
 else

@@ -4,6 +4,9 @@
 # default colors configuration (needed for vim)
 set -g default-terminal "screen-256color"
 
+# Remove the delay when pressing <ESC>
+set -s escape-time 0
+
 # use your mouse to select pane
 set -g mouse-select-pane on
 
