@@ -14,9 +14,6 @@ It's easy, it takes five seconds and only five commands :
 	git clone git@github.com:jbleuzen/dotfiles.git ~/.dotfiles
 	cd ~/.dotfiles
 	rake
-	git submodule init
-	git submodule update
-
 
 ## Uninstalling
 
