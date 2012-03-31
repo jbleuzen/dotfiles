@@ -10,10 +10,6 @@
 	path = vim/vim.symlink/bundle/plugin-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 	ignore = untracked
-[submodule "vim/vim.symlink/bundle/plugin-autoclose"]
-	path = vim/vim.symlink/bundle/plugin-autoclose
-	url = git://github.com/Townk/vim-autoclose.git
-	ignore = untracked
 [submodule "vim/vim.symlink/bundle/plugin-nerdcommenter"]
 	path = vim/vim.symlink/bundle/plugin-nerdcommenter
 	url = git://github.com/ddollar/nerdcommenter.git
@@ -50,3 +46,6 @@
 	path = vim/vim.symlink/bundle/syntax-css3
 	url = git://github.com/hail2u/vim-css3-syntax.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/smartinput.git"]
+	path = vim/vim.symlink/bundle/smartinput.git
+	url = git://github.com/kana/vim-smartinput.git
