@@ -37,8 +37,6 @@ task :install do
 		end
 		`ln -s "$PWD/#{linkable}" "#{target}"`
 	end
-	# Initialise git submodule for Pathogen
-	`git submodule init && git submodule update`
 end
 
 task :uninstall do

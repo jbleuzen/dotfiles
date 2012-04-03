@@ -49,3 +49,5 @@
 [submodule "vim/vim.symlink/bundle/smartinput.git"]
 	path = vim/vim.symlink/bundle/smartinput.git
 	url = git://github.com/kana/vim-smartinput.git
+	ignore = untracked
+[submodule "vim/vim.symlink/bundle/smartinput.git"]
