@@ -8,3 +8,6 @@ alias la='ls -la'
 
 # for rake task with argument
 alias rake='noglob rake'
+
+# Get current public IP
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
