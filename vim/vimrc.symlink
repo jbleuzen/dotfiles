@@ -70,6 +70,8 @@ set mouse=a         		" enable mouse support in console "
 " ----------------------------------------------------------------------------
 " Mappings  
 " ----------------------------------------------------------------------------
+" Escape is too far away 
+inoremap jj <Esc>
 " Learn "hkjl" the hard way !
 noremap <Up> <nop>
 noremap <Down> <nop>
