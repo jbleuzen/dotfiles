@@ -2,7 +2,7 @@
 "  UI
 " ----------------------------------------------------------------------------
 
-set guifont=Menlo\ Bold:h11.00 		" default font
+set guifont=Menlo\ Bold\ for\ Powerline:h11.00 		" default font
 set guioptions-=T			" disable toolbar for MacVim
 set guioptions-=L			" disable left scrollbar
 set guioptions-=r			" disable right scrollbar

@@ -7,10 +7,12 @@ set nocompatible
 " ----------------------------------------------------------------------------
 "  Pathogen loading
 " ----------------------------------------------------------------------------
+
 filetype off 			" disable detection before pathogen loads
 call pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on       " enable detection, plugins and indenting in one step
+
 
 " ----------------------------------------------------------------------------
 "  UI
@@ -62,14 +64,12 @@ set visualbell             " shut the fuck up
 
 
 " ----------------------------------------------------------------------------
-" 
-" ----------------------------------------------------------------------------
-
-set mouse=a         		" enable mouse support in console "
-
-" ----------------------------------------------------------------------------
 " Mappings  
 " ----------------------------------------------------------------------------
+
+" Configure <Leader>
+let mapleader = ","
+
 " Escape is too far away 
 inoremap jj <Esc>
 " Learn "hkjl" the hard way !
@@ -77,6 +77,15 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
+
+" Moving line up/down (For french azerty Mac)
+noremap Ï :m+<CR>
+noremap È :m-2<CR>
+inoremap Ï <Esc>:m+<CR>
+inoremap È <Esc>:m-2<CR>
+vnoremap Ï :m'>+<CR>gv
+vnoremap È :m-2<CR>gv'
+
 
 " ----------------------------------------------------------------------------
 " Backups
@@ -88,8 +97,16 @@ set noswapfile
 
 
 " ----------------------------------------------------------------------------
-" Mac Hack
+" Terminal 
 " ----------------------------------------------------------------------------
+
+set mouse=a         		" enable mouse support in console "
+
+
+" ----------------------------------------------------------------------------
+" MacVim
+" ----------------------------------------------------------------------------
+
 if has("gui_macvim")
 	    let macvim_hig_shift_movement = 1 "allow selection in insert mode
 endif
@@ -102,3 +119,6 @@ endif
 """ ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
 let g:use_zen_complete_tag = 1 
+
+""" Vim-Powerline
+let g:Powerline_symbols = 'fancy'
