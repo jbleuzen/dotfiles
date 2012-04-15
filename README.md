@@ -19,6 +19,11 @@ If you are lazy (and you should) you can even make it in one second :
 	
 	git clone --recursive git@github.com:jbleuzen/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && rake
 
+## Fonts
+
+For MacVim to play nicely with powerline plugin and the font I use (Menlo Bold:11), I add to install a forked font [from a gist](https://gist.github.com/1627888).
+Once donwloaded, you need to install it by double clicking it, and you're done.
+
 ## Uninstalling
 
 You find something better, no problems enjoy it!
