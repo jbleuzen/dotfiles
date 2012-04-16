@@ -5,12 +5,19 @@ Bundle 'gmarik/vundle'
 " Colorscheme
 Bundle 'git://github.com/tomasr/molokai.git'
 Bundle 'git://github.com/cschlueter/vim-clouds.git'
+Bundle 'git://github.com/croaker/mustang-vim.git'
+Bundle 'git://github.com/nanotech/jellybeans.vim.git'
 
 " Plugins 
 Bundle 'git://github.com/tpope/vim-fugitive'
 Bundle 'git://github.com/tpope/vim-surround'
-Bundle 'git://github.com/scrooloose/nerdtree.git'
+Bundle 'git://github.com/scrooloose/nerdtree.git' 
+Bundle 'git://github.com/jistr/vim-nerdtree-tabs.git'
 Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 Bundle 'git://github.com/kana/vim-smartinput.git'
 Bundle 'git://github.com/Lokaltog/vim-easymotion'
 Bundle 'git://github.com/Lokaltog/vim-powerline'
+
+"Syntax
+Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
+Bundle 'git://github.com/othree/html5-syntax.vim.git'
