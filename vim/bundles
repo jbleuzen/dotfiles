@@ -1,0 +1,21 @@
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+"Colorscheme
+Bundle 'git://github.com/tomasr/molokai.git'
+
+" Plugins 
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+
+
+" Syntax
+
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
