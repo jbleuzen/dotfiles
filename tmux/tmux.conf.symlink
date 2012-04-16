@@ -44,7 +44,7 @@ unbind C-b
 bind C-x send-prefix
 
 # reload .tmux.conf file
-bind r source ~/.tmux.conf
+bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
 
 # ctrl+left/right cycles thru windows
 bind-key C-l next
