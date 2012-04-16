@@ -12,7 +12,7 @@ filetype off 			" disable detection before vundle loads
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-source bundles
+source ~/.dotfiles/vim/bundles
 filetype plugin indent on       " enable detection, plugins and indenting in one step
 
 
