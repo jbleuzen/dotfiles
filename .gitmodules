@@ -54,3 +54,7 @@
 	path = vim/vim.symlink/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
 	ignore = untracked
+[submodule "vim/vim.symlink/bundle/vim-surround.git"]
+	path = vim/vim.symlink/bundle/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
+	ignore = untracked
