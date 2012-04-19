@@ -60,16 +60,6 @@ bind-key j select-pane -D
 bind \ kill-server
 
 #------------------------------------------------------------------------------
-#   COLOURS
-#------------------------------------------------------------------------------
-# color0    == black
-# color15   == white
-# color124  == red
-# color240  == gray
-# color250  == lightgray
-#------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
 #   PANE
 #------------------------------------------------------------------------------
 # not active pane separator
@@ -83,14 +73,14 @@ set -g pane-active-border-bg default
 #   STATUSBAR
 #------------------------------------------------------------------------------
 # default statusbar colors
-set -g status-fg colour235
-set -g status-bg colour250
+set -g status-fg colour0
+set -g status-bg colour236
 set -g status-attr dim
 
 # current or active window in status bar
 setw -g window-status-current-fg colour15
 setw -g window-status-current-bg colour0
-setw -g window-status-current-format ' #W '
+setw -g window-status-current-format '#[bg=color0 fg=color15] #W #[fg=color240]'
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
 setw -g window-status-activity-fg colour124
@@ -103,12 +93,14 @@ set -g message-attr dim
 
 # left side of status bar
 set -g status-left-length 30
-set -g status-left ' #S | #(hostname) '
+set -g status-left-attr bold
+set -g status-left '#[bg=colour154 fg=colour28]  #S  #[fg=colour154 bg=colour240]⮀#[fg=#FFFFFF] #h #[fg=colour240 bg=colour236]⮀'
  
 # right side of status bar
 set -g status-right-length 30
-set -g status-right '%Y-%m-%d | %H:%M '
+set -g status-right '#[bg=colour236 fg=colour240]⮂#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]⮂#[fg=colour0 bg=colour250] %H:%M '
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
 set-window-option -g window-status-format ' #W '          # Inactive windows in status bar
+
