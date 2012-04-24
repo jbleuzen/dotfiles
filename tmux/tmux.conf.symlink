@@ -73,14 +73,14 @@ set -g pane-active-border-bg default
 #   STATUSBAR
 #------------------------------------------------------------------------------
 # default statusbar colors
-set -g status-fg colour0
+set -g status-fg colour15
 set -g status-bg colour236
 set -g status-attr dim
 
 # current or active window in status bar
 setw -g window-status-current-fg colour15
 setw -g window-status-current-bg colour0
-setw -g window-status-current-format '#[bg=color0 fg=color15] #W #[fg=color240]'
+setw -g window-status-current-format '#[bg=color250 fg=color0] #W '
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
 setw -g window-status-activity-fg colour124
