@@ -13,11 +13,11 @@ It's easy, it takes three seconds and only three commands :
 
 	git clone --recursive git@github.com:jbleuzen/dotfiles.git ~/.dotfiles
 	cd ~/.dotfiles
-	rake
+	./deploy
 
 If you are lazy (and you should) you can even make it in one second :
 	
-	git clone --recursive git@github.com:jbleuzen/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && rake
+	git clone --recursive git@github.com:jbleuzen/dotfiles.git ~/.dotfiles && ~/.dotfiles/deploy.sh
 
 ## Fonts
 
@@ -30,4 +30,4 @@ You find something better, no problems enjoy it!
 Uninstallation is easy as well, you just need two commands :
 
 	cd ~/.dotfiles
-	rake uninstall
+	./deploy uninstall
