@@ -63,7 +63,7 @@ set statusline=%<\ %F\ %m%r%y%=%-35.(line:\ %l\ /\ %L,\ col:\ %c%V\ (%P)%)
 set ignorecase             " ignore case when searching
 set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
-
+set cursorline				" highlight current line
 
 " ----------------------------------------------------------------------------
 " Mappings  
@@ -128,7 +128,17 @@ let g:user_zen_expandabbr_key = '<c-e>'
 let g:use_zen_complete_tag = 1 
 
 " NERDTree
-" let g:nerdtree_tabs_open_on_console_startup=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeIgnore=['\.o$', '\~$', 'Icon']
+let g:NERDTreeWinSize = 30
+" NERDTreeTabs
+let g:nerdtree_tabs_open_on_gui_startup = 1 " Auto open nerd tree on startup on gvim
+let g:nerdtree_tabs_focus_on_files = 1 " Focus in the main content window
+nnoremap <leader>d :NERDTreeTabsToggle<cr>
+if has("gui_macvim")
+	nnoremap <D-D> :NERDTreeTabsToggle<cr>
+endif
 
 " Vim-Powerline
 let g:Powerline_symbols = 'fancy'
