@@ -7,12 +7,11 @@ set -g default-terminal "screen-256color"
 # Remove the delay when pressing <ESC>
 set -s escape-time 0
 
-# use your mouse to select pane
+# enable everything you can do with a mouse
+setw -g mode-mouse on
 set -g mouse-select-pane on
-
-# enable scroll with the mouse
+set -g mouse-resize-pane on
 set -g mouse-select-window on
-set -g mode-mouse on
 
 # not sure what these settings are for
 #set-option -g status-keys vi
