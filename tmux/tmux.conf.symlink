@@ -55,6 +55,11 @@ bind-key l select-pane -R
 bind-key k select-pane -U
 bind-key j select-pane -D
 
+bind-key Q kill-session
+
+#bind-key S set-window-option synchronize-panes on
+bind C-s set -g synchronize-panes
+
 # quit tmux
 bind \ kill-server
 
