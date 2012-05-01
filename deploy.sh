@@ -40,6 +40,9 @@ for file in `find ~/.dotfiles -name "*.symlink" | grep -v '\.git'`; do
 	fi
 	ln -s $file $filename
 done
+
+# Install bundle
+vim +BundleInstall +qall
 }
 
 function uninstall {
