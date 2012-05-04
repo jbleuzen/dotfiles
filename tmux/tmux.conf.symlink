@@ -42,6 +42,13 @@ set -g prefix C-x
 unbind C-b
 bind C-x send-prefix
 
+# kill server session
+unbind q
+bind-key C-q kill-session
+
+# new window when I'm not awake
+bind-key C-c new-window
+
 # reload .tmux.conf file
 unbind r
 bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
