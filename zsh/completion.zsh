@@ -32,7 +32,7 @@ zstyle ':completion:*' list-colors ''
 
 # should this be in keybindings?
 bindkey -M menuselect '^o' accept-and-infer-next-history
-bindkey '^[[Z' reverse-menu-complete
+bindkey "\e[Z" reverse-menu-complete # Shift+Tab
 
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
