@@ -1,2 +1,5 @@
 .netrwhist
 vim/vim.symlink/bundle
+
+# zsh completion cache folder
+.cache
