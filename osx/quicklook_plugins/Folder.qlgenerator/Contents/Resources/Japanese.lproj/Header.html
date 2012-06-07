@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+<head>
+	<script type="text/javascript" language="javascript">
+	// <![CDATA[
+
+	document.getElementsByClassName = function(cl) {
+		var retnode = [];
+		var myclass = new RegExp('\\b'+cl+'\\b');
+		var elem = this.getElementsByTagName('*');
+		for (var i = 0; i < elem.length; i++) {
+		var classes = elem[i].className;
+		if (myclass.test(classes)) retnode.push(elem[i]);
+	}
+		return retnode;
+	};
+
+	var css_list = document.styleSheets;
+	function style_change(style_Discription,style_Context){
+		//alert('do');
+		if (css_list) for (var i = 0; i < css_list.length; i++) {
+		
+			var rule_list = (css_list[i].cssRules) ? css_list[i].cssRules : css_list[i].rules;
+		
+			for (var ii = 0; ii < rule_list.length; ii++)
+			 if (rule_list[ii].selectorText.toLowerCase() == style_Discription)
+			 with (rule_list[ii].style) {
+			 	eval(style_Context);
+				//display = 'none';
+				//width = '8em';
+			}
+		
+		}
+	}
+
+	folderView = document.getElementById("folderView");
+
+	function initialize(){
+		if (document.cookie == 'hide_folderviewer=true'){
+		//	document.cookie = 'hide_folderviewer=false';
+			window.close();
+		}
+	}
+
+	function hide_folderviewer(){
+		document.cookie = 'hide_folderviewer=true';
+		location.reload();
+	}
+
+	function write_row(NAME){
+		if(NAME.match(/^\./)){
+			class_str = 'hidden_file';
+		} else {
+			class_str = 'shown_file';
+		}
+		row_source = '<tr id="' + NAME + '" class="' + class_str+ '">\n';
+		document.write(row_source);
+	}
+	
+	function write_date(CREATED){
+		full_year = CREATED;
+		date_source = full_year.replace(/(\d+)-(\d+)-(\d+)\s(\d+):(\d+):(\d+).+/,"$1/$2/$3 $4:$5:$6");
+		date_data= new Date(date_source);
+		localized_Data = date_data.toLocaleString();
+		date_text = localized_Data.replace(/(\d+:\d+:\d+)([^\d]+)$/,"<span class=time><br />$1</span>");
+		document.write(date_text);
+	}
+
+	function write_full_date(CREATED){
+		full_year = CREATED;
+		date_source = full_year.replace(/(\d+)-(\d+)-(\d+)\s(\d+):(\d+):(\d+).+/,"$1/$2/$3 $4:$5:$6");
+		date_data= new Date(date_source);
+		localized_Data = date_data.toLocaleString();
+		date_text = localized_Data.replace(/(\d+:\d+:\d+)....$/,"$1");
+		document.write(date_text);
+	}
+
+	function write_size(SIZE){ // formatting file size into nnn.n
+		byte_size = SIZE.split(' ')[0];
+		if( byte_size <= 1024 ){
+			document.write(byte_size + " Bytes");
+		} else if( byte_size <= 1048576){
+			byte_size = byte_size/1024;
+			byte_size = (Math.round((byte_size * 10)))/10;
+			document.write( byte_size + " KB");
+		} else if( byte_size <= 1073741824){
+			byte_size = byte_size/1048576;
+			byte_size = (Math.round((byte_size * 10)))/10;
+			document.write( byte_size + " MB");
+		} else if( byte_size <= 1099511627776){
+			byte_size = byte_size/1073741824;
+			byte_size = (Math.round((byte_size * 10)))/10;
+			document.write( byte_size + " GB");
+		} else {
+			document.write(byte_size);
+		}
+	}
+
+	function show_time(){
+		if(document.getElementById('show_time').checked){
+			style_str = ' display = "inline"';
+			style_change('.time',style_str);
+		} else {
+			style_str = ' display = "none"';
+			style_change('.time',style_str);
+		}
+	}
+
+	function show_hidden_file(){
+		if(document.getElementById('show_hidden_file').checked){
+			style_str = ' display = "table-row"';
+			style_change('.hidden_file',style_str);
+		} else {
+			style_str = ' display = "none"';
+			style_change('.hidden_file',style_str);
+		}
+	}
+
+	// ]]>
+	</script>
+	<style type="text/css">
+	/* <![CDATA[ */
+	*{
+		margin:0px;
+		padding:0px;
+	}
+	
+	html{
+		background-color:rgb(11%,11%,11%);
+	}
+	
+	body{
+		margin: 0;
+		padding:0;
+		font: 10px/16px "Lucida Grande", "ヒラギノ角ゴ Pro W3";
+		color:#AAA;
+		scrollbar-base-color:#red;
+	}
+
+	#tool_bar{
+		background-image:url('file:///<RESOURCEPATH/>/images/tool_background.png');
+		width:100%;
+		height:22px;
+		color:#aaa;
+		position:fixed;
+		bottom:0px;
+		height:200px;
+		z-index:9;
+	}
+
+	#tool_bar p{
+		display:inline;
+		vertical-align:bottom;
+		margin: 0px 5px 20px 15px;
+		position:fixed;
+		bottom:0px;
+	}
+ 
+	#header{
+		background-image:url('file:///<RESOURCEPATH/>/images/attribute_background.png');
+		width:100%;
+		height:150px;
+		position:fixed;
+		top:0px;
+		z-index:10;
+	}
+
+	#attribute{
+		margin:5px auto 10px auto;
+		width:80%;
+		min-width:400px;
+	}
+
+	#attribute_info{
+		margin-left:85px;
+	}
+	
+	#attribute_icon{
+		position:absolute;
+		margin: 5px 0px 10px 0px;
+		padding-top:12px;
+	}
+
+	#attribute_info h1{
+		font: 20px "Lucida Grande", "ヒラギノ角ゴ Pro W6";
+		font-weight:bold;
+		margin-bottom:5px;
+		color:#fff;
+		text-shadow:#aaa 0px 2px 3px;
+	}
+
+	#attribute_info p{
+		font: 10px/14px "Lucida Grande", "ヒラギノ角ゴ Pro W3";
+	}
+
+	#list_window{
+		position:relative;
+		top:135px;
+		width:100%;
+		margin-bottom:250px;
+	}
+
+	.file_list{
+		clear:both;
+		margin:0 auto;
+		width:90%;
+		min-width:450px;
+		border-collapse:collapse;
+	}
+
+	#file_list_header_table{
+		margin:0 auto;
+		width:90%;
+	}
+
+	.list_header{
+		position:absolute;
+		top:120px;
+		width:100%;
+	}
+
+	.file_list tr{
+		height:36px;
+	}
+
+	#file_list_header{
+		height:15px;
+		background-image:url('file:///<RESOURCEPATH/>/images/header_background.png');
+	}
+
+	#file_list_header th{
+		font: 10px/14px "Lucida Grande", "ヒラギノ角ゴ Pro W6";
+		font-weight:bold;
+		text-shadow: #333 0px 5px 5px;
+		color:white;
+		
+	}
+
+	.file_list img{
+		vertical-align: middle;
+	}
+
+	.file_list th{
+		text-align:left;
+	}
+
+	.file_list td{
+		font: 10px/12px "Lucida Grande", "ヒラギノ角ゴ Pro W3";
+	}
+
+	.file_icon{
+		width:40px;
+		min-width:40px;
+	}
+	
+	.folder_icon img{
+		height:32px;
+		width:auto;
+	}
+
+	.file_name{
+		min-width:200px;
+		max-width:20em;
+		border-right: 1px solid #333;
+	}
+
+	.file_name_box{
+		width:100%;
+		overflow:hidden;
+	}
+
+	th.file_name{
+		padding-left:40px;
+		background-image:url('file:///<RESOURCEPATH/>/images/header_background_left.png');
+		background-repeat:no-repeat;
+	}
+
+	.file_created, .file_modified{
+		width:8.5em;
+		min-width:4em;
+		padding-left:3px;
+		border-right: 1px solid #333;
+	}
+
+	.file_size{
+		width:5em;
+		min-width:5em;
+		padding-left:3px;
+		border-right: 1px solid #333;
+	}
+
+	.file_kind{
+		padding-left:3px;
+		width:12em;
+		min-width:100px;
+	}
+
+	th.file_kind{
+		background-image:url('file:///<RESOURCEPATH/>/images/header_background_right.png');
+		background-repeat:no-repeat;
+		background-position:right;
+	}
+
+	a{
+		color:inherit;
+		text-decoration:none;
+	}
+
+	.time {
+		display:none;
+	}
+	
+	.hidden_file {
+		display:none;
+	}
+
+	/* ]]> */
+	</style>
+</head>
+<body onload="initialize()" id="folderView">
+
+<div id="tool_bar">
+	<p>
+		<input type="checkbox" name="show_hidden_file" id="show_hidden_file" onclick="show_hidden_file()" />
+		<label for ="show_hidden_file">不可視ファイル表示</label>
+		<input type="checkbox" name="show_time" id="show_time" onClick="show_time()"/>
+		<label for ="show_time">時刻表示</label>
+	</p>
+</div>
+
+<div id="header">
+	<IMPORT_ATTRIBUTE/>
+	
+	<div class="list_header">
+		<table id="file_list_header_table" class="file_list">
+			<tr id="file_list_header">
+				<th class="file_name" colspan="2">
+					名前
+				</th>
+				<th class="file_created">
+					作成日
+				</th>
+				<th class="file_modified">
+					修正日
+				</th>
+				<th class="file_size">
+					サイズ
+				</th>
+				<th class="file_kind">
+					種類
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div id="list_window">
+	<table id="file_list_body_table" class="file_list">
+		<IMPORT_LIST/>
+	</table>
+</div>
+
+
+</body>
+</html>
