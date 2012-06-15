@@ -44,17 +44,6 @@ done
 # Install bundle
 vim +BundleInstall +qall
 
-# Install QuickLook plugins if wanted
-if [ `uname` == "Darwin" ];then
-	echo "Do you want to install QuickLook plugins ? [y]es/[n]o"
-	read INSTALL_QLP
-	if [ $INSTALL_QLP = "y" ] || [ $INSTALL_QLP = "Y" ]; then
-		for i in `ls ./osx/quicklook_plugins`; do cp -R ./osx/quicklook_plugins/$i ~/Library/QuickLook/$i; done
-	fi
-
-fi
-}
-
 function uninstall {
 for file in `find ~/.dotfiles -name "*.symlink" | grep -v '\.git'`; do
 	filename=$(basename $file)                                                                                                                                                   
