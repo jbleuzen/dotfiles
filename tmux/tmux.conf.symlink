@@ -15,7 +15,7 @@ set -g mouse-select-window on
 
 # not sure what these settings are for
 #set-option -g status-keys vi
-#set-window-option -g mode-keys vi
+set-window-option -g mode-keys vi
 
 # windows starts at 1
 set -g base-index 1
@@ -63,15 +63,27 @@ bind-key l select-pane -R
 bind-key k select-pane -U
 bind-key j select-pane -D
 
+# kill session
 bind-key Q kill-session
+
+# vi configuration
+unbind [
+bind v copy-mode
+unbind p
+bind p paste-buffer
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
 
 #bind-key S set-window-option synchronize-panes on
 bind C-s set -g synchronize-panes
 
+# clear pane history
+bind L clear-history\; display "Clearing history"
+
 # quit tmux
 bind \ kill-server
 
-# Maximize/restore pane.
+# Maximize/restore p.
 # # http://superuser.com/a/357799/59790
 unbind +
 bind + new-window -d -n tmux-zoom 'clear && echo TMUX ZOOM && read' \; swap-pane -s tmux-zoom.0 \; select-window -t tmux-zoom
@@ -92,13 +104,13 @@ set -g pane-active-border-bg default
 #   STATUSBAR
 #------------------------------------------------------------------------------
 # default statusbar colors
-set -g status-fg colour15
+set -g status-fg colour245
 set -g status-bg colour236
 set -g status-attr dim
 
 # current or active window in status bar
 setw -g window-status-current-fg colour15
-setw -g window-status-current-bg colour0
+setw -g window-status-current-bg colour236
 setw -g window-status-current-format '#[bg=color250 fg=color0] #W '
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
