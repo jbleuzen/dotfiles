@@ -44,6 +44,7 @@ set tabstop=4			" Tabs width
 set smartindent
 set shiftwidth=4
 set noexpandtab
+set synmaxcol=0
 if has("gui_running")
 	set showbreak=\ \ ↳\ 
 else
