@@ -11,13 +11,13 @@ _Please : don't forget that I am constently building my dotfiles._
 
 It's easy, it takes three seconds and only three commands :
 
-	git clone --recursive git@github.com:jbleuzen/dotfiles.git ~/.dotfiles
+	git clone --recursive git://github.com/jbleuzen/dotfiles.git ~/.dotfiles
 	cd ~/.dotfiles
 	./deploy
 
 If you are lazy (and you should) you can even make it in one second :
 	
-	git clone --recursive git@github.com:jbleuzen/dotfiles.git ~/.dotfiles && ~/.dotfiles/deploy.sh
+	git clone --recursive git://github.com/jbleuzen/dotfiles.git ~/.dotfiles && ~/.dotfiles/deploy.sh
 
 ## Fonts
 
