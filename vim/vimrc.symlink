@@ -66,6 +66,8 @@ set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 set cursorline				" highlight current line
 
+nmap <F12> :set paste!<BAR>:set paste?<CR>
+
 " ----------------------------------------------------------------------------
 " Mappings  
 " ----------------------------------------------------------------------------
@@ -94,6 +96,10 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
+" Easy create empty line
+nmap ,o o<esc>
+nmap ,O O<esc>
+
 
 " ----------------------------------------------------------------------------
 " Backups
@@ -113,6 +119,7 @@ set ttyfast					" Send more characters for redraws
 " Set this to the name of your terminal that supports mouse codes.
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
+
 
 " ----------------------------------------------------------------------------
 " MacVim
