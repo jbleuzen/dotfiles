@@ -13,11 +13,11 @@ It's easy, it takes three seconds and only three commands :
 
 	git clone --recursive git://github.com/jbleuzen/dotfiles.git ~/.dotfiles
 	cd ~/.dotfiles
-	./deploy
+	./dotify.sh
 
 If you are lazy (and you should) you can even make it in one second :
 	
-	git clone --recursive git://github.com/jbleuzen/dotfiles.git ~/.dotfiles && ~/.dotfiles/deploy.sh
+	git clone --recursive git://github.com/jbleuzen/dotfiles.git ~/.dotfiles && ~/.dotfiles/dotify.sh
 
 ## Fonts
 
@@ -30,4 +30,4 @@ You find something better, no problems enjoy it!
 Uninstallation is easy as well, you just need two commands :
 
 	cd ~/.dotfiles
-	./deploy uninstall
+	./dotify.sh unlink
