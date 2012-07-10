@@ -1,6 +1,5 @@
-
 ####################################################################################################
-#
+# Totally inspired by MathiasBynens file
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 ####################################################################################################
 
@@ -19,6 +18,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
 
 ####################################################################################################
 # Finder
@@ -45,6 +45,7 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+
 ####################################################################################################
 # Dock & SystemUI
 ####################################################################################################
@@ -61,6 +62,22 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
+# Speed up Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# Remove the auto-hiding Dock delay
+defaults write com.apple.Dock autohide-delay -float 0
+# Remove the animation when hiding/showing the Dock
+defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Hot corners
+# Top left screen corner → Mission Control
+defaults write com.apple.dock wvous-bl-corner -int 2
+defaults write com.apple.dock wvous-bl-modifier -int 0
+# Top right screen corner → Desktop
+defaults write com.apple.dock wvous-br-corner -int 4
+defaults write com.apple.dock wvous-br-modifier -int 0
+
 ####################################################################################################
 # iTunes
 ####################################################################################################
@@ -73,6 +90,7 @@ defaults write com.apple.iTunes disablePing -bool true
 
 # Make ⌘ + F focus the search input in iTunes
 defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+
 
 ####################################################################################################
 # Mail
@@ -92,11 +110,6 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 hash tmutil &> /dev/null && sudo tmutil disablelocal
 
 
-####################################################################################################
-# QuickLook
-####################################################################################################
-for i in `ls -l plugins`; do ln -s $i ~/Library/QuickLook/$i; done
-
 # Kill affected applications
-for app in Dock; do killall "$app" > /dev/null 2>&1; done
+for app in Finder Dock; do killall "$app" > /dev/null 2>&1; done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
