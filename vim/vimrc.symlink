@@ -66,6 +66,7 @@ set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 set cursorline				" highlight current line
 
+" Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
 " ----------------------------------------------------------------------------
@@ -112,7 +113,6 @@ nmap <leader>/ :let @/ = ""<CR>
 " toggle search result highlight
 nmap <leader>; :set hlsearch!<CR>
 
-" Use the same symbols as TextMate for tabstops and EOLs
 
 " ----------------------------------------------------------------------------
 " Backups
