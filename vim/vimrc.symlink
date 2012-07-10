@@ -66,7 +66,7 @@ set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 set cursorline				" highlight current line
 
-nmap <F12> :set paste!<BAR>:set paste?<CR>
+set listchars=tab:▸\ ,eol:¬
 
 " ----------------------------------------------------------------------------
 " Mappings  
@@ -96,10 +96,23 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
+" Toggle paste mode
+nmap <F12> :set paste!<BAR>:set paste?<CR>
+
 " Easy create empty line
 nmap ,o o<esc>
 nmap ,O O<esc>
 
+" toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" empty last search highlight
+nmap <leader>/ :let @/ = ""<CR>
+
+" toggle search result highlight
+nmap <leader>; :set hlsearch!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
 
 " ----------------------------------------------------------------------------
 " Backups
