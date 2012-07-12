@@ -6,6 +6,7 @@ autoload colors && colors
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}("
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗ "
+ZSH_THEME_GIT_PROMPT_STAGING="%{$fg_bold[yellow]%}✔ "
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔ "
 
 # Checks if working tree is dirty
@@ -13,7 +14,12 @@ parse_git_dirty() {
   if [[ -n $(git status -s --ignore-submodules=dirty 2> /dev/null) ]]; then
     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
   else
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+	  has_commit=`git rev-list origin/$branch..$branch`
+	  if [ "$has_commit" != "" ] ; then
+		echo "$ZSH_THEME_GIT_PROMPT_STAGING"
+    else
+		echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+	fi
   fi
 }
 
