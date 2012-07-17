@@ -8,6 +8,10 @@ alias ll='ls -l'
 alias l='ll'
 alias la='ls -la'
 
+# I am human 
+alias df='df -h'
+alias du='du -h'
+
 # for rake task with argument
 alias rake='noglob rake'
 
