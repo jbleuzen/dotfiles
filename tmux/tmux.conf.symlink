@@ -42,6 +42,10 @@ set -g prefix C-x
 unbind C-b
 bind C-x send-prefix
 
+# ssh-friendly splits
+bind-key  "%"     run-shell 'exec tmux-ssh-split -h'
+bind-key  '"'     run-shell 'exec tmux-ssh-split -v'
+
 # kill server session
 unbind q
 bind-key C-q kill-session
@@ -126,7 +130,7 @@ set -g message-attr dim
 set -g status-left-length 30
 set -g status-left-attr bold
 set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240]⮀#[fg=#FFFFFF] #h #[fg=colour240 bg=colour236]⮀'
- 
+
 # right side of status bar
 set -g status-right-length 30
 set -g status-right '#[bg=colour236 fg=colour240]⮂#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]⮂#[fg=colour0 bg=colour250] %H:%M '
