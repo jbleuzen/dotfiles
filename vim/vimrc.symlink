@@ -15,6 +15,9 @@ call vundle#rc()
 source ~/.dotfiles/vim/bundles
 filetype plugin indent on       " enable detection, plugins and indenting in one step
 
+" Strip whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 
 " ----------------------------------------------------------------------------
 "  UI
@@ -139,7 +142,7 @@ set ttymouse=xterm2
 " ----------------------------------------------------------------------------
 
 if has("gui_macvim")
-	    let macvim_hig_shift_movement = 1 "allow selection in insert mode
+	let macvim_hig_shift_movement = 1 "allow selection in insert mode
 endif
 
 
