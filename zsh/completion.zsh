@@ -1,6 +1,6 @@
 # Autoload zsh functions completion
 fpath=(~/.dotfiles/zsh/functions $fpath)
-autoload -U ~/.dotfiles/zsh/functions/*(:t) 
+autoload -U ~/.dotfiles/zsh/functions/*(:t)
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -29,10 +29,6 @@ else
 fi
 
 zstyle ':completion:*' list-colors ''
-
-# should this be in keybindings?
-bindkey -M menuselect '^o' accept-and-infer-next-history
-bindkey '^[[Z' reverse-menu-complete # Shift+Tab
 
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
