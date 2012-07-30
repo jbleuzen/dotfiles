@@ -100,6 +100,18 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
+" Disabling <F1> because it's so close to <Esc>
+inoremap <F1> <Esc>
+noremap <F1> :call MapF1()<CR>
+
+function! MapF1()
+  if &buftype == "help"
+    exec 'quit'
+  else
+    exec 'help'
+  endif
+endfunction
+
 " Toggle paste mode
 nmap <F12> :set paste!<BAR>:set paste?<CR>
 
