@@ -16,7 +16,7 @@ source ~/.dotfiles/vim/bundles
 filetype plugin indent on       " enable detection, plugins and indenting in one step
 
 " Strip whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 
 " ----------------------------------------------------------------------------
@@ -40,18 +40,18 @@ set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
-set guicursor=a:blinkon0   " disable blinking cursor	
+set guicursor=a:blinkon0   " disable blinking cursor
 set cpoptions+=n	   " wrap long lines
 set display=lastline	   " prevent the @ when lines are too long
-set tabstop=4			" Tabs width 
+set tabstop=4			" Tabs width
 set smartindent
 set shiftwidth=4
 set noexpandtab
 set synmaxcol=0
 if has("gui_running")
-	set showbreak=\ \ ↳\ 
+	set showbreak=\ \ ↳\
 else
-	set showbreak=\ \ \ ↳\ 
+	set showbreak=\ \ \ ↳\
 endif
 
 
@@ -73,13 +73,13 @@ set cursorline				" highlight current line
 set listchars=tab:▸\ ,eol:¬
 
 " ----------------------------------------------------------------------------
-" Mappings  
+" Mappings
 " ----------------------------------------------------------------------------
 
 " Configure <Leader>
 let mapleader = ","
 
-" Escape is too far away 
+" Escape is too far away
 inoremap jj <Esc>
 " Learn "hkjl" the hard way !
 noremap <Up> <nop>
@@ -127,7 +127,7 @@ set noswapfile
 
 
 " ----------------------------------------------------------------------------
-" Terminal 
+" Terminal
 " ----------------------------------------------------------------------------
 
 set mouse=a         		" enable mouse support in console "
@@ -147,17 +147,17 @@ endif
 
 
 " ----------------------------------------------------------------------------
-" FileType configuration 
+" FileType configuration
 " ----------------------------------------------------------------------------
 autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 
 " ----------------------------------------------------------------------------
-" Plugins configuration 
+" Plugins configuration
 " ----------------------------------------------------------------------------
 
 " ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
-let g:use_zen_complete_tag = 1 
+let g:use_zen_complete_tag = 1
 
 " NERDTree
 let NERDTreeMinimalUI = 1
