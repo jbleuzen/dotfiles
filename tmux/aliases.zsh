@@ -1,2 +1,3 @@
 alias ta="tmux attach -t"
-alias tls="tmux ls"
+alias tk="tmux kill-session -t"
+alias tl="tmux ls"
