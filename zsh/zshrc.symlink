@@ -2,7 +2,6 @@
 export ZSH=$HOME/.dotfiles
 
 # source every .zsh file in this rep
-for config_file ($ZSH/**/*.zsh) source $config_file
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
@@ -15,5 +14,6 @@ fi
 autoload -U compinit
 compinit
 
+for config_file ($ZSH/**/*.zsh) source $config_file
 # load every completion after autocomplete loads
 # for config_file ($ZSH/**/completion.sh) source $config_file
