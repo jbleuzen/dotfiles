@@ -55,3 +55,4 @@ function __tmux-sessions() {
 	_describe -t sessions 'sessions' sessions "$@"
 }
 compdef __tmux-sessions tm
+compdef __tmux-sessions tk
