@@ -42,7 +42,7 @@ function precmd {
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="blue"; fi
 
-PROMPT=$'%{$fg_bold[$NCOLOR]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m%{$reset_color%}:%~$ %{$fg_bold[white]%}'
+PROMPT=$'%{$fg_bold[$NCOLOR]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m%{$reset_color%}:%{$fg_bold[green]%}%~ %{$reset_color%}'
 RPROMPT='%{$reset_color%}$(git_prompt_info) %*%{$reset_color%}'
 
 # See http://geoff.greer.fm/lscolors/
