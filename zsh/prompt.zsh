@@ -20,7 +20,7 @@ parse_git_dirty() {
 # get the name of the branch we are on
 git_prompt_info() {
         ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-        head=`git status --porcelain -b 2>/dev/null | head -n 1| sed -nE 's/^.*\[ahead (.*)\].*$/\1/p'`
+        head=`git status -sb 2>/dev/null | head -n 1| sed -nE 's/^.*\[ahead (.*)\].*$/\1/p'`
         if [ ! -z $head ]; then
                 echo "%{$fg_bold[red]%}${head}+%{$reset_color%} $ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
         else
