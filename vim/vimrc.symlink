@@ -123,7 +123,8 @@ function! MapF1()
 endfunction
 
 " Toggle paste mode
-nmap <F12> :set paste!<BAR>:set paste?<CR>
+set pastetoggle=<F12>
+nmap <silent> <F12> :set paste!<BAR>:set paste?<CR>
 
 " Easy create empty line
 nmap ,o o<esc>
