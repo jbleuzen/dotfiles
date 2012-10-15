@@ -24,6 +24,7 @@ Bundle 'git://github.com/tpope/vim-markdown.git'
 Bundle 'git://github.com/mattn/zencoding-vim.git'
 Bundle 'git://github.com/kien/ctrlp.vim.git'
 Bundle 'git://github.com/spolu/dwm.vim.git'
+Bundle 'git://github.com/pangloss/vim-javascript.git'
 
 
 "Syntax
