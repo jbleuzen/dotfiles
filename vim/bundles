@@ -27,5 +27,6 @@ Bundle 'git://github.com/vim-scripts/closetag.vim.git'
 
 " Syntax
 Bundle 'git://github.com/pangloss/vim-javascript.git'
+Bundle 'git://github.com/evanmiller/nginx-vim-syntax.git'
 Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
 Bundle 'git://github.com/othree/html5-syntax.vim.git'
