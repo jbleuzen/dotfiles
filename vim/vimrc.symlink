@@ -215,4 +215,8 @@ let g:Powerline_symbols = 'fancy'
 " CTRLP
 let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|_site)$'
 
-
+" html-indent
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_autotags = "th,td,tr,tfoot,thead"
+let g:html_indent_script1 = "auto"
+let g:html_indent_style1 = "inc"
