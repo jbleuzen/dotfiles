@@ -24,6 +24,7 @@ Bundle 'git://github.com/scrooloose/nerdcommenter.git'
 Bundle 'git://github.com/scrooloose/nerdtree.git' 
 Bundle 'git://github.com/scrooloose/syntastic'
 Bundle 'git://github.com/vim-scripts/closetag.vim.git'
+Bundle 'git://github.com/vim-scripts/indenthtml.vim.git'
 
 
 " Syntax
