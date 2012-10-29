@@ -38,6 +38,9 @@ function link {
 				mv $filename ${filename}.backup 	
 			fi
 		fi
+		
+		# TODO : Add a filter for OSX folder
+
 		ln -s $file $filename 2> /dev/null
 	done
 }
