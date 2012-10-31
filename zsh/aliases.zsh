@@ -26,3 +26,5 @@ alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 # alias for launchctl to work in tmux
 # you'll need to execute "brew install reattach-to-user-namespace"
 alias launchctl='reattach-to-user-namespace -l launchctl'
+
+alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
