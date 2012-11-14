@@ -180,7 +180,8 @@ endif
 " ----------------------------------------------------------------------------
 " FileType configuration
 " ----------------------------------------------------------------------------
-autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+au BufNewFile,BufRead *.sass set tabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufRead *.json setfiletype json syntax=javascript
 
 au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
 au BufRead,BufNewFile /etc/nginx/sites-available/*           set ft=nginx
@@ -198,7 +199,7 @@ let g:use_zen_complete_tag = 1
 " NERDTree
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let NERDTreeIgnore=['\.o$', '\~$', 'Icon']
+let NERDTreeIgnore=['\.o$', '\~$', 'Icon', '_asset_bundler_cache$[[dir]]']
 let g:NERDTreeWinSize = 30
 
 " NERDTreeTabs
