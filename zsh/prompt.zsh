@@ -3,10 +3,10 @@ autoload colors && colors
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 # Git prompt configuration
-GIT_PROMPT_PREFIX="%{$reset_color%}("
-GIT_PROMPT_SUFFIX="%{$reset_color%})"
-GIT_PROMPT_DIRTY="%{$fg_bold[red]%}✗ "
-GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔ "
+GIT_PROMPT_PREFIX="%F{reset}("
+GIT_PROMPT_SUFFIX="%F{reset})"
+GIT_PROMPT_DIRTY="%F{red}✗ "
+GIT_PROMPT_CLEAN="%F{green}✔ "
 
 # Checks if working tree is dirty
 git_dirty() {
@@ -27,18 +27,21 @@ git_status() {
 
 	if [[ -n ${remote} ]] ; then
 
-		unstaged=$(git status -sb 2> /dev/null 2> /dev/null | grep "?" | wc -l | tr -s " ")
-		(( $unstaged )) && gitstatus+=( "%F{yellow}✚${unstaged}" )
+		modified=$(git diff --name-only 2> /dev/null | wc -l | sed -e 's/^[ \t]*//')
+		(( $modified )) && gitstatus+=("%F{blue}•${modified}%F{reset}")
+
+		unstaged=$(git status -sb 2> /dev/null 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
+		(( $unstaged )) && gitstatus+=("%F{yellow}✚ ${unstaged}%F{reset}")
 
 		# for git prior to 1.7
 		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -s " ")
-		(( $ahead )) && gitstatus+=( "%F{cyan}⬆${ahead}%{$reset_color%}" )
+		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
+		(( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}%F{reset}")
 
 		# for git prior to 1.7
 		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -s " ")
-		(( $behind )) && gitstatus+=( "%F{magenta}⬇${behind}%{$reset_color%}" )
+		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
+		(( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}%F{reset}")
 
 		if [[ -n ${gitstatus} ]]; then
 			echo " "${(j:|:)gitstatus}
@@ -49,30 +52,35 @@ git_status() {
 # get the name of the branch we are on
 git_prompt_info() {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	echo " $GIT_PROMPT_PREFIX$(git_dirty)${ref#refs/heads/}$(git_status)$GIT_PROMPT_SUFFIX"
+	echo " $GIT_PROMPT_PREFIX$(git_dirty)${ref#refs/heads/}$(git_status)$GIT_PROMPT_SUFFIX%F{reset}"
 }
 
 # All kudos for precmd goes to Phil : http://aperiodic.net/phil/prompt/
-function precmd {
+precmd() {
 
-local TERMWIDTH
-(( TERMWIDTH = ${COLUMNS} - 1 ))
+	local TERMWIDTH
+	(( TERMWIDTH = ${COLUMNS} - 1 ))
 
-local promptsize=${#${(%):-(%n@%m:%~)}}
-local datesize=${#${(%):-[%*–]}}
+	local promptsize=${#${(%):-(%n@%m:%~)}}
+	local datesize=${#${(%):-[%*–]}}
 
-# Handle the prompt size
-if [[ "$promptsize + $datesize" -gt $TERMWIDTH ]]; then
-	((PR_PWDLEN=$TERMWIDTH - $promptsize))
-else
-	PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $datesize - 3)))..${PR_HBAR}.)}"
-fi
+	# Handle the prompt size
+	if [[ "$promptsize + $datesize" -gt $TERMWIDTH ]]; then
+		((PR_PWDLEN=$TERMWIDTH - $promptsize))
+	else
+		PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $datesize - 3)))..${PR_HBAR}.)}"
+	fi
 }
 
-if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="blue"; fi
+# If root then the user is red in prompt
+if [ $UID -eq 0 ]; then 
+	NCOLOR="red"
+else 
+	NCOLOR="blue"
+fi
 
-PROMPT=$'%{$fg_bold[$NCOLOR]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m%{$reset_color%}:%{$fg_bold[green]%}%~ %{$reset_color%}'
-RPROMPT='%{$reset_color%}$(git_prompt_info) %*%{$reset_color%}'
+PROMPT='%F{$NCOLOR}%n%{$reset_color%}@%{$fg_bold[red]%}%m%{$reset_color%}:%{$fg_bold[green]%}%~ %F{reset}'
+RPROMPT='%{$reset_color%}$(git_prompt_info) %*%F{reset}'
 
 # See http://geoff.greer.fm/lscolors/
 export LSCOLORS="exfxcxdxbxbxbxbxbxbxbx"
