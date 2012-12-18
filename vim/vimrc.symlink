@@ -221,3 +221,8 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_autotags = "th,td,tr,tfoot,thead"
 let g:html_indent_script1 = "auto"
 let g:html_indent_style1 = "inc"
+
+" Jekyll HAML header
+let g:jekyll_path = "/Users/johan/Sites/blog.dev"
+high link jekyllYamlFrontmatter Comment
+execute "autocmd BufNewFile,BufRead " . g:jekyll_path . "/* syn match jekyllYamlFrontmatter /\\%^---\\_.\\{-}---$/ contains=@Spell"
