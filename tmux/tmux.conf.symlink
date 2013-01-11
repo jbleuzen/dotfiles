@@ -43,8 +43,10 @@ unbind C-b
 bind C-x send-prefix
 
 # ssh-friendly splits
-bind-key  "%"     run-shell 'exec tmux-ssh-split -h'
-bind-key  '"'     run-shell 'exec tmux-ssh-split -v'
+bind-key  "%"   split-window -h
+bind-key  '"'   split-window -v
+bind-key  "|"     run-shell 'exec tmux-ssh-split -h'
+bind-key  "-"     run-shell 'exec tmux-ssh-split -v'
 
 # kill server session
 unbind q
