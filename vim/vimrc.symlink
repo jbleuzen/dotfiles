@@ -53,6 +53,7 @@ if has("gui_running")
 else
 	set showbreak=\ \ \ ↳\
 endif
+set splitbelow				" Display preview window in the bottom
 
 
 " ----------------------------------------------------------------------------
