@@ -221,3 +221,6 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_autotags = "th,td,tr,tfoot,thead"
 let g:html_indent_script1 = "auto"
 let g:html_indent_style1 = "inc"
+
+" javascript-indent
+let g:SimpleJsIndenter_BriefMode = 1
