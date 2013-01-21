@@ -181,7 +181,7 @@ endif
 " ----------------------------------------------------------------------------
 " FileType configuration
 " ----------------------------------------------------------------------------
-au BufNewFile,BufRead *.sass set tabstop=2 shiftwidth=2 expandtab
+au BufNewFile,BufRead *.sass set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead *.json setfiletype json syntax=javascript
 
 au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
@@ -225,3 +225,7 @@ let g:html_indent_style1 = "inc"
 
 " javascript-indent
 let g:SimpleJsIndenter_BriefMode = 1
+
+" vim-indent-guide
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
