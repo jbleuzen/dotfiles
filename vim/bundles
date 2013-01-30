@@ -5,6 +5,7 @@ Bundle 'gmarik/vundle'
 
 " Colorscheme
 Bundle 'git://github.com/jbleuzen/molokai.git'
+Bundle 'git://github.com/jbleuzen/vim-javascript-syntax.git'
 
 
 " Plugins 

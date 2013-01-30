@@ -136,6 +136,8 @@ nmap <leader>/ :let @/ = ""<CR>
 " toggle search result highlight
 nmap <leader>; :set hlsearch!<CR>
 
+inoremap ;<CR> <C-o>A;
+
 
 " ----------------------------------------------------------------------------
 " Backups
