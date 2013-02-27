@@ -88,10 +88,14 @@ let mapleader = ","
 " Escape is too far away
 inoremap jj <Esc>
 " Learn "hkjl" the hard way !
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
+nnoremap <Up> 		<nop>
+nnoremap <Down>		<nop>
+nnoremap <Left> 	<nop>
+nnoremap <Right>	<nop>
+inoremap <Up>     	<nop>
+inoremap <Down>   	<nop>
+inoremap <Left>   	<nop>
+inoremap <Right>  	<nop>
 
 " Moving line up/down (For french azerty Mac)
 " Hackish mappings for ALT-J & ALT-K
@@ -205,7 +209,10 @@ endif
 let g:Powerline_symbols = 'fancy'
 
 " CTRLP
-let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|_site)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
+let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_max_height = 5
 
 " html-indent
 let g:html_indent_inctags = "html,body,head,tbody"
