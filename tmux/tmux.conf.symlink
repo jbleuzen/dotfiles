@@ -115,7 +115,7 @@ set -g status-bg colour236
 set -g status-attr dim
 
 # current or active window in status bar
-setw -g window-status-current-fg colour15
+setw -g window-status-current-fg colour148
 setw -g window-status-current-bg colour236
 setw -g window-status-current-format '#[bg=color250 fg=color0] #W '
 
