@@ -9,6 +9,7 @@ Bundle 'git://github.com/jbleuzen/vim-javascript-syntax.git'
 
 
 " Plugins 
+Bundle 'git://github.com/mileszs/ack.vim.git'
 Bundle 'git://github.com/ap/vim-css-color.git'
 Bundle 'git://github.com/docunext/closetag.vim.git'
 Bundle 'git://github.com/jistr/vim-nerdtree-tabs.git'
