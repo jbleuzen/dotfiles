@@ -14,7 +14,7 @@ alias cd..="cd .."
 alias ..="cd .."
 alias ...="cd ../.."
 
-# I am human 
+# I am huma 
 alias df='df -h'
 alias du='du -h'
 
@@ -30,5 +30,8 @@ alias launchctl='reattach-to-user-namespace -l launchctl'
 
 alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 
-# not an alias but works like an alias
+
+# not aliases but works like an alias
+md() { mkdir -p $1 && cd $1}
+
 gen_file() { dd if=/dev/zero of=file.bin bs=1024 count=0 seek=$[1024 * $1] }
