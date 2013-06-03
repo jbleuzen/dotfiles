@@ -33,6 +33,8 @@ Bundle 'git://github.com/jszakmeister/vim-togglecursor.git'
 Bundle 'git://github.com/vim-scripts/closetag.vim.git'
 Bundle 'git://github.com/vim-scripts/indenthtml.vim.git'
 Bundle 'git://github.com/xolox/vim-session.git'
+Bundle 'git://github.com/xolox/vim-session.git'
+Bundle 'git://github.com/xolox/vim-misc.git'
 Bundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
 
 
