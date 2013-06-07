@@ -36,6 +36,7 @@ Bundle 'git://github.com/xolox/vim-session.git'
 Bundle 'git://github.com/xolox/vim-session.git'
 Bundle 'git://github.com/xolox/vim-misc.git'
 Bundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
+Bundle 'git://github.com/terryma/vim-multiple-cursors.git'
 
 
 " Syntax
