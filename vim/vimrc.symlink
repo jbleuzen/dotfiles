@@ -111,6 +111,10 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
+" This only work in Macvim because of :
+" http://stackoverflow.com/questions/13072701/why-doesnt-this-vimrc-mapping-work-in-terminal-but-it-does-in-macvim-map-s
+imap <S-Enter> <Esc>A<CR>
+
 " Disabling <F1> because it's so close to <Esc>
 inoremap <F1> <Esc>
 noremap <F1> :call MapF1()<CR>
