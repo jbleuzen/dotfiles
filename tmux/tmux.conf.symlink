@@ -89,13 +89,6 @@ bind L clear-history\; display "Clearing history"
 # quit tmux
 bind \ kill-server
 
-# Maximize/restore p.
-# # http://superuser.com/a/357799/59790
-unbind +
-bind + new-window -d -n tmux-zoom 'clear && echo TMUX ZOOM && read' \; swap-pane -s tmux-zoom.0 \; select-window -t tmux-zoom
-unbind -
-bind - last-window \; swap-pane -s tmux-zoom.0 \; kill-window -t tmux-zoom
-
 #------------------------------------------------------------------------------
 #   PANE
 #------------------------------------------------------------------------------
