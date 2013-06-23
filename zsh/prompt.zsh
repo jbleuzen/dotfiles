@@ -58,13 +58,15 @@ git_prompt_info() {
 # If root then the user is red in prompt
 if [ $UID -eq 0 ]; then 
 	NCOLOR="red"
+	START="%(?.%F{red}❯%F{yellow}❯%F{green}❯.%F{red}❯❯❯)"
 else 
 	NCOLOR="blue"
+	START="%(?.%F{green}.%F{red})❯"
 fi
 
 SSH="%F{$NCOLOR}%n%f@%F{red}%m%f "
 
-PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ %F{green}%~ %f'
+PROMPT='${SSH_TTY:+$SSH}$START %F{green}%~ %f'
 RPROMPT='$(git_prompt_info) %*'
 
 # See http://geoff.greer.fm/lscolors/
