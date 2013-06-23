@@ -69,6 +69,7 @@ set ignorecase             " ignore case when searching
 set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 set cursorline				" highlight current line
+set showcmd
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
