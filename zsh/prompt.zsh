@@ -3,8 +3,8 @@ autoload colors && colors
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 # Git prompt configuration
-GIT_PROMPT_PREFIX="%F{reset}("
-GIT_PROMPT_SUFFIX="%F{reset})"
+GIT_PROMPT_PREFIX="%f("
+GIT_PROMPT_SUFFIX="%f)"
 GIT_PROMPT_DIRTY="%F{red}✗ "
 GIT_PROMPT_CLEAN="%F{green}✔ "
 
@@ -28,23 +28,23 @@ git_status() {
 	if [[ -n ${remote} ]] ; then
 
 		modified=$(git diff --name-only 2> /dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $modified )) && gitstatus+=("%F{blue}•${modified}%F{reset}")
+		(( $modified )) && gitstatus+=("%F{blue}•${modified}")
 
-		unstaged=$(git status -sb 2> /dev/null 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
-		(( $unstaged )) && gitstatus+=("%F{yellow}✚ ${unstaged}%F{reset}")
+		unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
+		(( $unstaged )) && gitstatus+=("%F{yellow}✚${unstaged}")
 
 		# for git prior to 1.7
 		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
 		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}%F{reset}")
+		(( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}")
 
 		# for git prior to 1.7
 		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
 		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}%F{reset}")
+		(( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}")
 
 		if [[ -n ${gitstatus} ]]; then
-			echo " "${(j:|:)gitstatus}
+			echo " "${(j:%f|:)gitstatus}
 		fi
 	fi
 } 
@@ -52,24 +52,7 @@ git_status() {
 # get the name of the branch we are on
 git_prompt_info() {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	echo " $GIT_PROMPT_PREFIX$(git_dirty)${ref#refs/heads/}$(git_status)$GIT_PROMPT_SUFFIX%F{reset}"
-}
-
-# All kudos for precmd goes to Phil : http://aperiodic.net/phil/prompt/
-precmd() {
-
-	local TERMWIDTH
-	(( TERMWIDTH = ${COLUMNS} - 1 ))
-
-	local promptsize=${#${(%):-(%n@%m:%~)}}
-	local datesize=${#${(%):-[%*–]}}
-
-	# Handle the prompt size
-	if [[ "$promptsize + $datesize" -gt $TERMWIDTH ]]; then
-		((PR_PWDLEN=$TERMWIDTH - $promptsize))
-	else
-		PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $datesize - 3)))..${PR_HBAR}.)}"
-	fi
+	echo " $GIT_PROMPT_PREFIX$(git_dirty)${ref#refs/heads/}$(git_status)$GIT_PROMPT_SUFFIX"
 }
 
 # If root then the user is red in prompt
@@ -79,8 +62,10 @@ else
 	NCOLOR="blue"
 fi
 
-PROMPT='%F{$NCOLOR}%n%{$reset_color%}@%{$fg_bold[red]%}%m%{$reset_color%}:%{$fg_bold[green]%}%~ %F{reset}'
-RPROMPT='%{$reset_color%}$(git_prompt_info) %*%F{reset}'
+SSH="%F{$NCOLOR}%n%f@%F{red}%m%f "
+
+PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ %F{green}%~ %f'
+RPROMPT='$(git_prompt_info) %*'
 
 # See http://geoff.greer.fm/lscolors/
 export LSCOLORS="exfxcxdxbxbxbxbxbxbxbx"
