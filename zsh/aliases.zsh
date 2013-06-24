@@ -1,8 +1,6 @@
 alias reload!='. ~/.zshrc'
 alias dotfiles='cd ~/.dotfiles'
 
-alias vi='/usr/local/Cellar/vim/7.3.923/bin/vim || vim'
-alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim || vim'
 alias grep='grep --color'
 
 # Find the option for using colors in ls, depending on the version: Linux or BSD
