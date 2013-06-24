@@ -3,10 +3,8 @@ autoload colors && colors
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 # Git prompt configuration
-GIT_PROMPT_PREFIX="%f("
-GIT_PROMPT_SUFFIX="%f)"
-GIT_PROMPT_DIRTY="%F{red}✗ "
-GIT_PROMPT_CLEAN="%F{green}✔ "
+GIT_PROMPT_DIRTY="%F{red}"
+GIT_PROMPT_CLEAN="%F{green}"
 
 # Checks if working tree is dirty
 git_dirty() {
@@ -31,7 +29,7 @@ git_status() {
 		(( $modified )) && gitstatus+=("%F{blue}•${modified}")
 
 		unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
-		(( $unstaged )) && gitstatus+=("%F{yellow}✚${unstaged}")
+		(( $unstaged )) && gitstatus+=("%F{yellow}+${unstaged}")
 
 		# for git prior to 1.7
 		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
@@ -52,7 +50,7 @@ git_status() {
 # get the name of the branch we are on
 git_prompt_info() {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	echo " $GIT_PROMPT_PREFIX$(git_dirty)${ref#refs/heads/}$(git_status)$GIT_PROMPT_SUFFIX"
+	echo " $(git_dirty)${ref#refs/heads/}$(git_status)%f"
 }
 
 # If root then the user is red in prompt

@@ -63,12 +63,6 @@ bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
 bind-key C-l next
 bind-key C-h prev
 
-# alt+directions navigates through panes
-bind-key h select-pane -L
-bind-key l select-pane -R
-bind-key k select-pane -U
-bind-key j select-pane -D
-
 # kill session
 bind-key Q kill-session
 

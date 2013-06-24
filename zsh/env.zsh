@@ -17,3 +17,6 @@ export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
 # RVM configuration
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# Load z if exist
+[[ -s "`brew --prefix`/etc/profile.d/z.sh" ]] && . "`brew --prefix`/etc/profile.d/z.sh"
