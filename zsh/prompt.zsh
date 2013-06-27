@@ -65,7 +65,7 @@ fi
 SSH="%F{$USERNAMECOLOR}%n%f@%F{red}%m%f "
 
 PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ $PATHCOLOR%~ %f'
-RPROMPT='$(git_prompt_info) %*'
+RPROMPT='$(git_prompt_info) %F{245}%*'
 
 # See http://geoff.greer.fm/lscolors/
 export LSCOLORS="exfxcxdxbxbxbxbxbxbxbx"
