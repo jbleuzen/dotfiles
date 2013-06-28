@@ -9,9 +9,6 @@ alias l='ll'
 alias ll='ls -l'
 alias la='ls -la'
 
-[[ -s /usr/local/Cellar/vim/7.3.923/bin/vim ]] &> /dev/null && alias vi='/usr/local/Cellar/vim/7.3.923/bin/vim'
-[[ -s /usr/local/Cellar/vim/7.3.923/bin/vim ]] &> /dev/null && alias vim='/usr/local/Cellar/vim/7.3.923/bin/vim'
-
 # Navigation
 alias cd..="cd .."
 alias ..="cd .."
