@@ -89,7 +89,6 @@ let mapleader = ","
 
 " Escape is too far away
 inoremap jj <Esc>
-inoremap kk <Esc>
 
 " Learn "hkjl" the hard way !
 nnoremap <Up> 		<nop>
@@ -157,9 +156,6 @@ inoremap ;<CR> <C-o>A;
 
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
-
-
-nmap <F5>	:so ~/.vimrc<CR>
 
 " ----------------------------------------------------------------------------
 " Backups
