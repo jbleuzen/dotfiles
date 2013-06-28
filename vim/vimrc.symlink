@@ -10,10 +10,12 @@ set nocompatible
 
 filetype off 			" disable detection before vundle loads
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
 source ~/.dotfiles/vim/bundles
 filetype plugin indent on       " enable detection, plugins and indenting in one step
+
 
 " Strip whitespace on save
 "autocmd BufWritePre * :%s/\s\+$//e
@@ -65,12 +67,12 @@ set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
 set laststatus=2           " always show the status line
-set statusline=%<\ %F\ %m%r%y%=%-35.(line:\ %l\ /\ %L,\ col:\ %c%V\ (%P)%)
 set ignorecase             " ignore case when searching
 set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 set cursorline				" highlight current line
-set showcmd
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
