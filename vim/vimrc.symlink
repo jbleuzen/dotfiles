@@ -43,10 +43,10 @@ set nostartofline          " don't jump to the start of line when scrolling
 set guicursor=a:blinkon0   " disable blinking cursor
 set cpoptions+=n	   " wrap long lines
 set display=lastline	   " prevent the @ when lines are too long
-set tabstop=4			" Tabs width
+set tabstop=2			" Tabs width
 set smartindent
-set shiftwidth=4
-set noexpandtab
+set shiftwidth=2
+set expandtab
 set synmaxcol=0
 if has("gui_running")
 	set showbreak=\ \ ↳\
@@ -89,6 +89,8 @@ let mapleader = ","
 
 " Escape is too far away
 inoremap jj <Esc>
+inoremap kk <Esc>
+
 " Learn "hkjl" the hard way !
 nnoremap <Up> 		<nop>
 nnoremap <Down>		<nop>
@@ -134,9 +136,13 @@ set pastetoggle=<F12>
 nmap <silent> <F12> :set paste!<BAR>:set paste?<CR>
 
 " Easy create empty line
-nmap ,o o<esc>
-nmap ,O O<esc>
+nmap <leader>o o<esc>
+nmap <leader>O O<esc>
 
+
+" Easy insert 
+nmap <leader>a ea
+nmap <leader>i bi
 " toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -146,11 +152,14 @@ nmap <leader>/ :let @/ = ""<CR>
 " toggle search result highlight
 nmap <leader>; :set hlsearch!<CR>
 
+" Insert ; at the end of the line if ; inserted then enter pressed
 inoremap ;<CR> <C-o>A;
 
-nmap ,gs :Gstatus<CR>
-nmap ,gl :Glog<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gl :Glog<CR>
 
+
+nmap <F5>	:so ~/.vimrc<CR>
 
 " ----------------------------------------------------------------------------
 " Backups
