@@ -124,6 +124,8 @@ imap <S-Enter> <Esc>A<CR>
 inoremap <F1> <Esc>
 noremap <F1> :call MapF1()<CR>
 
+nmap <F5> :so ~/.vimrc<CR>
+
 function! MapF1()
   if &buftype == "help"
     exec 'quit'
