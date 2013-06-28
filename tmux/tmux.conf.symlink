@@ -118,11 +118,11 @@ set -g message-attr dim
 # left side of status bar
 set -g status-left-length 30
 set -g status-left-attr bold
-set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240]⮀#[fg=#FFFFFF] #h #[fg=colour240 bg=colour236]⮀'
+set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240] #[fg=#FFFFFF] #h #[fg=colour240 bg=colour236]'
 
 # right side of status bar
 set -g status-right-length 30
-set -g status-right '#(battery.sh) #[bg=colour236 fg=colour240]⮂#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]⮂#[fg=colour0 bg=colour250] %H:%M '
+set -g status-right '#(battery.sh) #[bg=colour236 fg=colour240]#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows

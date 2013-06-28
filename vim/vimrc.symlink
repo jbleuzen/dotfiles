@@ -58,6 +58,7 @@ endif
 set splitbelow				" Open splits below
 set splitright				" Open splits on the right
 set nofoldenable			" Disable automatic fold
+set paste
 
 " ----------------------------------------------------------------------------
 " Visual Cues
@@ -124,8 +125,6 @@ imap <S-Enter> <Esc>A<CR>
 inoremap <F1> <Esc>
 noremap <F1> :call MapF1()<CR>
 
-nmap <F5> :so ~/.vimrc<CR>
-
 function! MapF1()
   if &buftype == "help"
     exec 'quit'
@@ -133,6 +132,9 @@ function! MapF1()
     exec 'help'
   endif
 endfunction
+
+" Source vim config
+nmap <F5> :so ~/.vimrc<CR>
 
 " Toggle paste mode
 set pastetoggle=<F12>
@@ -160,6 +162,8 @@ inoremap ;<CR> <C-o>A;
 
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
+
+nmap <leader>w :bd<CR>
 
 " ----------------------------------------------------------------------------
 " Backups
