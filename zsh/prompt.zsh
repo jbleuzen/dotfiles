@@ -34,12 +34,12 @@ git_status() {
 		# for git prior to 1.7
 		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
 		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}")
+		(( $ahead )) && gitstatus+=("%F{cyan} ↑${ahead}")
 
 		# for git prior to 1.7
 		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
 		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}")
+		(( $behind )) && gitstatus+=("%F{magenta}⬇↓${behind}")
 
 		if [[ -n ${gitstatus} ]]; then
 			echo " "${(j:%f|:)gitstatus}
