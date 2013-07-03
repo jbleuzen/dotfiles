@@ -8,58 +8,57 @@ GIT_PROMPT_CLEAN="%F{green}"
 
 # Checks if working tree is dirty
 git_dirty() {
-	if [[ -n $(git status -s --ignore-submodules=dirty 2> /dev/null) ]]; then
-		echo "$GIT_PROMPT_DIRTY"
-	else
-		echo "$GIT_PROMPT_CLEAN"
-	fi
+  if [[ -n $(git status -s --ignore-submodules=dirty 2> /dev/null) ]]; then
+    echo "$GIT_PROMPT_DIRTY"
+  else
+    echo "$GIT_PROMPT_CLEAN"
+  fi
 }
 
 git_status() {
-	local ahead behind remote unstaged
-	local -a gitstatus
+  local ahead behind remote unstaged
+  local -a gitstatus
 
-	# Are we on a remote-tracking branch?
-	remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-		--symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+  modified=$(git diff --name-only 2> /dev/null | wc -l | sed -e 's/^[ \t]*//')
+  (( $modified )) && gitstatus+=("%F{blue}•${modified}")
 
-	if [[ -n ${remote} ]] ; then
+  unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
+  (( $unstaged )) && gitstatus+=("%F{yellow}+${unstaged}")
 
-		modified=$(git diff --name-only 2> /dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $modified )) && gitstatus+=("%F{blue}•${modified}")
+  # Are we on a remote-tracking branch?
+  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+    --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
 
-		unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
-		(( $unstaged )) && gitstatus+=("%F{yellow}+${unstaged}")
+  if [[ -n ${remote} ]] ; then
+    # for git prior to 1.7
+    # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
+    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
+    (( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}")
 
-		# for git prior to 1.7
-		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}")
+    # for git prior to 1.7
+    # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
+    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
+    (( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}")
 
-		# for git prior to 1.7
-		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}")
-
-		if [[ -n ${gitstatus} ]]; then
-			echo " "${(j:%f|:)gitstatus}
-		fi
-	fi
+  fi
+  if [[ -n ${gitstatus} ]]; then
+    echo " "${(j:%f|:)gitstatus}
+  fi
 } 
 
 # get the name of the branch we are on
 git_prompt_info() {
-	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	echo " $(git_dirty)${ref#refs/heads/}$(git_status)%f"
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo " $(git_dirty)${ref#refs/heads/}$(git_status)%f"
 }
 
 # If root then the user is red in prompt
 if [ $UID -eq 0 ]; then 
-	USERNAMECOLOR="red"
-	PATHCOLOR="%F{red}"
+  USERNAMECOLOR="red"
+  PATHCOLOR="%F{red}"
 else 
-	USERNAMECOLOR="blue"
-	PATHCOLOR="%F{green}"
+  USERNAMECOLOR="blue"
+  PATHCOLOR="%F{green}"
 fi
 
 SSH="%F{$USERNAMECOLOR}%n%f@%F{red}%m%f "
