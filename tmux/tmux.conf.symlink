@@ -31,6 +31,9 @@ set -g automatic-rename off
 setw -g monitor-activity on
 set -g visual-activity on
 
+# Start new windows and panes in $HOME
+set -g default-path "$HOME"
+
 # window movement / renumbering like in screen's :number
 bind-key m command-prompt -p "move window to:"  "swap-window -t '%%'"
 
