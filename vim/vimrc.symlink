@@ -10,7 +10,6 @@ set nocompatible
 
 filetype off 			" disable detection before vundle loads
 set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#rc()
 
 source ~/.dotfiles/vim/bundles
@@ -231,8 +230,11 @@ if has("gui_macvim")
 	nnoremap <D-D> :NERDTreeTabsToggle<cr>
 endif
 
-" Vim-Powerline
-let g:Powerline_symbols = 'fancy'
+" Airline
+let g:airline_theme = 'dark'
+let g:airline_powerline_fonts = 1
+let g:airline_enable_fugitive = 1
+let g:airline_paste_symbol = 'ρ'
 
 " CTRLP
 let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
