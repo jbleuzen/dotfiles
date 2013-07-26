@@ -12,11 +12,11 @@ export PAGER='less'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/sbin
 export PATH=$PATH:$HOME/.dotfiles/bin # Add dotfiles bin to path
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$HOME/.rbenv/bin:$PATH # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Load z if exist
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
