@@ -34,6 +34,7 @@ Bundle 'git://github.com/xolox/vim-session.git'
 Bundle 'git://github.com/xolox/vim-misc.git'
 Bundle 'git://github.com/Glench/Vim-Jinja2-Syntax.git'
 Bundle 'git://github.com/editorconfig/editorconfig-vim.git'
+Bundle 'git://github.com/groenewege/vim-less.git'
 
 
 " Syntax
