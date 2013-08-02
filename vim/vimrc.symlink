@@ -208,6 +208,7 @@ au BufRead,BufNewFile Vagrantfile							 set ft=ruby
 
 au BufRead,BufNewFile *.mustache							 set ft=html
 au BufRead,BufNewFile *.less                   set ft=css
+au BufRead,BufNewFile *.twig                   set ft=jinja
 
 " ----------------------------------------------------------------------------
 " Plugins configuration
