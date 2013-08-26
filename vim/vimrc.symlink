@@ -104,12 +104,12 @@ inoremap <Right>  	<nop>
 
 " Moving line up/down (For french azerty Mac)
 " Hackish mappings for ALT-J & ALT-K
-noremap Ï :m+<CR>
-noremap È :m-2<CR>
-inoremap Ï <Esc>:m+<CR>
-inoremap È <Esc>:m-2<CR>
-vnoremap Ï :m'>+<CR>gv
-vnoremap È :m-2<CR>gv
+noremap Ï :m+<CR>==
+noremap È :m-2<CR>==
+inoremap Ï <Esc>:m+<CR>==gi
+inoremap È <Esc>:m-2<CR>==gi
+vnoremap Ï :m'>+<CR>gv=gv
+vnoremap È :m-2<CR>gv=gv
 
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-j> :wincmd j<CR>
