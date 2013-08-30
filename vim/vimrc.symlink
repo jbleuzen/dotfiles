@@ -50,9 +50,9 @@ set shiftwidth=2
 set expandtab
 set synmaxcol=0
 if has("gui_running")
-	set showbreak=\ \ ↳\
+  set showbreak=\ \ ↳\
 else
-	set showbreak=\ \ \ ↳\
+  set showbreak=\ \ \ ↳\
 endif
 set splitbelow				" Open splits below
 set splitright				" Open splits on the right
@@ -80,7 +80,7 @@ set listchars=tab:▸\ ,eol:¬
 " Tweaks
 " ----------------------------------------------------------------------------
 " For reopening the file in root
-cmap w!! w !sudo tee % >/dev/null 
+cmap w!! w !sudo tee % >/dev/null
 
 " ----------------------------------------------------------------------------
 " Mappings
@@ -144,7 +144,7 @@ nmap <leader>o o<esc>
 nmap <leader>O O<esc>
 
 
-" Easy insert 
+" Easy insert
 nmap <leader>a ea
 nmap <leader>i bi
 " toggle `set list`
@@ -189,7 +189,7 @@ set ttymouse=xterm2
 " ----------------------------------------------------------------------------
 
 if has("gui_macvim")
-	let macvim_hig_shift_movement = 1 "allow selection in insert mode
+  let macvim_hig_shift_movement = 1 "allow selection in insert mode
 endif
 
 
@@ -229,13 +229,12 @@ let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup on 
 let g:nerdtree_tabs_focus_on_files = 1 " Focus in the main content window
 nnoremap <leader>d :NERDTreeTabsToggle<cr>
 if has("gui_macvim")
-	nnoremap <D-D> :NERDTreeTabsToggle<cr>
+  nnoremap <D-D> :NERDTreeTabsToggle<cr>
 endif
 
 " Airline
-let g:airline_theme = 'dark'
+let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
-let g:airline_enable_fugitive = 1
 let g:airline_paste_symbol = 'ρ'
 
 " CTRLP
@@ -254,7 +253,7 @@ let g:html_indent_style1 = "inc"
 let g:SimpleJsIndenter_BriefMode = 1
 
 " vim-indent-guide
-let g:indentLine_char = '┆' 
+let g:indentLine_char = '┆'
 let g:indentLine_fileTypeExclude = ['nerdtree']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 let g:indentLine_noConcealCursor = 'yes'
