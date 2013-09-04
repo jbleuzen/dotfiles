@@ -44,29 +44,29 @@ function link {
 
 		ln -s $file $filename 2> /dev/null
 	done
-}
 
-# Install bundle
-vi +BundleInstall +qall
+  # Install bundle
+  #  vi +BundleInstall +qall
+}
 
 function unlink {
 for file in `find ~/.dotfiles -name "*.symlink" | grep -v '\.git'`; do
-	filename=$(basename $file)                                                                                                                                                   
-	filename=~/.${filename%.*}
-	
-	if [ -h $filename ]; then
-		rm -rf $filename
-	fi
+  filename=$(basename $file)                                                                                                                                                   
+  filename=~/.${filename%.*}
 
-	if [ -e ${filename}.backup ]; then
-		mv ${filename}.backup $filename
-	fi
+  if [ -h $filename ]; then
+    rm -rf $filename
+  fi
+
+  if [ -e ${filename}.backup ]; then
+    mv ${filename}.backup $filename
+  fi
 done
 }
 
 if [ "$1" == "unlink" ] || [ "$1" == "uninstall" ]; then
-	unlink                                                                                                                                                  
-	exit
+  unlink                                                                                                                                                  
+  exit
 fi
 
 # Terminal mode
