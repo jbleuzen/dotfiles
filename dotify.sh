@@ -3,11 +3,12 @@
 # Bash deploy script from Johan Bleuzen
 # Inspired by Rakefile from Zach Holman : https://github.com/holman/dotfiles/blob/master/Rakefile
 
+skip_all=false
+overwrite_all=false
+backup_all=false
+
 function link {
 
-	skip_all=false
-	overwrite_all=false
-	backup_all=false
 
 	for file in `find ~/.dotfiles -name "*.symlink" | grep -v '\.git'`; do
 		filename=$(basename $file)
@@ -46,7 +47,7 @@ function link {
 }
 
 # Install bundle
-vim +BundleInstall +qall
+vi +BundleInstall +qall
 
 function unlink {
 for file in `find ~/.dotfiles -name "*.symlink" | grep -v '\.git'`; do
@@ -67,4 +68,10 @@ if [ "$1" == "unlink" ] || [ "$1" == "uninstall" ]; then
 	unlink                                                                                                                                                  
 	exit
 fi
+
+# Terminal mode
+if [ "$1" == "-t" ]; then
+  overwrite_all=true
+fi
+
 link
