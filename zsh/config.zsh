@@ -33,6 +33,3 @@ bindkey '^W' forward-word
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 bindkey '^R' history-incremental-search-backward
-bindkey '^[[3~' delete-char
-bindkey '^[3;5~' delete-char
-bindkey '^[[Z' reverse-menu-complete
