@@ -3,7 +3,7 @@
 	undo = reset --soft HEAD~1
 [user]
 	name = Johan Bleuzen
-	email = johan.bleuzen@gmail.com
+	email = johan@bleuzen.fr
 [github]
 	user = jbleuzen
 	token = c782e86cd4a5b82e3c38dd8ad480ce56
