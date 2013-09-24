@@ -1,19 +1,12 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-# source every .zsh file in this rep
-
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
-
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
 
+# source every .zsh file in this rep
 for config_file ($ZSH/**/*.zsh) source $config_file
+
 # load every completion after autocomplete loads
-# for config_file ($ZSH/**/completion.sh) source $config_file
+for config_file ($ZSH/**/completion.sh) source $config_file

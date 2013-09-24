@@ -16,7 +16,7 @@ export PATH=$HOME/.rbenv/bin:$PATH # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
 # rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
 
 # Load z if exist
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
