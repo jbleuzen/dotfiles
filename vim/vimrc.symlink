@@ -214,9 +214,9 @@ au BufRead,BufNewFile *.twig                   set ft=jinja
 " Plugins configuration
 " ----------------------------------------------------------------------------
 
-" ZenCoding
-let g:user_zen_expandabbr_key = '<c-e>'
-let g:use_zen_complete_tag = 1
+" Emmet
+let g:user_emmet_leader_key = '<c-e>'
+let g:use_emmet_complete_tag = 1
 
 " NERDTree
 let NERDTreeMinimalUI = 1
