@@ -3,7 +3,7 @@ autoload colors && colors
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 # Git prompt configuration
-GIT_PROMPT_DIRTY="%F{red}"
+GIT_PROMPT_DIRTY="%F{magenta}"
 GIT_PROMPT_CLEAN="%F{green}"
 
 # Checks if working tree is dirty
@@ -19,11 +19,11 @@ git_status() {
   local ahead behind remote unstaged
   local -a gitstatus
 
-  modified=$(git diff --name-only 2> /dev/null | wc -l | sed -e 's/^[ \t]*//')
-  (( $modified )) && gitstatus+=("%F{blue}•${modified}")
+  modified=$(git diff --name-only 2> /dev/null | wc -l) 
+  (( $modified )) && gitstatus+=("%F{blue}•")
 
-  unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l | sed -e 's/^[ \t]*//')
-  (( $unstaged )) && gitstatus+=("%F{yellow}+${unstaged}")
+  unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l) 
+  (( $unstaged )) && gitstatus+=("%F{yellow}✚")
 
   # Are we on a remote-tracking branch?
   remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
@@ -32,16 +32,16 @@ git_status() {
   if [[ -n ${remote} ]] ; then
 		# for git prior to 1.7
 		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
-		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $ahead )) && gitstatus+=("%F{cyan}⬆ ${ahead}")
+		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+		(( $ahead )) && gitstatus+=("%F{cyan}⬆")
 
 		# for git prior to 1.7
 		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-		(( $behind )) && gitstatus+=("%F{magenta}⬇ ${behind}")
+		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+		(( $behind )) && gitstatus+=("%F{magenta}⬇")
 
 		if [[ -n ${gitstatus} ]]; then
-			echo " "${(j:%f|:)gitstatus}
+			echo " "${gitstatus}
 		fi
 	fi
 } 
