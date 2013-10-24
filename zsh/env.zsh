@@ -10,7 +10,7 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 export PAGER='less'
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/sbin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 export PATH=$PATH:$HOME/.dotfiles/bin # Add dotfiles bin to path
 export PATH=$HOME/.rbenv/bin:$PATH # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
