@@ -35,3 +35,7 @@ alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 md() { mkdir -p $1 && cd $1}
 
 gen_file() { dd if=/dev/zero of=file.bin bs=1024 count=0 seek=$[1024 * $1] }
+
+local_ip() { ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}' }
+
+local_server() { dns-sd -P $1 _http._tcp local 80 $1.local `local_ip` path=/ }
