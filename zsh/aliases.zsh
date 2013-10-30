@@ -11,6 +11,7 @@ alias la='ls -la'
 
 # Navigation
 alias cd..="cd .."
+alias cd-="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
 
