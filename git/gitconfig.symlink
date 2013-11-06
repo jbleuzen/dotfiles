@@ -15,5 +15,6 @@
 [core]
 	editor = vim
 	excludesfile = /Users/johan/.gitignore
+	pager = less -x4
 [url "https://"]        
 	insteadOf = git://
