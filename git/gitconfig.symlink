@@ -18,3 +18,5 @@
   pager = `brew --prefix`/share/git-core/contrib/diff-highlight/diff-highlight | less -x4
 [url "https://"]        
 	insteadOf = git://
+[branch]
+	autosetuprebase = always
