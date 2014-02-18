@@ -131,6 +131,8 @@ set -g status-right '#(battery.sh) #[bg=colour236 fg=colour240]#[bg=colour240
 set-option -g status-justify centre                       # alignment of windows
 set-window-option -g window-status-format ' #W '          # Inactive windows in status bar
 
+# Shortcut kill windows
+bind C-w kill-window
 
 # Smart pane switching with awareness of vim splits
 bind -n C-k run-shell 'tmux-vim-select-pane -U'
