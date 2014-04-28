@@ -40,3 +40,15 @@ gen_file() { dd if=/dev/zero of=file.bin bs=1024 count=0 seek=$[1024 * $1] }
 local_ip() { ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}' }
 
 local_server() { dns-sd -P $1 _http._tcp local 80 $1.local `local_ip` path=/ }
+
+# Open Finder in current working folder
+alias finder="open ."
+# CD to Finder's current folder
+cdf() {
+  target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+  if [ "$target" != "" ]; then
+    cd "$target"; pwd
+  else
+    echo 'No Finder windows are opened' >&2
+  fi
+}
