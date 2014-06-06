@@ -38,4 +38,9 @@ ehthumbs.db
 Icon?
 Thumbs.db
 .AppleDouble
+
+# Backups #
+###########
+*.bak
 *.un~
+
