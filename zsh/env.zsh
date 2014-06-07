@@ -12,11 +12,11 @@ export PAGER='less'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 export PATH=$PATH:$HOME/.dotfiles/bin # Add dotfiles bin to path
-export PATH=$HOME/.rbenv/bin:$PATH # Add RVM to PATH for scripting
+export PATH=$HOME/.rbenv/shims:$PATH # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
 # rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
+eval "$(rbenv init -)"
 
 # Load z if exist
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
