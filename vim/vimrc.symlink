@@ -92,6 +92,13 @@ let mapleader = ","
 " Escape is too far away
 inoremap jj <Esc>
 
+" Remap down/up for wrapping lines
+nnoremap j gj
+nnoremap k gk
+xnoremap j gj
+xnoremap k gk
+
+
 " Learn "hkjl" the hard way !
 nnoremap <Up> 		<nop>
 nnoremap <Down>		<nop>
