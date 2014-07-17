@@ -15,6 +15,8 @@ alias cd-="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
 
+alias json="python -m json.tool"
+
 # I am huma 
 alias df='df -h'
 alias du='du -h'
