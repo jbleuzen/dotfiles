@@ -54,3 +54,13 @@ cdf() {
     echo 'No Finder windows are opened' >&2
   fi
 }
+
+unamestr=`uname`
+if [[ "$unamestr" == 'Darwin' ]]; then
+  # Colorize file output of file in Terminal
+  #   - require pip install pygment
+  function pcat() {
+    pygmentize -f terminal256 -O style=native -g $1;
+  }
+fi
+alias cat=pcat
