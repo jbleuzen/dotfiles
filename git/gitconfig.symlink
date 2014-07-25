@@ -20,3 +20,5 @@
 	insteadOf = git://
 [branch]
 	autosetuprebase = always
+[push]
+	default = simple
