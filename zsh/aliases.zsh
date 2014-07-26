@@ -62,5 +62,5 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   function pcat() {
     pygmentize -f terminal256 -O style=native -g $1;
   }
+  alias cat=pcat
 fi
-alias cat=pcat
