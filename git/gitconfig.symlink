@@ -15,6 +15,7 @@
 [core]
 	editor = vim
 	excludesfile = /Users/johan/.gitignore
+  pager = /usr/local/bin/diff-highlight | less
 [url "https://"]        
 	insteadOf = git://
 [branch]
