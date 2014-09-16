@@ -22,3 +22,5 @@
 	autosetuprebase = always
 [push]
 	default = simple
+[status]
+	showUntrackedFiles = all
