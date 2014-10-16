@@ -102,12 +102,12 @@ xnoremap k gk
 " Learn "hkjl" the hard way !
 nnoremap <Up> 		<nop>
 nnoremap <Down>		<nop>
-nnoremap <Left> 	<nop>
-nnoremap <Right>	<nop>
+nnoremap <Left> 	:bnext<CR>
+nnoremap <Right>	:bprevious <CR>
 inoremap <Up>     	<nop>
 inoremap <Down>   	<nop>
-inoremap <Left>   	<nop>
-inoremap <Right>  	<nop>
+inoremap <Left> 	:bnext<CR>
+inoremap <Right>	:bprevious <CR>
 
 " Moving line up/down (For french azerty Mac)
 " Hackish mappings for ALT-J & ALT-K
@@ -169,7 +169,8 @@ inoremap ;<CR> <C-o>A;
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
 
-nmap <leader>w :bd<CR>
+nmap <leader>w :bd<CR> "close buffer
+nmap <leader>n :enew<CR> "new buffer
 
 " The Silver Searcher
 if executable('ag')
@@ -257,6 +258,8 @@ endif
 let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
 let g:airline_paste_symbol = 'ρ'
+let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
 " CTRLP
 let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
