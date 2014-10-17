@@ -100,14 +100,14 @@ xnoremap k gk
 
 
 " Learn "hkjl" the hard way !
-nnoremap <Up> 		<nop>
-nnoremap <Down>		<nop>
-nnoremap <Left> 	:bnext<CR>
-nnoremap <Right>	:bprevious <CR>
+nnoremap <Up> 		  <nop>
+nnoremap <Down>		  <nop>
+nnoremap <Left> 	  :bprevious <CR>
+nnoremap <Right>	  :bnext<CR>
 inoremap <Up>     	<nop>
 inoremap <Down>   	<nop>
-inoremap <Left> 	:bnext<CR>
-inoremap <Right>	:bprevious <CR>
+inoremap <Left>     :bprevious <CR>
+inoremap <Right>		:bnext<CR>
 
 " Moving line up/down (For french azerty Mac)
 " Hackish mappings for ALT-J & ALT-K
@@ -170,9 +170,9 @@ nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
 
 " close buffer
-nmap <leader>w :bd<CR> 
+nmap <leader>w :bd<CR>
 " new buffer
-nmap <leader>n :enew<CR> 
+nmap <leader>n :enew<CR>
 
 " The Silver Searcher
 if executable('ag')
