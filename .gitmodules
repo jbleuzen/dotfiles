@@ -2,3 +2,6 @@
 	path = vim/vim.symlink/bundle/vundle
 	url = git://github.com/gmarik/vundle.git
 	ignore = untracked
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

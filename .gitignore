@@ -4,5 +4,8 @@
 vim/vim.symlink/bundle
 vim/vim.symlink/sessions/
 
+# Ignore tmux plugins 
+tmux/plugins/*
+
 # zsh completion cache folder
 .cache
