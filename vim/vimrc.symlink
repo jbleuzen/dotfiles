@@ -242,14 +242,9 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeIgnore=['\.o$', '\~$', 'Icon', '_asset_bundler_cache$[[dir]]']
 let g:NERDTreeWinSize = 30
-
-" NERDTreeTabs
-let g:nerdtree_tabs_open_on_gui_startup = 0 " Auto open nerd tree on startup on gvim
-let g:nerdtree_tabs_focus_on_files = 1 " Focus in the main content window
-nnoremap <leader>d :NERDTreeTabsToggle<cr>
-if has("gui_macvim")
-  nnoremap <D-D> :NERDTreeTabsToggle<cr>
-endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <leader>d :NERDTreeToggle<CR>
 
 " Airline
 let g:airline_theme = 'powerlineish'
