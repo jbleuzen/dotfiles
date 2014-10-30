@@ -31,32 +31,26 @@ colorscheme molokai
 
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
-set nolazyredraw           " turn off lazy redraw
+set lazyredraw             " turn off lazy redraw
 set number                 " line numbers
 set wildmenu               " turn on wild menu
 set wildmode=list:longest,full
 set ch=1                   " command line height
 set backspace=2            " allow backspacing over everything in insert mode
-set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
 set guicursor=a:blinkon0   " disable blinking cursor
-set cpoptions+=n	   " wrap long lines
-set display=lastline	   " prevent the @ when lines are too long
-set tabstop=2			" Tabs width
+set nowrap
+set display=lastline	     " prevent the @ when lines are too long
+set tabstop=2			         " Tabs width
 set smartindent
 set shiftwidth=2
 set expandtab
 set synmaxcol=0
-if has("gui_running")
-  set showbreak=\ \ ↳\
-else
-  set showbreak=\ \ \ ↳\
-endif
-set splitbelow				" Open splits below
-set splitright				" Open splits on the right
-set nofoldenable			" Disable automatic fold
+set splitbelow				    " Open splits below
+set splitright				    " Open splits on the right
+set nofoldenable			    " Disable automatic fold
 set paste
 
 " ----------------------------------------------------------------------------
@@ -70,9 +64,9 @@ set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
 set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
-set cursorline				" highlight current line
-set laststatus=2 " Always display the statusline in all windows
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set cursorline				     " highlight current line
+set laststatus=2           " Always display the statusline in all windows
+set noshowmode             " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -154,6 +148,7 @@ nmap <leader>O O<esc>
 " Easy insert
 nmap <leader>a ea
 nmap <leader>i bi
+
 " toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -259,7 +254,7 @@ endif
 " Airline
 let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
-let g:airline_paste_symbol = 'ρ'
+let g:airline_paste_symbol = 'PASTE'
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
