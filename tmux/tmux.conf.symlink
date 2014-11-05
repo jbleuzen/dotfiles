@@ -144,8 +144,10 @@ bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE 
 set -g @tpm_plugins "              \
   tmux-plugins/tpm                 \
   tmux-plugins/tmux-battery      \
+  tmux-plugins/tmux-resurrect      \
     "
 
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
 run-shell ~/.dotfiles/tmux/plugins/tpm/tpm
+run-shell ~/.dotfiles/tmux/plugins/tmux-resurrect/resurrect.tmux
