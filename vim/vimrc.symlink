@@ -252,7 +252,7 @@ let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
 
 " CTRLP
-let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.git|node_modules|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 5
