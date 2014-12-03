@@ -16,7 +16,7 @@ export PATH=$HOME/.rbenv/shims:$PATH # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
 # rbenv
-[[ -s "rbenv" ]] && eval "$(rbenv init -)"
+[[ -s "/usr/local/bin/rbenv" ]] && eval "$(rbenv init -)"
 
 # Load z if exist
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
