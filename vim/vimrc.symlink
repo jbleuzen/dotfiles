@@ -52,6 +52,7 @@ set splitbelow				    " Open splits below
 set splitright				    " Open splits on the right
 set nofoldenable			    " Disable automatic fold
 set paste
+set hidden                " Can change buffer without save everytime
 
 " ----------------------------------------------------------------------------
 " Visual Cues
