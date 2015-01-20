@@ -24,8 +24,6 @@ Bundle 'tpope/vim-sensible'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'vim-scripts/indenthtml.vim'
-Bundle 'xolox/vim-session'
-Bundle 'xolox/vim-misc'
 Bundle 'Yggdroot/indentLine'
 
 
