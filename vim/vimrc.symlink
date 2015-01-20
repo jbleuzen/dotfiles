@@ -248,13 +248,34 @@ augroup END
 let g:user_emmet_leader_key = '<c-e>'
 let g:use_emmet_complete_tag = 1
 
-" NERDTree
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeIgnore=['\.o$', '\~$', 'Icon', '_asset_bundler_cache$[[dir]]']
-let g:NERDTreeWinSize = 30
-nmap <leader>d :NERDTreeToggle<CR>
-nmap <leader>n :NERDTreeFind<CR>
+" Netrw
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+nmap <silent> <leader>d  :call ToggleVExplorer()<CR>
+let g:netrw_liststyle = 3 " use tree view
+let g:netrw_keepdir = 0
+let g:netrw_banner = 0
+let g:netrw_winsize = 30
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_keepdir = 0
 
 " Airline
 let g:airline_theme = 'powerlineish'
