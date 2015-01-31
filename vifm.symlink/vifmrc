@@ -26,7 +26,7 @@ windo set viewcolumns=-{name}..,11{perms},15{size}
 " Mappings
 """""
 " Reload ViFM configuration file
-nnoremap <f5> :source $MYVIFMRC<cr>
+nnoremap <f5> :restart<cr>
 
 " Toggle show/hide hidden files
 nnoremap ,i za
