@@ -9,3 +9,7 @@ tmux/plugins/*
 
 # zsh completion cache folder
 .cache
+
+# Ignore vifm local files
+vifm.symlink/Trash
+vifm.symlink/vifminfo

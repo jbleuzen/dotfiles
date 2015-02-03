@@ -1,0 +1,41 @@
+"""""
+" Settings
+"""""
+
+colorscheme molokai
+
+" Only show one pane
+only 
+
+" Show available command on statusline
+set wildmenu
+
+" Ignore case in search patterns unless it contains at least one uppercase letter
+set ignorecase
+set smartcase
+
+" View disposition
+windo set viewcolumns=-{name}..,11{perms},15{size}
+
+"""""
+" Filter
+"""""
+:filter /^Icon.$/
+
+"""""
+" Mappings
+"""""
+" Reload ViFM configuration file
+nnoremap <f5> :restart<cr>
+
+" Toggle show/hide hidden files
+nnoremap ,i za
+
+" Create new file
+nnoremap ,n :touch "filename"<cr>:rename<cr>
+
+" Yank current directory path into the clipboard
+nmap yd :!echo %d | xclip %i<cr>
+" Yank current file path into the clipboard
+nmap yf :!echo %c:p | xclip %i<cr>
+

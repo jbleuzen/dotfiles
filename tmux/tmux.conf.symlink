@@ -42,18 +42,17 @@ set -g prefix C-x
 unbind C-b
 bind C-x send-prefix
 
-# ssh-friendly splits
-bind-key  "%"   split-window -h
-bind-key  '"'   split-window -v
-bind-key  "|"     run-shell 'exec tmux-ssh-split -h'
-bind-key  "-"     run-shell 'exec tmux-ssh-split -v'
 
 # kill server session
 unbind q
 bind-key C-q kill-session
 
 # new window when I'm not awake
-bind-key C-c new-window
+bind c new-window -c "$HOME"
+
+# open panes in current folder
+bind-key  "%"   split-window -h -c "#{pane_current_path}"
+bind-key  '"'   split-window -v -c "#{pane_current_path}"
 
 # reload .tmux.conf file
 unbind r
