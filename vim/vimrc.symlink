@@ -29,6 +29,8 @@ set t_Co=256
 syntax on
 colorscheme molokai
 
+set fillchars+=vert:\      " Remove | on vertical splits
+
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set lazyredraw             " turn off lazy redraw
@@ -92,14 +94,14 @@ xnoremap j gj
 xnoremap k gk
 
 " Learn "hkjl" the hard way !
-nnoremap <Up> 		  <nop>
-nnoremap <Down>		  <nop>
-nnoremap <Left> 	  :bprevious <CR>
-nnoremap <Right>	  :bnext<CR>
-inoremap <Up>     	<nop>
-inoremap <Down>   	<nop>
-inoremap <Left>     :bprevious <CR>
-inoremap <Right>		:bnext<CR>
+nnoremap <Up>       <nop>
+nnoremap <Down>     <nop>
+nnoremap <silent>   <Left>  :bprevious<CR>
+nnoremap <silent>   <Right> :bnext<CR>
+inoremap <Up>       <nop>
+inoremap <Down>     <nop>
+inoremap <Left>     <Esc>:bprevious<CR>
+inoremap <Right>    <Esc>:bnext<CR>
 
 " Moving line up/down (For french azerty Mac)
 " Hackish mappings for ALT-J & ALT-K
@@ -227,6 +229,8 @@ au BufRead,BufNewFile *.twig                   set ft=jinja
 au BufRead,BufNewFile *.md                     set ft=markdown
 au BufRead,BufNewFile *.markdown               set ft=markdown
 
+autocmd FileType netrw setl bufhidden=delete " delete buffer on hide
+
 " Markdown rules
 augroup WrapLineInTeXFile
   autocmd!
@@ -321,3 +325,5 @@ let g:indentLine_noConcealCursor = 'yes'
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
+
+
