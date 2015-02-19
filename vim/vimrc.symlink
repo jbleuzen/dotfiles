@@ -270,12 +270,31 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_keepdir = 0
 
+" Disable arrow switch buffer when on netrw
+augroup disable_buffer_change_mapping_for_netrw
+  autocmd!
+  autocmd filetype netrw call Disable_arrow_mapping()
+augroup END
+function! Disable_arrow_mapping()
+  noremap <buffer> <left> <nop>
+  noremap <buffer> <right> <nop>
+endfunction
+
 " Airline
 let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
-let g:airline_paste_symbol = 'PASTE'
+let g:airline_exclude_preview = 0
 let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+let g:airline#extensions#tabline#show_tabs = 1 
 let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.paste = 'PASTE'
 
 " CTRLP
 let g:ctrlp_custom_ignore = '\v[\/](\.git|node_modules|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
