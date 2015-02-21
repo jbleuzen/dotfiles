@@ -12,3 +12,5 @@ alias gp='git push origin HEAD'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gu="git reset --soft HEAD^"
+alias gsa="git stash apply"
+alias gss="git stash save"
