@@ -6,7 +6,7 @@ alias grep='grep --color'
 # Find the option for using colors in ls, depending on the version: Linux or BSD
 if ls --color > /dev/null 2>&1; then 
   # GNU `ls`
-  colorflag="--color=auto --group-directories-first"
+  colorflag="--color=auto --group-directories-first --time-style=long-iso --indicator-style=none"
 else 
   # OS X `ls`
   colorflag="-G"
@@ -15,7 +15,7 @@ alias ls="ls -lFh ${colorflag}"
 
 alias l='ll'
 alias ll='ls -l'
-alias la='ls -la'
+alias la='ls -lA'
 
 # Navigation
 alias cd..="cd .."
