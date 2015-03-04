@@ -4,7 +4,15 @@ alias dotfiles='cd ~/.dotfiles'
 alias grep='grep --color'
 
 # Find the option for using colors in ls, depending on the version: Linux or BSD
-ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty -h' || alias ls='ls -Gh'
+if ls --color > /dev/null 2>&1; then 
+  # GNU `ls`
+  colorflag="--color=auto --group-directories-first"
+else 
+  # OS X `ls`
+  colorflag="-G"
+fi
+alias ls="ls -lFh ${colorflag}"
+
 alias l='ll'
 alias ll='ls -l'
 alias la='ls -la'
