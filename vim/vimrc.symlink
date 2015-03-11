@@ -232,7 +232,7 @@ au BufRead,BufNewFile *.markdown               set ft=markdown
 " Markdown rules
 augroup WrapLineInTeXFile
   autocmd!
-  autocmd FileType markdown setlocal wrap  "wrap lines
+  autocmd FileType markdown,mkd,md setlocal wrap  "wrap lines
   autocmd FileType markdown,mkd,md call pencil#init()
 augroup END
 
@@ -301,4 +301,9 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 
-
+" Goyo
+nnoremap <Leader>z :Goyo<CR>
+let g:goyo_width = 120
+let g:goyo_margin_top = 0
+let g:goyo_margin_bottom = 0
+let g:goyo_linenr = 0
