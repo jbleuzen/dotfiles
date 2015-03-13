@@ -82,6 +82,10 @@ bind L clear-history\; display "Clearing history"
 # quit tmux
 bind \ kill-server
 
+# Toggle status bar
+unbind -
+bind - set status
+
 #------------------------------------------------------------------------------
 #   PANE
 #------------------------------------------------------------------------------
