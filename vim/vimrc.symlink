@@ -311,6 +311,7 @@ let g:goyo_linenr = 0
 " Ensure to quit even when Goyo is active
 function! s:goyo_enter()
   silent ! tmux set status off
+  call pencil#init()
   let b:quitting = 0
   let b:quitting_bang = 0
   autocmd QuitPre <buffer> let b:quitting = 1
