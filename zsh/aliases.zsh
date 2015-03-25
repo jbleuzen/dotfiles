@@ -35,6 +35,7 @@ alias rake='noglob rake'
 # Get current public IP
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 
+alias json='python -m json.tool'
 # alias for launchctl to work in tmux
 # you'll need to execute "brew install reattach-to-user-namespace"
 alias launchctl='reattach-to-user-namespace -l launchctl'
