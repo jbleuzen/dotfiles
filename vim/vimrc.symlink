@@ -74,6 +74,12 @@ set noshowmode             " Hide the default mode text (e.g. -- INSERT -- below
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
+" --
+"  Find
+"  --
+set path=.,/usr/include,,**
+set suffixesadd=.js,.php
+
 " ----------------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------------
