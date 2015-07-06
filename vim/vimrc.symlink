@@ -239,7 +239,7 @@ au BufRead,BufNewFile *.markdown               set ft=markdown
 augroup WrapLineInTeXFile
   autocmd!
   autocmd FileType markdown,mkd,md setlocal wrap  "wrap lines
-  autocmd FileType markdown,mkd,md call pencil#init()
+  autocmd FileType markdown,mkd,md call pencil#init({'wrap':'soft'})
 augroup END
 
 " ----------------------------------------------------------------------------
