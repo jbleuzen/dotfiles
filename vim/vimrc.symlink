@@ -167,7 +167,9 @@ nmap <leader>gl :Glog<CR>
 
 " close buffer
 nmap <leader>w :bd<CR>
+nmap <leader>W :bd!<CR>
 nmap <leader>< :bd<CR>
+nmap <leader>> :bd!<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
