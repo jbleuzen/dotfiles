@@ -284,7 +284,7 @@ endif
 let g:airline_symbols.paste = 'PASTE'
 
 " CTRLP
-let g:ctrlp_custom_ignore = '\v[\/](\.git|node_modules|\.hg|\.svn|_site|\.png|\.jpg|\.gif|\.ico)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.git|node_modules|\.*|_site|\.png|\.jpg|\.gif|\.ico)$'
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 5
