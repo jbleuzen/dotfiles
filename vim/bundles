@@ -28,6 +28,7 @@ Bundle 'vim-scripts/indenthtml.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'reedes/vim-pencil'
 Bundle 'junegunn/goyo.vim'
+Bundle 'mhinz/vim-sayonara'
 
 
 " Syntax

@@ -166,10 +166,8 @@ nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
 
 " close buffer
-nmap <leader>w :bd<CR>
-nmap <leader>W :bd!<CR>
-nmap <leader>< :bd<CR>
-nmap <leader>> :bd!<CR>
+nmap <leader>w :Sayonara!<CR>
+nmap <leader>< :Sayonara!<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
@@ -254,11 +252,14 @@ let g:use_emmet_complete_tag = 1
 
 " NERDTree
 let NERDTreeMinimalUI=1
-nmap <silent> <leader>d  :NERDTreeToggle<CR>
+nmap <silent> <Leader>d :call g:WorkaroundNERDTreeToggle()<CR>
 nmap <silent> <leader>D  :NERDTreeFocus<CR>
 nmap <silent> <leader>n  :NERDTreeFind<CR>
+function! g:WorkaroundNERDTreeToggle()
+  try | NERDTreeToggle | catch | silent! NERDTree | endtry
+endfunction
 " Disable arrow switch buffer when on netrw
-augroup disable_buffer_change_mapping_for_netrw
+augroup disable_buffer_change_mapping_for_nerdtree
   autocmd!
   autocmd filetype nerdtree* call Disable_arrow_mapping()
 augroup END
