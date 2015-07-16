@@ -18,11 +18,11 @@ export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-# rbenv
+# rbenv if exist
 [[ -s "/usr/local/bin/rbenv" ]] && eval "$(rbenv init -)"
 
 # Load z if exist
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
 
-# Load dircolors
-eval "$(dircolors ~/.dircolors)"
+# Load dircolors if exist
+[[ -s "dircolor" ]] && eval "$(dircolors ~/.dircolors)"
