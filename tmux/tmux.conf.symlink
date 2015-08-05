@@ -144,11 +144,12 @@ bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE 
 
 # List of plugins
 # Supports `github_username/repo` or full git URLs
-set -g @tpm_plugins "              \
-  tmux-plugins/tpm                 \
-  tmux-plugins/tmux-battery      \
-  tmux-plugins/tmux-resurrect      \
-    "
+set -g @tpm_plugins "               \
+      tmux-plugins/tpm              \
+      tmux-plugins/tmux-battery     \
+      tmux-plugins/tmux-resurrect   \
+      jbnicolai/tmux-fpp            \
+"
 
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
