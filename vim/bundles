@@ -26,8 +26,6 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'vim-scripts/indenthtml.vim'
 Bundle 'Yggdroot/indentLine'
-Bundle 'reedes/vim-pencil'
-Bundle 'junegunn/goyo.vim'
 Bundle 'mhinz/vim-sayonara'
 
 
