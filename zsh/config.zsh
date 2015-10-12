@@ -28,6 +28,8 @@ setopt complete_aliases
 bindkey -e
 
 bindkey "^[[3~" delete-char
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 bindkey '^B' backward-word
 bindkey '^W' forward-word
 bindkey '^A' beginning-of-line
