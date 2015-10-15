@@ -1,5 +1,5 @@
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 
@@ -7,7 +7,7 @@ Bundle 'gmarik/vundle'
 Bundle 'jbleuzen/molokai'
 
 
-" Plugins 
+" Plugins
 Bundle 'bling/vim-airline'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'editorconfig/editorconfig-vim'
