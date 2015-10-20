@@ -6,6 +6,7 @@ function -             ; cd - ; end
 function ..            ; cd .. ; end
 
 function ls
+  # edit for osx ls
   command ls -lFh --color=auto --group-directories-first --time-style=long-iso --indicator-style=none $argv
 end
 function l             ; ls $argv ; end
