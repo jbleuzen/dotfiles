@@ -13,3 +13,4 @@ tmux/plugins/*
 # Ignore vifm local files
 vifm.symlink/Trash
 vifm.symlink/vifminfo
+config/fish/fish_history
