@@ -29,6 +29,19 @@ function fish_prompt
   set_color normal
 end
 
+function parse_git_branch
+  set fish_git_dirty_color magenta
+  set fish_git_clean_color green
+  set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
+  set -l git_status (git status -s 2> /dev/null)
+
+  if test -n "$git_status"
+    printf '%s' (set_color $fish_git_dirty_color)$branch(set_color normal)
+  else
+    printf "%s" (set_color $fish_git_clean_color)$branch(set_color normal)
+  end
+end
+
 function fish_prompt_short_pwd --description 'Print the current working directory, shortened to fit the prompt'
   set -l args_pre -e 's|^/private/|/|'
   set -l realhome ~
@@ -39,7 +52,6 @@ function fish_right_prompt --description lil
   set -l time ( set_color 6B6B6B)(date "+%_H:%M:%S")
 	set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
 	set_color magenta
-	set -l index (git status --porcelain ^/dev/null|cut -c 1-2|sort -u)
-  printf '%s %s' $branch $time
+  printf '%s %s' (parse_git_branch) $time
 end
 
