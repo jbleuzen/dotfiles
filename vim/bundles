@@ -31,4 +31,5 @@ Bundle 'mhinz/vim-sayonara'
 
 " Syntax
 Bundle 'sheerun/vim-polyglot'
+Bundle 'dag/vim-fish'
 Bundle 'PProvost/vim-markdown-jekyll'
