@@ -36,10 +36,30 @@ function parse_git_branch
   set -l git_status (git status -s 2> /dev/null)
 
   if test -n "$git_status"
-    printf '%s' (set_color $fish_git_dirty_color)$branch(set_color normal)
+    printf "%s" (set_color $fish_git_dirty_color)$branch(set_color normal)
   else
     printf "%s" (set_color $fish_git_clean_color)$branch(set_color normal)
   end
+
+  # Local status
+  set file_added (git status -sb 2> /dev/null | grep "?" | wc -l)
+  if test $file_added -gt 0
+    printf "%s ✚" (set_color yellow)
+  end
+  set file_modified (git diff --name-only 2> /dev/null | wc -l)
+  if test $file_modified -gt 0
+    printf "%s ✹" (set_color blue)
+  end
+
+  # Upstream status
+  git rev-list --count --left-right @\{u\}...HEAD ^/dev/null | read behind ahead
+  if test $ahead -gt 0
+    printf '%s ↑%s' (set_color cyan) (set_color normal)
+  end
+  if test $behind -gt 0
+    printf '%s ↓%s' (set_color magenta) (set_color normal)
+  end
+
 end
 
 function fish_prompt_short_pwd --description 'Print the current working directory, shortened to fit the prompt'
