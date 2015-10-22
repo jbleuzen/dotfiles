@@ -30,8 +30,8 @@ function fish_prompt
 end
 
 function parse_git_branch
-  set fish_git_dirty_color magenta
-  set fish_git_clean_color green
+  set -l fish_git_dirty_color magenta
+  set -l fish_git_clean_color green
   set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
   set -l git_status (git status -s 2> /dev/null)
 
@@ -42,16 +42,18 @@ function parse_git_branch
   end
 
   # Local status
-  set file_added (git status -sb 2> /dev/null | grep "?" | wc -l)
+  set -l file_added (git status -sb 2> /dev/null | grep "?" | wc -l)
   if test $file_added -gt 0
     printf "%s ✚" (set_color yellow)
   end
-  set file_modified (git diff --name-only 2> /dev/null | wc -l)
+  set -l file_modified (git diff --name-only 2> /dev/null | wc -l)
   if test $file_modified -gt 0
     printf "%s ✹" (set_color blue)
   end
 
   # Upstream status
+  set -l ahead "0"
+  set -l behind "0"
   git rev-list --count --left-right @\{u\}...HEAD ^/dev/null | read behind ahead
   if test $ahead -gt 0
     printf '%s ↑%s' (set_color cyan) (set_color normal)
