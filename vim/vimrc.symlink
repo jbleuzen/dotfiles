@@ -56,6 +56,11 @@ set nofoldenable			    " Disable automatic fold
 set hidden                " Can change buffer without save everytime
 set autoindent            " Indent on new line
 
+augroup qf
+  autocmd!
+  autocmd FileType qf set nobuflisted
+augroup END
+
 " ----------------------------------------------------------------------------
 " Visual Cues
 " ----------------------------------------------------------------------------
@@ -263,6 +268,7 @@ endfunction
 augroup disable_buffer_change_mapping_for_nerdtree
   autocmd!
   autocmd filetype nerdtree* call Disable_arrow_mapping()
+  autocmd filetype qf* call Disable_arrow_mapping()
 augroup END
 function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
