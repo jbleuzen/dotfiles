@@ -234,7 +234,7 @@ au BufRead,BufNewFile Vagrantfile							 set ft=ruby
 
 au BufRead,BufNewFile *.mustache							 set ft=html
 
-au BufRead,BufNewFile *.twig                   set ft=jinja
+"au BufRead,BufNewFile *.twig                   set ft=jinja
 
 " Force markdown filteype
 au BufRead,BufNewFile *.md                     set ft=markdown
