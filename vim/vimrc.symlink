@@ -59,6 +59,7 @@ set autoindent            " Indent on new line
 augroup qf
   autocmd!
   autocmd FileType qf set nobuflisted
+  autocmd FileType vundle set nobuflisted
 augroup END
 
 " ----------------------------------------------------------------------------
