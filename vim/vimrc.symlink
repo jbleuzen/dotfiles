@@ -59,6 +59,7 @@ set autoindent            " Indent on new line
 augroup qf
   autocmd!
   autocmd FileType qf set nobuflisted
+  autocmd FileType vundle set nobuflisted
 augroup END
 
 " ----------------------------------------------------------------------------
@@ -239,13 +240,6 @@ au BufRead,BufNewFile *.mustache							 set ft=html
 " Force markdown filteype
 au BufRead,BufNewFile *.md                     set ft=markdown
 au BufRead,BufNewFile *.markdown               set ft=markdown
-
-" Markdown rules
-augroup WrapLineInTeXFile
-  autocmd!
-  autocmd FileType markdown,mkd,md setlocal wrap  "wrap lines
-  autocmd FileType markdown,mkd,md call pencil#init({'wrap':'soft'})
-augroup END
 
 " ----------------------------------------------------------------------------
 " Plugins configuration
