@@ -172,8 +172,8 @@ nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
 
 " close buffer
-nmap <leader>w :Sayonara!<CR>
-nmap <leader>< :Sayonara!<CR>
+nmap <leader>w :bd!<CR>
+nmap <leader>< :bd!<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
