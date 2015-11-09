@@ -125,7 +125,7 @@ set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240
 
 # right side of status bar
 set -g status-right-length 30
-set -g status-right '#{battery_percentage} #[bg=colour236 fg=colour240]#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
+set -g status-right '#{online_status} #{battery_percentage} #[bg=colour236 fg=colour240]#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
@@ -148,8 +148,12 @@ set -g @tpm_plugins "               \
       tmux-plugins/tpm              \
       tmux-plugins/tmux-battery     \
       tmux-plugins/tmux-resurrect   \
-      jbnicolai/tmux-fpp            \
-"
+      tmux-plugins/tmux-online-status"
+
+# tmux-online-status configuration
+set -g @online_icon "#[fg=colour148]●#[fg=colour245]"
+set -g @offline_icon "#[fg=colour1]◼︎#[fg=colour245]"
+
 
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
