@@ -1,5 +1,5 @@
-alias reload!='. ~/.zshrc'
-alias dotfiles='cd ~/.dotfiles'
+alias r='. ~/.zshrc'
+alias d='cd ~/.dotfiles'
 
 alias grep='grep --color'
 
