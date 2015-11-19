@@ -27,6 +27,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'vim-scripts/indenthtml.vim'
 Bundle 'Yggdroot/indentLine'
+Bundle 'moll/vim-bbye'
 
 
 " Syntax
