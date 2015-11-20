@@ -10,6 +10,9 @@ tmux/plugins/*
 # zsh completion cache folder
 .cache
 
+# fish 
+fish.config/fish_history
+
 # Ignore vifm local files
 vifm.symlink/Trash
 vifm.symlink/vifminfo
