@@ -26,5 +26,5 @@ Plug 'Yggdroot/indentLine'
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
-Plug 'dag/vim-fish'
-Plug 'PProvost/vim-markdown-jekyll'
+Plug 'dag/vim-fish', {'for': 'fish'}
+Plug 'PProvost/vim-markdown-jekyll', {'for': ['markdown', 'md']}
