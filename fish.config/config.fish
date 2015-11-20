@@ -1,10 +1,10 @@
 ##
-# Enable vim mode 
+# Enable vim mode
 fish_vi_mode
 
 # Don't show message on shell startup
 set --erase fish_greeting
- 
+
 set -x PATH /usr/bin $PATH
 set -x PATH /bin $PATH
 set -x PATH /usr/sbin $PATH

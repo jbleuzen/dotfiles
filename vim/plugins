@@ -1,0 +1,31 @@
+" Colorscheme
+Plug 'jbleuzen/molokai'
+
+
+" Plugins
+Plug 'bling/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'cohama/lexima.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/emmet-vim'
+Plug 'rking/ag.vim'
+Plug 'matze/vim-move'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sensible'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/closetag.vim'
+Plug 'vim-scripts/indenthtml.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'moll/vim-bbye'
+
+
+" Syntax
+Plug 'sheerun/vim-polyglot'
+Plug 'dag/vim-fish', {'for': 'fish'}
+Plug 'PProvost/vim-markdown-jekyll', {'for': ['markdown', 'md']}

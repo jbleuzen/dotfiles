@@ -1,7 +1,7 @@
 *.un~
 .netrwhist
 
-vim/vim.symlink/bundle
+vim/vim.symlink/plugins
 vim/vim.symlink/sessions/
 
 # Ignore tmux plugins 
@@ -9,6 +9,9 @@ tmux/plugins/*
 
 # zsh completion cache folder
 .cache
+
+# fish 
+fish.config/fish_history
 
 # Ignore vifm local files
 vifm.symlink/Trash

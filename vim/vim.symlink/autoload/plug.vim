@@ -1,0 +1,1 @@
+/Users/johan/.vim/plugins/vim-plug/plug.vim
