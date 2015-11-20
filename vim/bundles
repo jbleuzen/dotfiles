@@ -1,35 +1,30 @@
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-
 " Colorscheme
-Bundle 'jbleuzen/molokai'
+Plug 'jbleuzen/molokai'
 
 
 " Plugins
-Bundle 'bling/vim-airline'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'jszakmeister/vim-togglecursor'
-Bundle 'cohama/lexima.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'rking/ag.vim'
-Bundle 'matze/vim-move'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-sensible'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'vim-scripts/closetag.vim'
-Bundle 'vim-scripts/indenthtml.vim'
-Bundle 'Yggdroot/indentLine'
+Plug 'bling/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'cohama/lexima.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'mattn/emmet-vim'
+Plug 'rking/ag.vim'
+Plug 'matze/vim-move'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sensible'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/closetag.vim'
+Plug 'vim-scripts/indenthtml.vim'
+Plug 'Yggdroot/indentLine'
 
 
 " Syntax
-Bundle 'sheerun/vim-polyglot'
-Bundle 'dag/vim-fish'
-Bundle 'PProvost/vim-markdown-jekyll'
+Plug 'sheerun/vim-polyglot'
+Plug 'dag/vim-fish'
+Plug 'PProvost/vim-markdown-jekyll'

@@ -45,13 +45,10 @@ function link {
 		ln -s $file $filename 2> /dev/null
 	done
 
-  # Install fish files
-  ln -s ~/.dotfiles/fish/config.fish ~/.config/fish/config.fish
-  ln -s ~/.dotfiles/fish/functions.fish ~/.config/fish/functions.fish
-  ln -s ~/.dotfiles/fish/prompt.fish ~/.config/fish/prompt.fish
+  # Install config folders
+  ln -s ~/.dotfiles/fish.config ~/.config/fish
+  ln -s ~/.dotfiles/nvim.config ~/.config/nvim
 
-  # Install bundle
-  #  vi +BundleInstall +qall
 }
 
 function unlink {

@@ -7,14 +7,11 @@ set nocompatible
 " ----------------------------------------------------------------------------
 "  Vundle configuration
 " ----------------------------------------------------------------------------
-
-filetype off 			" disable detection before vundle loads
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
+call plug#begin('~/.vim/plugged')
 source ~/.dotfiles/vim/bundles
-filetype plugin indent on       " enable detection, plugins and indenting in one step
+call plug#end()
 
+delc PlugUpgrade
 
 " Strip whitespace on save
 "autocmd BufWritePre * :%s/\s\+$//e
