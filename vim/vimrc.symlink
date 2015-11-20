@@ -7,8 +7,8 @@ set nocompatible
 " ----------------------------------------------------------------------------
 "  Vundle configuration
 " ----------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
-source ~/.dotfiles/vim/bundles
+call plug#begin('~/.vim/plugins')
+source ~/.dotfiles/vim/plugins
 call plug#end()
 
 delc PlugUpgrade

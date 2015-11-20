@@ -1,1 +1,1 @@
-/Users/johan/.vim/plugged/vim-plug/plug.vim
+/Users/johan/.vim/plugins/vim-plug/plug.vim

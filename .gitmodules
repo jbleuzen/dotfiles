@@ -1,10 +1,7 @@
-[submodule "vim/vim.symlink/bundle/vundle"]
-	path = vim/vim.symlink/bundle/vundle
-	url = git://github.com/gmarik/vundle.git
-	ignore = untracked
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "vim/vim.symlink/plugged"]
 	path = vim/vim.symlink/plugged
 	url = https://github.com/junegunn/vim-plug.git
+	ignore = untracked
