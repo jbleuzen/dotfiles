@@ -1,7 +1,6 @@
 *.un~
 .netrwhist
 
-vim/vim.symlink/plugins
 vim/vim.symlink/sessions/
 
 # Ignore tmux plugins 
