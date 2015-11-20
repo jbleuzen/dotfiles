@@ -17,3 +17,4 @@ vifm.symlink/Trash
 vifm.symlink/vifminfo
 config/fish/fish_history
 fishd.*
+vim/vim.symlink/plugins/
