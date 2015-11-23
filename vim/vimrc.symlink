@@ -112,11 +112,6 @@ inoremap <Down>     <nop>
 inoremap <Left>     <Esc>:bprevious<CR>
 inoremap <Right>    <Esc>:bnext<CR>
 
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-
 function! MapF1()
   if &buftype == "help"
     exec 'quit'
@@ -258,6 +253,14 @@ function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
   noremap <buffer> <right> <nop>
 endfunction
+
+" Tmux-Navigator
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 
 " Airline
