@@ -154,6 +154,8 @@ inoremap ;<CR> <C-o>A;
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gl :Glog<CR>
 
+nmap <leader>z :Goyo<CR>
+
 " close buffer
 nmap <leader>w :Bdelete!<CR>
 nmap <leader>< :Bdelete!<CR>
@@ -326,10 +328,14 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gblame<CR>
 
-" Ensure to quit even when Goyo is active
+" Goyo
+let g:goyo_width=100
+let g:goyo_height="75%"
 function! s:goyo_enter()
   silent ! tmux set status off
-  call pencil#init()
+  silent ! osascript -e 'repeat 2 times' -e 'tell application "System Events" to keystroke "+" using command down' -e 'end repeat'
+  set wrap
+  set linebreak
   let b:quitting = 0
   let b:quitting_bang = 0
   autocmd QuitPre <buffer> let b:quitting = 1
@@ -338,6 +344,9 @@ endfunction
 
 function! s:goyo_leave()
   silent ! tmux set status on
+  silent ! osascript -e 'tell application "System Events" to keystroke "0" using command down'
+  set nowrap
+  set nolinebreak
   " Quit Vim if this is the only remaining buffer
   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
     if b:quitting_bang
