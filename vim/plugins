@@ -3,7 +3,8 @@ Plug 'jbleuzen/molokai'
 
 
 " Plugins
-Plug 'bling/vim-airline'
+Plug 'jbleuzen/vim-buftabline'
+Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jszakmeister/vim-togglecursor'
