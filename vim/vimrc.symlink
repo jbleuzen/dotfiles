@@ -26,7 +26,6 @@ set t_Co=256
 syntax on
 colorscheme molokai
 
-set fillchars+=vert:\      " Remove | on vertical splits
 
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
@@ -76,6 +75,7 @@ set noshowmode             " Hide the default mode text (e.g. -- INSERT -- below
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+set fillchars+=vert:│
 
 " --
 "  Find
