@@ -38,4 +38,6 @@ nnoremap ,n :touch "filename"<cr>:rename<cr>
 nmap yd :!echo %d | xclip %i<cr>
 " Yank current file path into the clipboard
 nmap yf :!echo %c:p | xclip %i<cr>
+" Go up
+nmap - :cd ..<cr>
 
