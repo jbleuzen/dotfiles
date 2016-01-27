@@ -42,6 +42,11 @@ set -g prefix C-x
 unbind C-b
 bind C-x send-prefix
 
+# Faster resize actions
+bind C-Up resize-pane -U 6
+bind C-Down resize-pane -D 6
+bind C-Left resize-pane -L 10
+bind C-Right resize-pane -R 10
 
 # kill server session
 unbind q
