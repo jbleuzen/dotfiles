@@ -1,0 +1,33 @@
+" Hide navigation bar
+set gui=nonavigation
+
+" Hints ────────────────────────────────────────────────────────────────────────
+
+" Use letters instead of numbers
+" set hintkeys=fdsartgbvecwxqyiopmnhzulkj
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+" Bad Wolf by Steve Losh
+" https://bitbucket.org/sjl/dotfiles/src/master/pentadactylrc
+highlight -append HintElem background : rgba(255, 209, 020, 0.7) !important
+highlight CmdLine font-size: 10px; font-weight: normal; font-family:"Monaco", monospace; padding: 0 0;
+highlight StatusLine  color: #111;font-size: 12px;
+
+" Use usual leader key
+let mapleader = ","
+
+set! browser.tabs.closeButtons=0
+
+" Remap down
+noremap j 5j
+noremap k 5k
+
+" Close tab
+nmap <leader>w :q<CR>
+
+" Remap arrows to change tab
+nmap <left> :tabprev<CR>
+nmap <right> :tabnext<CR>
+
+" Reload conf with F5
+nmap <F5> :echomsg "Loading..."<CR>:source ~/.vimperatorrc<CR>

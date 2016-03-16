@@ -1,0 +1,37 @@
+" Use letters instead of numbers
+
+" Highlight while typing 
+set incfind
+" Highlight search result
+set hlfind
+
+" Remap down
+noremap j 5j
+noremap k 5k
+
+
+" Remap arrows to change tab
+nmap <left> :tabprev<CR>
+nmap <right> :tabnext<CR>
+
+set hintkeys=azertyuiopqsdfgh
+hi -append Hint font-size: 11pt !important;background: red !important;
+
+hi -append StatusLine font-size: 10pt;
+
+
+" Use usual leader key
+map , <Leader>
+
+" Close current tab
+map <Leader>w :q<CR>
+map <Leader>< :q<CR>
+
+" Reload conf with F5
+nmap <F5> :source ~/.pentadactylrc<CR>
+
+
+map <Leader>/ :set hlf!<CR>
+
+" Style 
+"hi StatusLine font-size: 10pt;
