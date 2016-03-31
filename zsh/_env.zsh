@@ -26,3 +26,6 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Load dircolors if exist
 [[ -s "dircolor" ]] && eval "$(dircolors ~/.dircolors)"
+
+# added by travis gem
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
