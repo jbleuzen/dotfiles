@@ -63,3 +63,40 @@ cdf() {
     echo 'No Finder windows are opened' >&2
   fi
 }
+
+export SYSLOG_PATH='/Volumes/syslog/'
+last-log(){
+  zparseopts -A table -- -service:=zservice -app:=zapp -date:=zday f=f
+  local app=${zapp[2]:-}
+  local service=${zservice[2]:-httpd}
+  local day=${zday[2]:-`date "+%Y/%m/%d"`}
+  if [[ -z "$app" ]]; then
+    lista=("${(@f)$(find "${SYSLOG_PATH}" -maxdepth 1 -mindepth 1 -type d)}")
+    if [[ ${#lista} -ne 1 ]]; then
+      for (( i=1; i<=$#lista; i++ )); do
+        >&2 echo "[${i}] ${lista[i]:t}"
+      done
+      >&2 echo -n "Please, choose an app: "
+      read num
+      service=${lista[num]:t}
+    else
+      service=${lista[1]:t}
+    fi
+  fi
+  list=("${(@f)$(find "${SYSLOG_PATH}/$service/$day" -type f -iname "*${app}*")}")
+  if [[ ${#list} -ne 1 ]]; then
+    for (( i=1; i<=$#list; i++ )); do
+      >&2 echo "[${i}] ${list[i]:t}"
+    done
+    >&2 echo -n "Please, choose a file: "
+    read num
+    file=${list[num]}
+  else
+    file=${list[1]}
+  fi
+  if [[ -n $f ]];then
+    tail -n 100 -f $file
+  else
+    cat ${file:-NotFound}
+  fi
+}
