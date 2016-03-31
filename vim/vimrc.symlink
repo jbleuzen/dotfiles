@@ -31,6 +31,7 @@ set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set lazyredraw             " turn off lazy redraw
 set number                 " line numbers
+set relativenumber         " Show relative numbers in col
 set wildmenu               " turn on wild menu
 set wildmode=list:longest,full
 set cmdheight=1            " command line height
