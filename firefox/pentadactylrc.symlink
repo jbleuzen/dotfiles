@@ -1,24 +1,56 @@
+" -----------------------------------------------------------------------------
+" Settings
+" -----------------------------------------------------------------------------
+
 " Use letters instead of numbers
+set hintkeys=hjklasdfgyuiopqwertnmzxcvb
 
 " Highlight while typing 
 set incfind
+
 " Highlight search result
 set hlfind
+
+" No close buttons on tab
+set! browser.tabs.closeButtons=2
+
+" Default search engine
+set defsearch="duck"
+
+" Set colorscheme
+colorscheme molokai
+
+" Privacy ---------------------------------------------------------------------
+set! privacy.donottrackheader.enabled=true
+set! browser.safebrowsing.enabled=false
+set! browser.safebrowsing.malware.enabled=false
+set! signon.rememberSignons=false
+
+" Block third-party cookies
+set! network.cookie.cookieBehavior=1
+
+" Download manager ------------------------------------------------------------
+set! browser.download.manager.retention=0
+set! browser.download.manager.showWhenStarting=false
+set! browser.download.manager.closeWhenDone=true
+
+" show tab number
+set guioptions+=n
+
+" -----------------------------------------------------------------------------
+" Mappings
+" -----------------------------------------------------------------------------
 
 " Remap down
 noremap j 5j
 noremap k 5k
 
-
 " Remap arrows to change tab
 nmap <left> :tabprev<CR>
 nmap <right> :tabnext<CR>
 
-set hintkeys=azertyuiopqsdfgh
-hi -append Hint font-size: 11pt !important;background: red !important;
-
-hi -append StatusLine font-size: 10pt;
-
+" Reload conf with F5
+nmap <F5> :source ~/.pentadactylrc<CR>
 
 " Use usual leader key
 map , <Leader>
@@ -27,11 +59,26 @@ map , <Leader>
 map <Leader>w :q<CR>
 map <Leader>< :q<CR>
 
-" Reload conf with F5
-nmap <F5> :source ~/.pentadactylrc<CR>
-
-
+" Hide highlighted search result
 map <Leader>/ :set hlf!<CR>
 
+
+" -----------------------------------------------------------------------------
 " Style 
-"hi StatusLine font-size: 10pt;
+" -----------------------------------------------------------------------------
+
+" use Helvetica Neue
+hi -a Normal       font-family: "Helvetica Neue", "Droid Sans Mono" !important; font-size: 13px !important;
+hi -a StatusLine   font-family: "Helvetica Neue", "Droid Sans Mono" !important; font-size: 13px !important;
+hi -a CmdLine      font-family: "Helvetica Neue", "Droid Sans Mono" !important; font-size: 13px !important;
+hi -a REPL         font-family: "Helvetica Neue", "Droid Sans Mono" !important; font-size: 13px !important;
+
+" the zenburn command line is too compact
+" hi -a CmdLine padding: 1px !important;
+
+hi TabNumber    color: #c55; margin-left: 1px !important; margin-right: 2px !important; font-size: 90% !important; margin-top: 4px !important; font-weight: bold !important; cursor: default !important;
+hi -a TabText      font-size: 100% !important; padding: 3px 0 0 !important;
+hi -a TabIcon      margin-left: -4px !important; margin-top: 4px;  margin-right: 0 !important; padding: 0 !important;
+
+hi -append Hint font-size: 11pt !important;background: red !important;
+hi -append StatusLine font-size: 10pt;
