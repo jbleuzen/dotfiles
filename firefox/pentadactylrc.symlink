@@ -15,7 +15,7 @@ set hlfind
 set! browser.tabs.closeButtons=2
 
 " Default search engine
-"set defsearch="duck"
+set defsearch=duckduckgo
 
 " Set colorscheme
 colorscheme molokai
