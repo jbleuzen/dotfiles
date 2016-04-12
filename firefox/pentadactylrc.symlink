@@ -20,6 +20,9 @@ set defsearch=duckduckgo
 " Set colorscheme
 colorscheme molokai
 
+" Limit number of items displayed on commandline
+set maxitems=10
+
 " Privacy ---------------------------------------------------------------------
 set! privacy.donottrackheader.enabled=true
 set! browser.safebrowsing.enabled=false
