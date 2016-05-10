@@ -240,6 +240,8 @@ let g:use_emmet_complete_tag = 1
 " NERDTree
 let NERDTreeMinimalUI=1
 let NERDTreeCaseSensitiveSort=1
+let g:NERDTreeMapJumpNextSibling = '<Nop>'
+let g:NERDTreeMapJumpPrevSibling = '<Nop>'
 nmap <silent> <Leader>d :call g:WorkaroundNERDTreeToggle()<CR>
 nmap <silent> <leader>D  :NERDTreeFocus<CR>
 nmap <silent> <leader>n  :NERDTreeFind<CR>
