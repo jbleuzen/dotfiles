@@ -25,6 +25,9 @@ setopt HIST_REDUCE_BLANKS
 #   like: git comm-[tab]
 setopt complete_aliases
 
+# Load zmv for easy file renaming
+autoload -U zmv
+
 bindkey -e
 
 bindkey "^[[3~" delete-char

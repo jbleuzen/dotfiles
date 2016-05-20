@@ -19,3 +19,4 @@ config/fish/fish_history
 fishd.*
 vim/vim.symlink/plugins/
 info
+vifm.symlink/scripts/README
