@@ -22,6 +22,7 @@ alias cd..="cd .."
 alias cd-="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
+alias cdr='if [ "`git rev-parse --show-cdup`" != "" ]; then cd `git rev-parse --show-cdup`; fi'
 
 alias json="python -m json.tool"
 
