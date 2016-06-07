@@ -8,10 +8,10 @@ set -g default-terminal "screen-256color"
 set -s escape-time 0
 
 # enable everything you can do with a mouse
-setw -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
+set -g mouse on
+set-option -g -q mode-mouse on
+# enable scroll
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
 
 # not sure what these settings are for
 #set-option -g status-keys vi
@@ -165,4 +165,4 @@ set -g @route_to_ping "johanbleuzen.fr"
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
 run-shell ~/.dotfiles/tmux/plugins/tpm/tpm
-run-shell ~/.dotfiles/tmux/plugins/tmux-resurrect/resurrect.tmux
+#run-shell ~/.dotfiles/tmux/plugins/tmux-resurrect/resurrect.tmux
