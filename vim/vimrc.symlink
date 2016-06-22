@@ -324,6 +324,7 @@ let g:SimpleJsIndenter_BriefMode = 1
 let g:indentLine_char = '┆'
 let g:indentLine_fileTypeExclude = ['nerdtree']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+let g:indentLine_concealcursor=''
 let g:indentLine_noConcealCursor = 'yes'
 
 " fugitive
