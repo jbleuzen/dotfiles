@@ -18,6 +18,9 @@ export PATH=$PATH:/usr/local/share/npm/bin # Add npm binaries
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
+# Disable tmux queuing for macOS Sierra
+export EVENT_NOKQUEUE=1
+
 # rbenv if exist
 [[ -s "/usr/local/bin/rbenv" ]] && eval "$(rbenv init -)"
 
