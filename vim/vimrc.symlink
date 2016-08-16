@@ -160,6 +160,8 @@ nmap <leader>z :Goyo<CR>
 " close buffer
 nmap <leader>w :Bdelete!<CR>
 nmap <leader>< :Bdelete!<CR>
+"close all buffers except current one
+nmap  <leader>wa :Bonly<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
