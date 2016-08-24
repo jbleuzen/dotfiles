@@ -52,6 +52,7 @@ set splitright				    " Open splits on the right
 set nofoldenable			    " Disable automatic fold
 set hidden                " Can change buffer without save everytime
 set autoindent            " Indent on new line
+set synmaxcol=150         " Highlight max 150 char on line
 
 augroup qf
   autocmd!
