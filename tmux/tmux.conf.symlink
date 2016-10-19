@@ -7,6 +7,9 @@ set -g default-terminal "screen-256color"
 # Remove the delay when pressing <ESC>
 set -s escape-time 0
 
+set -g default-shell $SHELL 
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"
+
 # enable everything you can do with a mouse
 set -g mouse on
 set-option -g -q mode-mouse on
@@ -53,7 +56,7 @@ unbind q
 bind-key C-q kill-session
 
 # new window when I'm not awake
-bind c new-window -c "$HOME"
+bind c new-window -c "$HOME" -n '*'
 
 # open panes in current folder
 bind-key  "%"   split-window -h -c "#{pane_current_path}"
@@ -135,6 +138,7 @@ set -g status-right '#{online_status} #{battery_percentage} #[bg=colour236 fg=co
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
 set-window-option -g window-status-format ' #W '          # Inactive windows in status bar
+set-window-option -g window-status-current-format '[#W]'          # Inactive windows in status bar
 
 # Shortcut kill windows
 bind C-w kill-window
