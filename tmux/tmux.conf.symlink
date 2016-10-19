@@ -55,8 +55,8 @@ bind-key -r C-Right resize-pane -R 10
 unbind q
 bind-key C-q kill-session
 
-# new window when I'm not awake
-bind c new-window -c "$HOME" -n '*'
+# new window on the top right
+bind c new-window -c "$HOME" -n '*' \; move-window -r \; move-window -t 100
 
 # open panes in current folder
 bind-key  "%"   split-window -h -c "#{pane_current_path}"
