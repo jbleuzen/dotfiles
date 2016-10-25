@@ -56,7 +56,7 @@ unbind q
 bind-key C-q kill-session
 
 # new window on the top right
-bind c new-window -c "$HOME" -n '*' \; move-window -r \; move-window -t 100
+bind c new-window -c "$HOME" -n '*' \; move-window -r \; move-window -t 100\; move-window -r
 
 # open panes in current folder
 bind-key  "%"   split-window -h -c "#{pane_current_path}"
