@@ -28,6 +28,18 @@ Plug 'vim-scripts/indenthtml.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'moll/vim-bbye'
 
+" == Autocomplete plugins ==
+Plug 'ervandew/supertab'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'steelsojka/deoplete-flow'
+	Plug 'neomake/neomake'
+else
+	Plug 'scrooloose/syntastic'
+	Plug 'flowtype/vim-flow'
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+endif
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
