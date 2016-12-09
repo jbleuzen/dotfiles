@@ -133,6 +133,9 @@ nmap <F5> :so ~/.vimrc<CR>
 set pastetoggle=<F12>
 nmap <silent> <F12> :set paste!<BAR>:set paste?<CR>
 
+" Search and replace word under cursor
+nmap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " Easy create empty line
 nmap <leader>o o<esc>
 nmap <leader>O O<esc>
