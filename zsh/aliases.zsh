@@ -43,6 +43,10 @@ alias launchctl='reattach-to-user-namespace -l launchctl'
 
 alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 
+# neovim 
+alias vi="vim"
+[[ -s "/usr/local/bin/nvim" ]] && alias vim="nvim"
+
 
 # not aliases but works like an alias
 md() { mkdir -p $1 && cd $1}
