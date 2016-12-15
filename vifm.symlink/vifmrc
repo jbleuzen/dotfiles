@@ -2,6 +2,9 @@
 " Settings
 """""
 
+" Use nvim instead of vim
+set vicmd=nvim
+
 colorscheme molokai
 
 " Only show one pane
