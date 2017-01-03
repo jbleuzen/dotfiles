@@ -4,6 +4,7 @@ Plug 'jbleuzen/molokai'
 
 " Plugins
 Plug 'jbleuzen/vim-buftabline'
+Plug 'amadeus/vim-mjml'
 Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
