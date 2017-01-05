@@ -47,6 +47,8 @@ alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias vi="vim"
 [[ -s "/usr/local/bin/nvim" ]] && alias vim="nvim"
 
+alias n="npm"
+
 
 # not aliases but works like an alias
 md() { mkdir -p $1 && cd $1}
