@@ -269,6 +269,7 @@ function! Disable_arrow_mapping()
 endfunction
 
 " Tmux-Navigator
+let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmux_navigator_no_mappings = 1
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
