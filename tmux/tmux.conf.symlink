@@ -1,3 +1,6 @@
+# Load OSX configuration
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
+
 #------------------------------------------------------------------------------
 #   DEFAULT CONFIGURATION
 #------------------------------------------------------------------------------
@@ -8,7 +11,6 @@ set -g default-terminal "screen-256color"
 set -s escape-time 0
 
 set -g default-shell $SHELL 
-set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
 # enable everything you can do with a mouse
 set -g mouse on
