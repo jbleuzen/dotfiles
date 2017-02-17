@@ -152,7 +152,8 @@ set -g @tpm_plugins " \
       tmux-plugins/tmux-battery \
       tmux-plugins/tmux-resurrect \
       tmux-plugins/tmux-online-status \
-      christoomey/vim-tmux-navigator"
+      christoomey/vim-tmux-navigator \
+      tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
 set -g @online_icon "#[fg=colour148]●#[fg=colour245]"
