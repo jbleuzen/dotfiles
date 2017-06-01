@@ -129,12 +129,12 @@ set -g message-bg colour124
 set -g message-attr dim
 
 # left side of status bar
-set -g status-left-length 30
+set -g status-left-length 40
 set -g status-left-attr bold
 set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240] #[fg=#FFFFFF] #h #[fg=colour240 bg=colour236]'
 
 # right side of status bar
-set -g status-right-length 30
+set -g status-right-length 40
 set -g status-right '#{online_status} #{battery_percentage} #[bg=colour236 fg=colour240]#[bg=colour240 fg=colour250] %Y-%m-%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
 
 # status bar options
@@ -164,4 +164,4 @@ set -g @route_to_ping "johanbleuzen.fr"
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
 run-shell ~/.dotfiles/tmux/plugins/tpm/tpm
-#run-shell ~/.dotfiles/tmux/plugins/tmux-resurrect/resurrect.tmux
+# run-shell ~/.dotfiles/tmux/plugins/tmux-resurrect/resurrect.tmux
