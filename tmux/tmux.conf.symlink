@@ -80,8 +80,8 @@ unbind [
 bind v copy-mode
 unbind p
 bind p paste-buffer
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection
 
 #bind-key S set-window-option synchronize-panes on
 bind C-s set -g synchronize-panes
