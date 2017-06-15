@@ -21,14 +21,17 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # Disable tmux queuing for macOS Sierra
 export EVENT_NOKQUEUE=1
 
-# rbenv if exist
+# rbenv if exists
 [[ -s "/usr/local/bin/rbenv" ]] && eval "$(rbenv init -)"
 
-# Load z if exist
+# Load z if exists
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
 
-# Load dircolors if exist
+# Load dircolors if exists
 [[ -s "dircolor" ]] && eval "$(dircolors ~/.dircolors)"
+
+# Load docker-machine if exists
+[[ -s "docker-machine" ]] && eval "$(docker-machine env default)"
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
