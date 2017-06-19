@@ -239,6 +239,8 @@ au BufRead,BufNewFile *.mustache							 set ft=html
 
 "au BufRead,BufNewFile *.twig                   set ft=jinja
 
+au BufRead,BufNewFile .env*							       set ft=sh
+
 " Force markdown filteype
 au BufRead,BufNewFile *.md                     set ft=markdown
 au BufRead,BufNewFile *.markdown               set ft=markdown
