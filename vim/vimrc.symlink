@@ -407,7 +407,7 @@ autocmd User GoyoLeave call <SID>goyo_leave()
   "let g:neomake_javascript_flow_exe = g:flow_path
   "let g:neomake_jsx_flow_exe = g:flow_path
 
-  autocmd! BufWritePost * Neomake
+  autocmd! BufWritePost * if exists(":Neomake") | Neomake | endif
 
 " lighline
 let g:lightline = {
