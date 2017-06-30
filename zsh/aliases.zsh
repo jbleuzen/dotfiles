@@ -11,7 +11,7 @@ else
   # OS X `ls`
   colorflag="-G"
 fi
-alias ls="ls -lFh ${colorflag}"
+alias ls="ls -lFh ${colorflag} -v"
 
 alias l='ll'
 alias ll='ls -l'
