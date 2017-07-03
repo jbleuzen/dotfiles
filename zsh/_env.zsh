@@ -28,10 +28,10 @@ export EVENT_NOKQUEUE=1
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
 
 # Load dircolors if exists
-[[ -s "dircolor" ]] && eval "$(dircolors ~/.dircolors)"
+[[ -s `which dircolor` ]] && eval "$(dircolors ~/.dircolors)"
 
 # Load docker-machine if exists
-[[ -s "docker-machine" ]] && eval "$(docker-machine env default)"
+[[ -s `which docker-machine` ]] && eval "$(docker-machine env default)"
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
