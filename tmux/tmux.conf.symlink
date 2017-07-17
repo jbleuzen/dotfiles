@@ -157,7 +157,7 @@ set -g @tpm_plugins " \
 # tmux-online-status configuration
 set -g @online_icon "#[fg=colour148]●#[fg=colour245]"
 set -g @offline_icon "#[fg=colour1]◼︎#[fg=colour245]"
-set -g @route_to_ping "johanbleuzen.fr"
+set -g @route_to_ping "fdn.fr"
 
 
 # Initializes TMUX plugin manager.
