@@ -86,7 +86,7 @@ bind-key -T copy-mode-vi 'y' send -X copy-selection
 bind C-s set -g synchronize-panes
 
 # clear pane history
-bind L clear-history\; display "Clearing history"
+bind L send-keys -R\; clear-history\; send-keys C-m\; display "Clearing history"\;
 
 # quit tmux
 bind \ kill-server
