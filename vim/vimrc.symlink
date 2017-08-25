@@ -533,3 +533,7 @@ endfunction
 
 " buffertabline
 let g:buftabline_separators="|"
+
+" Vim-Search-Pulse
+let g:vim_search_pulse_mode = 'cursor_line'
+let g:vim_search_pulse_duration = 333
