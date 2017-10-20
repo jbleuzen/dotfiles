@@ -9,7 +9,7 @@ set -s escape-time 0
 
 set -g default-shell $SHELL 
 
-set-option -g default-command "tmux rename-window zsh; (uname | grep -q Darwin) && reattach-to-user-namespace -l zsh || zsh"
+if-shell "type 'reattach-to-user-namespace' >/dev/null" "set -g default-command 'reattach-to-user-namespace -l $SHELL'"
 
 # enable everything you can do with a mouse
 set -g mouse on
@@ -152,7 +152,8 @@ set -g @tpm_plugins " \
       tmux-plugins/tmux-resurrect \
       tmux-plugins/tmux-online-status \
       christoomey/vim-tmux-navigator \
-      tmux-plugins/tmux-copycat"
+      "
+      #tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
 set -g @online_icon "#[fg=colour148]●#[fg=colour245]"
