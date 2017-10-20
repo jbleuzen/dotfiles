@@ -114,10 +114,12 @@ inoremap <Down>     <nop>
 inoremap <Left>     <Esc>:bprevious<CR>
 inoremap <Right>    <Esc>:bnext<CR>
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
+nnoremap È :m .-2<CR>==
+nnoremap Ï :m .+1<CR>==
+inoremap È <Esc>:m .+1<CR>==gi
+inoremap Ï  <Esc>:m .-2<CR>==gi
+vnoremap È :m '<-2<CR>gv=gv
+vnoremap Ï :m '>+1<CR>gv=gv
 
 function! MapF1()
   if &buftype == "help"
