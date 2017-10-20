@@ -1,4 +1,4 @@
-alias t="tmux"
+alias t="tmux && tmux rename-window zsh;"
 alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
 alias tl="tmux ls"
