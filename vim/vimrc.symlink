@@ -180,15 +180,6 @@ nmap <leader>n :enew<CR>
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-
-  " ignore node_modules files
-  let g:ctrlp_custom_ignore = 'node_modules'
 endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -303,7 +294,6 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#ctrlp#show_adjacent_modes = 0
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -323,12 +313,6 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ [ 'x', 'warning' ]
       \ ]
-
-" CTRLP
-let g:ctrlp_custom_ignore = '\v[\/](\.git|node_modules|\.*|_site|\.png|\.jpg|\.gif|\.ico)$'
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_match_window_reversed = 1
-let g:ctrlp_max_height = 5
 
 " html-indent
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -539,3 +523,11 @@ let g:buftabline_separators="|"
 " Vim-Search-Pulse
 let g:vim_search_pulse_mode = 'cursor_line'
 let g:vim_search_pulse_duration = 333
+
+" FZF
+nnoremap <silent> <C-p> :FZF<cr>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = { 'down': '~30%' }
