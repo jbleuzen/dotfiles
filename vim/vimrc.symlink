@@ -176,11 +176,18 @@ nmap  <leader>wa :Bonly<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
+nmap <Leader>a :Ag<CR>
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
+
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -531,3 +538,18 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '~30%' }
+
+" Allow to select all entry from :Ag to quickfix with alt-a
+let $FZF_DEFAULT_OPTS = '--bind æ:select-all'
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
