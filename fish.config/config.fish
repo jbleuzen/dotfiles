@@ -1,6 +1,6 @@
 ##
 # Enable vim mode
-fish_vi_mode
+fish_vi_key_bindings
 
 # Don't show message on shell startup
 set --erase fish_greeting

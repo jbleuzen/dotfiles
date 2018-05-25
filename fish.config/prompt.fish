@@ -71,10 +71,10 @@ function fish_prompt_short_pwd --description 'Print the current working director
 end
 
 function fish_right_prompt --description lil
-  set -l time ( set_color 6B6B6B)(date "+%_H:%M:%S")
-	set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
-	set_color magenta
-  printf '%s %s' (parse_git_branch) $time
+  #set -l time ( set_color 6B6B6B)(date "+%_H:%M:%S")
+	#set -l branch (git rev-parse --abbrev-ref HEAD ^/dev/null)
+	#set_color magenta
+  #printf '%s %s' (parse_git_branch) $time
 end
 
 # The fish_mode_prompt function is prepended to the prompt
