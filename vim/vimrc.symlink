@@ -172,7 +172,7 @@ nmap <leader>z :Goyo<CR>
 nmap <leader>w :Bdelete!<CR>
 nmap <leader>< :Bdelete!<CR>
 "close all buffers except current one
-nmap  <leader>wa :Bonly<CR>
+nmap  <leader>wa :silent :bufdo :Bdelete<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
