@@ -512,7 +512,7 @@ let g:fzf_action = {
 let g:fzf_layout = { 'down': '~30%' }
 
 " Allow to select all entry from :Ag to quickfix with alt-a
-let $FZF_DEFAULT_OPTS = '--bind æ:select-all'
+let $FZF_DEFAULT_OPTS = '--bind æ:select-all -i'
 
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -524,6 +524,12 @@ let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+autocmd! FileType fzf
+autocmd  FileType fzf set norelativenumber
+  \| autocmd BufLeave <buffer> set relativenumber
+
+
 
 "Neoformat: format javascript on save
 autocmd BufWritePre *.js Neoformat
