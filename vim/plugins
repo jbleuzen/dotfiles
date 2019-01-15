@@ -1,24 +1,24 @@
 " Colorscheme
 Plug 'jbleuzen/molokai'
 
-
 " Plugins
 Plug 'jbleuzen/vim-buftabline'
 Plug 'amadeus/vim-mjml'
-Plug 'itchyny/lightline.vim'
+Plug 'cohama/lexima.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'inside/vim-search-pulse'
+Plug 'itchyny/lightline.vim'
 Plug 'jszakmeister/vim-togglecursor'
-Plug 'cohama/lexima.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" "Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/emmet-vim'
-Plug 'inside/vim-search-pulse'
-Plug 'vim-scripts/CursorLineCurrentWindow'
+Plug 'jesseleite/vim-agriculture'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
+Plug 'mattn/emmet-vim'
+Plug 'moll/vim-bbye'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -30,8 +30,8 @@ Plug 'tpope/vim-sensible'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/closetag.vim'
 Plug 'vim-scripts/indenthtml.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'moll/vim-bbye'
+Plug 'vim-scripts/CursorLineCurrentWindow'
+Plug 'yggdroot/indentLine'
 
 " == Autocomplete plugins ==
 Plug 'ervandew/supertab'
