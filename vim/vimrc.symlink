@@ -151,9 +151,6 @@ nmap <leader>O O<esc>
 nmap <leader>a ea
 nmap <leader>i bi
 
-" toggle `set list`
-nmap <leader>l :set list!<CR>
-
 " empty last search highlight
 nmap <leader>/ :let @/ = ""<CR>
 
@@ -176,11 +173,14 @@ nmap  <leader>wa :silent :bufdo :Bdelete<CR>
 " new buffer
 nmap <leader>n :enew<CR>
 
-nmap <Leader>a :Ag<CR>
 nmap <Leader>f :GFiles<CR>
 nmap <Leader>F :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>h :History<CR>
+
+nmap <Leader>a <Plug>AgRawSearch
+vmap <Leader>/ <Plug>AgRawVisualSelection
+nmap <Leader>* <Plug>AgRawWordUnderCursor
 
 " The Silver Searcher
 if executable('ag')
@@ -533,6 +533,7 @@ autocmd  FileType fzf set norelativenumber
 
 "Neoformat: format javascript on save
 autocmd BufWritePre *.js Neoformat
+let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_javascript_prettier = {
   \ 'exe': './node_modules/.bin/prettier',
   \ 'args': ['--write', '--config .prettierrc'],
@@ -540,3 +541,6 @@ let g:neoformat_javascript_prettier = {
 
 syntax sync fromstart
 
+
+" QuickFixToggle
+nmap <leader>q <Plug>window:quickfix:toggle
