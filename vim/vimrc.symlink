@@ -82,7 +82,7 @@ set fillchars+=vert:│
 " --
 "  Find
 "  --
-set path=.,/usr/include,,**
+set path=.,/usr/include,src,node_nodules
 set suffixesadd=.js,.php
 
 " ----------------------------------------------------------------------------
