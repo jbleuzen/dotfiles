@@ -102,37 +102,29 @@ bind - set status
 #   PANE
 #------------------------------------------------------------------------------
 # not active pane separator
-set -g pane-border-fg colour244
-set -g pane-border-bg default
+set -g pane-border-style fg=colour244,bg=default,dim
 # active pane separator
-set -g pane-active-border-fg colour124
-set -g pane-active-border-bg default
+set -g pane-active-border-style fg=colour124,bg=default
 
 #------------------------------------------------------------------------------
 #   STATUSBAR
 #------------------------------------------------------------------------------
 # default statusbar colors
-set -g status-fg colour245
-set -g status-bg colour236
-set -g status-attr dim
+set -g status-style fg=colour245,bg=colour236
 
 # current or active window in status bar
-setw -g window-status-current-fg colour148
-setw -g window-status-current-bg colour236
+setw -g window-status-current-style fg=colour148,bg=colour236
 setw -g window-status-current-format '#[bg=color250 fg=color0] #W '
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
-setw -g window-status-activity-fg colour124
-setw -g window-status-activity-bg colour15
+setw -g window-status-activity-style fg=colour15,bg=colour124
 
 # command/message line colors
-set -g message-fg colour15
-set -g message-bg colour124
-set -g message-attr dim
+set -g message-style fg=colour15,bg=colour124
 
 # left side of status bar
 set -g status-left-length 40
-set -g status-left-attr bold
+set -g status-left-style bold
 set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240] #[fg=#FFFFFF] #h #[fg=colour240 bg=colour236]'
 
 # right side of status bar
