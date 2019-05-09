@@ -245,6 +245,10 @@ au BufRead,BufNewFile .env*							       set ft=sh
 au BufRead,BufNewFile *.md                     set ft=markdown
 au BufRead,BufNewFile *.markdown               set ft=markdown
 
+"-- FOLDING --
+set foldmethod=syntax "syntax highlighting items specify folds
+let javaScript_fold=1 "activate folding by JS syntax
+
 " ----------------------------------------------------------------------------
 " Plugins configuration
 " ----------------------------------------------------------------------------
