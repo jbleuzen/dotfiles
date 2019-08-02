@@ -1,5 +1,9 @@
 # The rest of my fun git aliases
-alias ga='git add -A'
+if which fzf >/dev/null 2> /dev/null ; then
+  alias ga='git ls-files -m -o --exclude-standard | fzf --print0 -m --preview-window right:75%  --preview "git diff --color=always {}" | xargs -0 -t -o git add'
+else 
+  alias ga='git add -A'
+fi
 alias gb='git branch'
 alias gc='git commit'
 alias gca='git commit --amend'
