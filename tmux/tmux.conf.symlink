@@ -11,6 +11,7 @@ set -g default-shell $SHELL
 
 if-shell "type 'reattach-to-user-namespace' >/dev/null" "set -g default-command 'reattach-to-user-namespace -l $SHELL'"
 
+
 # enable everything you can do with a mouse
 set -g mouse on
 set-option -g -q mode-mouse on
@@ -38,8 +39,7 @@ set -g automatic-rename off
 setw -g monitor-activity on
 set -g visual-activity on
 
-# window movement / renumbering like in screen's :number
-bind-key m command-prompt -p "move window to:"  "swap-window -t '%%'"
+set -g status-interval 5
 
 #------------------------------------------------------------------------------
 #   SHORTCUT
@@ -66,6 +66,9 @@ bind C-w confirm-before -p "kill-window #W ? (y/n)" kill-window
 # kill pane
 unbind x
 bind x kill-pane
+
+# window movement / renumbering like in screen's :number
+bind-key m command-prompt -p "move window to:"  "swap-window -t '%%'"
 
 # new window on the top right
 bind c new-window -c "$HOME" -n '*' \; move-window -r \; move-window -t 100\; move-window -r
@@ -111,6 +114,7 @@ set -g pane-active-border-style fg=colour124,bg=default
 #------------------------------------------------------------------------------
 #   STATUSBAR
 #------------------------------------------------------------------------------
+
 # default statusbar colors
 set -g status-style fg=colour245,bg=colour236
 
@@ -131,7 +135,7 @@ set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240
 
 # right side of status bar
 set -g status-right-length 40
-set -g status-right '#{online_status} #[bg=colour238 fg=colour250] #{battery_percentage} #[bg=colour240 fg=colour250] %Y/%m/%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
+set -g status-right '#{online_status} #{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}#[default]#[bg=colour240 fg=colour250] %Y/%m/%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
@@ -153,6 +157,14 @@ set -g @tpm_plugins " \
 set -g @online_icon "#[fg=colour148,bold] ▲ #[default]"
 set -g @offline_icon "#[fg=colour1] ▼ #[default]"
 set -g @route_to_ping "fdn.fr"
+
+ # tmux-battery configuration
+set -g @batt_color_status_primary_charged '#[bg=colour238 fg=colour250]'
+set -g @batt_color_status_primary_charging '#[bg=colour238 fg=colour250]'
+set -g @batt_icon_status_charging ' (charging) '
+set -g @batt_icon_status_attached ' (charging) '
+set -g @batt_icon_status_charged ' '
+set -g @batt_icon_status_discharging ' '
 
 
 # Initializes TMUX plugin manager.
