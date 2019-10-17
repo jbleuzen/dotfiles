@@ -237,6 +237,8 @@ au BufRead,BufNewFile Vagrantfile							 set ft=ruby
 
 au BufRead,BufNewFile *.mustache							 set ft=html
 
+au BufRead,BufNewFile tmux.conf.symlink                      set ft=tmux
+
 "au BufRead,BufNewFile *.twig                   set ft=jinja
 
 au BufRead,BufNewFile .env*							       set ft=sh
