@@ -116,7 +116,7 @@ bind - set status
 # not active pane separator
 set -g pane-border-style fg=colour0,bg=colour233
 # active pane separator
-set -g pane-active-border-style fg=colour0,bg=colour233
+set -g pane-active-border-style fg=colour0,bg=colour16
 
 set -g window-style 'bg=colour233'
 set -g window-active-style 'bg=terminal'
@@ -139,12 +139,12 @@ setw -g window-status-activity-style fg=colour124
 set -g message-style fg=colour15,bg=colour124
 
 # left side of status bar
-set -g status-left-length 40
+set -g status-left-length 20
 set -g status-left-style bold
 set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240]  #h  #[fg=colour24 bg=colour236]'
 
 # right side of status bar
-set -g status-right-length 40
+set -g status-right-length 50
 set -g status-right '#{online_status} #{vpn} #{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}#[default]#[bg=colour240 fg=colour250] %Y/%m/%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
 
 # status bar options
@@ -170,15 +170,13 @@ set -g @offline_icon "#[fg=colour1] ▼ #[default]"
 set -g @route_to_ping "fdn.fr"
 
  # tmux-battery configuration
-set -g @batt_color_status_primary_charged '#[bg=colour238 fg=colour250]'
-set -g @batt_color_status_primary_charging '#[bg=colour238 fg=colour250]'
-set -g @batt_icon_status_charging ' (charging) '
-set -g @batt_icon_status_attached ' (charging) '
-set -g @batt_icon_status_charged ' '
+set -g @batt_icon_status_charging ' #[fg=colour1,bold]⚡ #[default]'
+set -g @batt_icon_status_attached ' #[fg=colour1,bold]⚡ #[default]'
+set -g @batt_icon_status_charged ' #[fg=colour148,bold]⚡ #[default]'
 set -g @batt_icon_status_discharging ' '
 
 set -g @vpn_online_icon "#[fg=colour148]VPN"
-set -g @vpn_offline_icon "#[fg=colour1]VPN"
+set -g @vpn_offline_icon "#[fg=colour1][VPN]"
 
 
 # Initializes TMUX plugin manager.
