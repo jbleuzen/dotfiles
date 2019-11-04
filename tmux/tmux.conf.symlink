@@ -133,15 +133,15 @@ setw -g window-status-current-style fg=colour148,bg=colour236
 setw -g window-status-current-format '#[bg=color250 fg=color0] #W '
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
-setw -g window-status-activity-style fg=colour124
+setw -g window-status-activity-style fg=colour160
 
 # command/message line colors
-set -g message-style fg=colour15,bg=colour124
+set -g message-style fg=colour0,bg=colour11
 
 # left side of status bar
 set -g status-left-length 20
 set -g status-left-style bold
-set -g status-left '#[bg=colour148 fg=colour28]  #S  #[fg=colour148 bg=colour240]  #h  #[fg=colour24 bg=colour236]'
+set -g status-left '#[bg=colour148 fg=colour22 bold]  #S  #[fg=colour148 bg=colour240]  #h  #[default]'
 
 # right side of status bar
 set -g status-right-length 50
@@ -161,22 +161,23 @@ set -g @tpm_plugins " \
       jbleuzen/tmux-vpn \
       tmux-plugins/tmux-online-status \
       christoomey/vim-tmux-navigator \
+      robhurring/tmux-spotify \
       "
       #tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
 set -g @online_icon "#[fg=colour148,bold] ▲ #[default]"
-set -g @offline_icon "#[fg=colour1] ▼ #[default]"
+set -g @offline_icon "#[fg=colour160] ▼ #[default]"
 set -g @route_to_ping "fdn.fr"
 
  # tmux-battery configuration
-set -g @batt_icon_status_charging ' #[fg=colour1,bold]⚡ #[default]'
-set -g @batt_icon_status_attached ' #[fg=colour1,bold]⚡ #[default]'
+set -g @batt_icon_status_charging ' #[fg=colour160,bold]⚡ #[default]'
+set -g @batt_icon_status_attached ' #[fg=colour160,bold]⚡ #[default]'
 set -g @batt_icon_status_charged ' #[fg=colour148,bold]⚡ #[default]'
 set -g @batt_icon_status_discharging ' '
 
 set -g @vpn_online_icon "#[fg=colour148]VPN"
-set -g @vpn_offline_icon "#[fg=colour1][VPN]"
+set -g @vpn_offline_icon "#[fg=colour160][VPN]"
 
 
 # Initializes TMUX plugin manager.
