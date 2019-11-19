@@ -1,6 +1,6 @@
 autoload colors && colors
 # cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+# *ttp://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 # Git prompt configuration
 GIT_PROMPT_DIRTY="%F{magenta}"
@@ -52,18 +52,30 @@ git_prompt_info() {
   echo " $(git_dirty)${ref#refs/heads/}$(git_status)%f"
 }
 
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+
 # If root then the user is red in prompt
 if [ $UID -eq 0 ]; then 
   USERNAMECOLOR="red"
-  PATHCOLOR="%F{red}"
 else 
   USERNAMECOLOR="blue"
-  PATHCOLOR="%F{green}"
 fi
 
-SSH="%F{$USERNAMECOLOR}%n%f@%F{red}%m%f "
+#SSH="%F{$USERNAMECOLOR}%n%f@%F{red}%m%f "
+SSH="%(!.%F{red}%n.%F{blue}%n)%f@%F{red%m%f}"
 
-PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ $PATHCOLOR%~ %f'
+#PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ $PATHCOLOR%~ %f'
+PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ %(!.%F{red}%~.%F{green}%(4~|…/%2~|%~)) %f'
 RPROMPT='$(git_prompt_info) %F{245}%*'
 
 
