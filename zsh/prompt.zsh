@@ -1,6 +1,6 @@
 autoload colors && colors
 # cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+# *ttp://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
 # Git prompt configuration
 GIT_PROMPT_DIRTY="%F{magenta}"
@@ -52,18 +52,20 @@ git_prompt_info() {
   echo " $(git_dirty)${ref#refs/heads/}$(git_status)%f"
 }
 
-# If root then the user is red in prompt
-if [ $UID -eq 0 ]; then 
-  USERNAMECOLOR="red"
-  PATHCOLOR="%F{red}"
-else 
-  USERNAMECOLOR="blue"
-  PATHCOLOR="%F{green}"
+# Customers named folders :D
+CUSTOMERS_FOLDER=~/BLZN/Code/
+if [ -d $CUSTOMERS_FOLDER ]; then
+  for CUSTOMER in $(/bin/ls $CUSTOMERS_FOLDER 2> /dev/null); 
+  do
+    hash -d $CUSTOMER=${CUSTOMERS_FOLDER}${CUSTOMER}; 
+  done
 fi
 
-SSH="%F{$USERNAMECOLOR}%n%f@%F{red}%m%f "
+# Display hostname if $SSH_TTY
+HOSTNAME="%(!.%F{red}%n.%F{blue}%n)%f@%F{red}%m%f "
+PATHNAME="%(!.%F{red}.%F{green})%~ %f"
 
-PROMPT='${SSH_TTY:+$SSH}%(?.%F{green}.%F{red})❯ $PATHCOLOR%~ %f'
+PROMPT='${SSH_TTY:+$HOSTNAME}%(?.%F{green}.%F{red})❯ $PATHNAME'
 RPROMPT='$(git_prompt_info) %F{245}%*'
 
 
