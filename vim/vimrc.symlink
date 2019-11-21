@@ -290,43 +290,6 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
-
-" Airline
-let g:airline_theme = 'powerlineish'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_detect_modified=0
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
-let g:airline#extensions#tabline#show_tabs = 1 
-let g:airline#extensions#tabline#fnamemod = ':t' " Show just the filename
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#fnamecollapse = 0
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#syntastic#enabled = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.paste = 'P'
-let g:airline_mode_map = {
-      \ '__' : ' - ',
-      \ 'n'  : ' N ',
-      \ 'i'  : ' I ',
-      \ 'R'  : ' R ',
-      \ 'c'  : ' C ',
-      \ 'v'  : ' V ',
-      \ 'V'  : ' V ',
-      \ 's'  : ' S ',
-      \ 'S'  : ' S ',
-      \ }
-let g:airline#extensions#default#layout = [
-      \ [ 'a', 'b', 'c' ],
-      \ [ 'x', 'warning' ]
-      \ ]
-
 " html-indent
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_autotags = "th,td,tr,tfoot,thead"
