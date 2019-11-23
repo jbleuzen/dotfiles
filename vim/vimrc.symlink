@@ -505,10 +505,8 @@ autocmd  FileType fzf set norelativenumber
 "Neoformat: format javascript on save
 autocmd BufWritePre *.js Neoformat
 let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_javascript_prettier = {
-  \ 'exe': './node_modules/.bin/prettier',
-  \ 'args': ['--write', '--config .prettierrc'],
-  \ 'replace': 1 }
+" For debug purpose after catalina upgrade
+let g:neoformat_verbose = 1
 
 syntax sync fromstart
 
