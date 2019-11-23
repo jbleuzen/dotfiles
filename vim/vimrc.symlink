@@ -58,7 +58,7 @@ set synmaxcol=350         " Highlight max 350 char on line
 
 augroup qf
   autocmd!
-  autocmd FileType qf set nobuflisted
+  autocmd FileType qf set nobuflisted nonumber norelativenumber 
   autocmd FileType vundle set nobuflisted
 augroup END
 
