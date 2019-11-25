@@ -506,7 +506,7 @@ autocmd  FileType fzf set norelativenumber
 autocmd BufWritePre *.js Neoformat
 let g:neoformat_enabled_javascript = ['prettier']
 " For debug purpose after catalina upgrade
-let g:neoformat_verbose = 1
+" let g:neoformat_verbose = 1
 
 syntax sync fromstart
 
