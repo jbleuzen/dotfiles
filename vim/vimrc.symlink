@@ -266,7 +266,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeCaseSensitiveSort=1
 let g:NERDTreeMapJumpNextSibling = '<Nop>'
 let g:NERDTreeMapJumpPrevSibling = '<Nop>'
-nmap <silent> <Leader>d :call g:WorkaroundNERDTreeToggle()<CR>
+nmap <silent> <Leader>d :call g:WorkaroundNERDTreeToggle()<CR> <bar> <C-w>=
 nmap <silent> <leader>D  :NERDTreeFocus<CR>
 nmap <silent> <leader>n  :NERDTreeFind<CR>
 function! g:WorkaroundNERDTreeToggle()
