@@ -35,7 +35,9 @@ set relativenumber         " Show relative numbers in col
 set wildmenu               " turn on wild menu
 set wildmode=longest:full,full
 set wildmode=full
-set wildoptions=pum
+if has('nvim-0.4')
+  set wildoptions=pum
+endif
 set cmdheight=1            " command line height
 set backspace=2            " allow backspacing over everything in insert mode
 set shortmess=filtIoOA     " shorten messages

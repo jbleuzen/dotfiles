@@ -44,7 +44,9 @@ alias launchctl='reattach-to-user-namespace -l launchctl'
 alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 
 # neovim 
-if [[ -s "/usr/local/bin/nvim" ]]; then
+# /usr/local/bin/nvim => macOS brew
+# /usr/bin/nvim => Debian
+if [[ -s "/usr/local/bin/nvim" ]] || [[ -s "/usr/bin/nvim" ]]; then
   alias v="nvim"
   alias vi="nvim"
   alias vim="nvim"
