@@ -17,6 +17,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'jesseleite/vim-agriculture'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'moll/vim-bbye'
 Plug 'scrooloose/nerdcommenter'

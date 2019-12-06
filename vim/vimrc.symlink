@@ -513,3 +513,8 @@ syntax sync fromstart
 
 " QuickFixToggle
 nmap <leader>q <Plug>window:quickfix:toggle
+
+"  JsFileImport
+let g:js_file_import_from_root = 1
+let g:js_file_import_root = getcwd().'/src' "No slash at the end
+
