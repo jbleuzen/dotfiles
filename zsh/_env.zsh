@@ -23,6 +23,8 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # Disable tmux queuing for macOS Sierra
 export EVENT_NOKQUEUE=1
 
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__snapshots__'
+
 # rbenv if exists
 [[ -s "/usr/local/bin/rbenv" ]] && eval "$(rbenv init -)"
 
@@ -38,3 +40,5 @@ export EVENT_NOKQUEUE=1
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
+ echo 'export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"' >> ~/.zshrc
