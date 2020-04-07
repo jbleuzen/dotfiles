@@ -57,6 +57,8 @@ set nofoldenable			    " Disable automatic fold
 set hidden                " Can change buffer without save everytime
 set autoindent            " Indent on new line
 set synmaxcol=350         " Highlight max 350 char on line
+set signcolumn=yes        " always display left sign column
+set updatetime=300        " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 
 augroup qf
   autocmd!
@@ -199,9 +201,11 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Backups
 " ----------------------------------------------------------------------------
 
-set nobackup
 set nowb
 set noswapfile
+" Some servers have issues with backup files, see #649. (coc)
+set nobackup
+set nowritebackup
 
 
 " ----------------------------------------------------------------------------
@@ -231,6 +235,7 @@ endif
 " ----------------------------------------------------------------------------
 au BufNewFile,BufRead *.sass set tabstop=4 shiftwidth=4 expandtab
 au BufNewFile,BufRead *.json setfiletype json syntax=javascript
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 au BufRead,BufNewFile /etc/nginx/conf/*                      set ft=nginx
 au BufRead,BufNewFile /etc/nginx/sites-available/*           set ft=nginx
@@ -250,10 +255,6 @@ au BufRead,BufNewFile .env*							       set ft=sh
 " Force markdown filteype
 au BufRead,BufNewFile *.md                     set ft=markdown
 au BufRead,BufNewFile *.markdown               set ft=markdown
-
-"-- FOLDING --
-set foldmethod=syntax "syntax highlighting items specify folds
-let javaScript_fold=1 "activate folding by JS syntax
 
 " ----------------------------------------------------------------------------
 " Plugins configuration

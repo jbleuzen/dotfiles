@@ -7,9 +7,9 @@
   ],
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
-
+  // ESLint
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-
+  // Prettier
   "prettier.disableSuccessMessage": true
 }
