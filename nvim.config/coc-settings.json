@@ -11,5 +11,7 @@
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   // Prettier
-  "prettier.disableSuccessMessage": true
+  "prettier.disableSuccessMessage": true,
+  "diagnostic.errorSign": "!!",
+  "diagnostic.warningSign": ">>"
 }
