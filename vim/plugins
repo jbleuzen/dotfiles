@@ -17,15 +17,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'jesseleite/vim-agriculture'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
-Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
-" Plug 'ludovicchabant/vim-gutentags'
-Plug 'mattn/emmet-vim'
 Plug 'moll/vim-bbye'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
-Plug 'sbdchd/neoformat'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
@@ -42,22 +36,9 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [
- \ 'coc-tsserver'
- \ ]
-
-" == Autocomplete plugins ==
-""Plug 'ervandew/supertab'
-""if has('nvim')
-""  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-""  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-""  Plug 'steelsojka/deoplete-flow'
-""	Plug 'neomake/neomake'
-""else
-""	Plug 'scrooloose/syntastic'
-""	Plug 'flowtype/vim-flow'
-""  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-""endif
+let g:coc_global_extensions = [ 
+  \ 'coc-tsserver' 
+  \ ]
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
