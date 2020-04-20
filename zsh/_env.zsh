@@ -31,6 +31,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__
 # Load z if exists
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
 
+# Load fnm if exists
+[[ -s `which fnm` ]] && eval "$(fnm env --multi)"
+
 # Load dircolors if exists
 [[ -s `which dircolor` ]] && eval "$(dircolors ~/.dircolors)"
 
@@ -39,6 +42,4 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__
 #[[ -s `which docker-machine` ]] && [[ `docker-machine status` == "Running" ]] && eval "$(docker-machine env default)"
 
 # added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
- echo 'export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"' >> ~/.zshrc
+#[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh

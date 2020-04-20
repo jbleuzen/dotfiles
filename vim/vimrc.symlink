@@ -280,6 +280,7 @@ augroup disable_buffer_change_mapping_for_nerdtree
   autocmd!
   autocmd filetype nerdtree* call Disable_arrow_mapping()
   autocmd filetype qf* call Disable_arrow_mapping()
+  autocmd filetype nerdtree* set signcolumn=no
 augroup END
 function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
@@ -360,21 +361,21 @@ autocmd User GoyoLeave call <SID>goyo_leave()
   set completeopt-=preview
 
   " == neomake/neomake ==
-  let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-  let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_jsx_enabled_makers = ['eslint']
+  "let g:neomake_warning_sign = {
+  "\ 'text': 'W',
+  "\ 'texthl': 'WarningMsg',
+  "\ }
+  "let g:neomake_error_sign = {
+  "\ 'text': 'E',
+  "\ 'texthl': 'ErrorMsg',
+  "\ }
+  "let g:neomake_javascript_enabled_makers = ['eslint']
+  "let g:neomake_jsx_enabled_makers = ['eslint']
 
   "let g:neomake_javascript_flow_exe = g:flow_path
   "let g:neomake_jsx_flow_exe = g:flow_path
 
-  autocmd! BufWritePost * if exists(":Neomake") | Neomake | endif
+  "autocmd! BufWritePost * if exists(":Neomake") | Neomake | endif
 
 " lighline
 let g:lightline = {
@@ -500,16 +501,14 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 autocmd! FileType fzf
-autocmd  FileType fzf set norelativenumber
-  \| autocmd BufLeave <buffer> set relativenumber
-
-
+autocmd  FileType fzf set norelativenumber | set  signcolumn=no
+  \| autocmd BufLeave <buffer> set relativenumber | set  signcolumn=yes
 
 "Neoformat: format javascript on save
-autocmd BufWritePre *.js Neoformat
-let g:neoformat_enabled_javascript = ['prettier']
-let g:neoformat_enabled_typescript = ['prettier']
-let g:neoformat_enabled_typescriptreact = ['prettier']
+"autocmd BufWritePre *.js Neoformat
+"let g:neoformat_enabled_javascript = ['prettier']
+"let g:neoformat_enabled_typescript = ['prettier']
+"let g:neoformat_enabled_typescriptreact = ['prettier']
 " For debug purpose after catalina upgrade
 " let g:neoformat_verbose = 1
 
@@ -520,10 +519,11 @@ syntax sync fromstart
 nmap <leader>q <Plug>window:quickfix:toggle
 
 "  JsFileImport
-let g:js_file_import_from_root = 1
-let g:js_file_import_root = getcwd().'/src' "No slash at the end
+"let g:js_file_import_from_root = 1
+"let g:js_file_import_root = getcwd().'/src' "No slash at the end
 
 
+" Coc and JS
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
@@ -531,3 +531,17 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
+
+nmap <silent> <leader>< <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>> <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+autocmd ColorScheme * 
+              \ hi CocErrorSign  ctermfg=Red guifg=#ff0000 | 
+              \ hi CocWarningSign  ctermfg=Brown guifg=#ff922b |
+              \ hi CocInfoSign  ctermfg=Yellow guifg=#fab005 |
+              \ hi CocHintSign  ctermfg=Blue guifg=#15aabf |
+              \ hi CocUnderline  cterm=underline gui=underline
