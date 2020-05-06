@@ -9,6 +9,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'iamcco/coc-tailwindcss', {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'inside/vim-search-pulse'
 Plug 'itchyny/lightline.vim'
 Plug 'jszakmeister/vim-togglecursor'
