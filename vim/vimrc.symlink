@@ -473,6 +473,8 @@ endfunction
 
 " buffertabline
 let g:buftabline_separators="|"
+let g:buftabline_indicators=1
+let g:buftabline_modifier="✺ "
 
 " Vim-Search-Pulse
 let g:vim_search_pulse_mode = 'cursor_line'
