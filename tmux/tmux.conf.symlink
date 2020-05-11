@@ -114,9 +114,9 @@ bind - set status
 #   PANE
 #------------------------------------------------------------------------------
 # not active pane separator
-set -g pane-border-style fg=colour0,bg=colour233
+set -g pane-border-style fg=colour237,bg=colour233
 # active pane separator
-set -g pane-active-border-style fg=colour0,bg=colour16
+set -g pane-active-border-style fg=colour232,bg=colour16
 
 set -g window-style 'bg=colour233'
 set -g window-active-style 'bg=terminal'
@@ -140,8 +140,7 @@ set -g message-style fg=colour0,bg=colour11
 
 # left side of status bar
 set -g status-left-length 20
-set -g status-left-style bold
-set -g status-left '#[bg=colour148 fg=colour22 bold]  #S  #[fg=colour148 bg=colour240]  #h  #[default]'
+set -g status-left '#[bg=colour148 fg=colour22]  #S  #[fg=colour148 bg=colour240]  #h  #[default]'
 
 # right side of status bar
 set -g status-right-length 50
