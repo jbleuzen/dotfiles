@@ -57,7 +57,6 @@ set nofoldenable			    " Disable automatic fold
 set hidden                " Can change buffer without save everytime
 set autoindent            " Indent on new line
 set synmaxcol=350         " Highlight max 350 char on line
-set signcolumn=yes        " always display left sign column
 set updatetime=300        " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 
 augroup qf
@@ -512,6 +511,9 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
+
+" always display left sign column on JS project
+autocmd FileType javascript,react,typescriptreact,typescript set signcolumn=yes
 
 nmap <silent> <leader>< <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>> <Plug>(coc-diagnostic-next)
