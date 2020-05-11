@@ -462,21 +462,13 @@ let g:lightline.mode_map = {
 		    \ 'v' : 'V',
 		    \ '?': '      ' }
 
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
 " buffertabline
 let g:buftabline_separators="|"
 let g:buftabline_indicators=1
-let g:buftabline_modifier="✺ "
+let g:buftabline_modifier="✺"
 
 " Vim-Search-Pulse
+"
 let g:vim_search_pulse_mode = 'cursor_line'
 let g:vim_search_pulse_duration = 333
 
@@ -506,26 +498,13 @@ autocmd! FileType fzf
 autocmd  FileType fzf set norelativenumber | set  signcolumn=no
   \| autocmd BufLeave <buffer> set relativenumber | set  signcolumn=yes
 
-"Neoformat: format javascript on save
-"autocmd BufWritePre *.js Neoformat
-"let g:neoformat_enabled_javascript = ['prettier']
-"let g:neoformat_enabled_typescript = ['prettier']
-"let g:neoformat_enabled_typescriptreact = ['prettier']
-" For debug purpose after catalina upgrade
-" let g:neoformat_verbose = 1
-
 syntax sync fromstart
-
 
 " QuickFixToggle
 nmap <leader>q <Plug>window:quickfix:toggle
 
-"  JsFileImport
-"let g:js_file_import_from_root = 1
-"let g:js_file_import_root = getcwd().'/src' "No slash at the end
-
-
 " Coc and JS
+let g:coc_global_extensions = ['coc-tsserver']
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
@@ -541,9 +520,14 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 autocmd ColorScheme * 
-              \ hi CocErrorSign  ctermfg=Red guifg=#ff0000 | 
-              \ hi CocWarningSign  ctermfg=Brown guifg=#ff922b |
-              \ hi CocInfoSign  ctermfg=Yellow guifg=#fab005 |
-              \ hi CocHintSign  ctermfg=Blue guifg=#15aabf |
-              \ hi CocUnderline  cterm=underline gui=underline
+  \ hi CocErrorSign  ctermfg=Red guifg=#ff0000 | 
+  \ hi CocWarningSign  ctermfg=Brown guifg=#ff922b |
+  \ hi CocInfoSign  ctermfg=Yellow guifg=#fab005 |
+  \ hi CocHintSign  ctermfg=Blue guifg=#15aabf |
+  \ hi CocUnderline  cterm=underline gui=underline
