@@ -268,6 +268,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeCaseSensitiveSort=1
 let g:NERDTreeMapJumpNextSibling = '<Nop>'
 let g:NERDTreeMapJumpPrevSibling = '<Nop>'
+let NERDTreeAutoDeleteBuffer=1
 nmap <silent> <Leader>d :call g:WorkaroundNERDTreeToggle()<CR> <bar> <C-w>=
 nmap <silent> <leader>D  :NERDTreeFocus<CR>
 nmap <silent> <leader>n  :NERDTreeFind<CR>
@@ -285,6 +286,7 @@ function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
   noremap <buffer> <right> <nop>
 endfunction
+let NERDTreeIgnore = ['node_modules','public']
 
 " Tmux-Navigator
 let g:tmux_navigator_disable_when_zoomed = 1
