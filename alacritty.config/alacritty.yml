@@ -466,6 +466,8 @@ key_bindings:
   #- { key: W,      mods: Command, action: Quit             }
     - { key: Minus,    mods: Command,    action: DecreaseFontSize              }
     - { key: Equals,     mods: Command,    action: IncreaseFontSize              }
+    - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app", "--args", "--title", "sheevaboite", ] } }
+    #- { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
   #  - { key: A,         mods: Command,    action: Quit                          }
   #  - { key: Z,         mods: Command,    action: Quit                          }
   #  - { scancode: 37,         mods: Alt|Shift,  chars: "|"                            }
