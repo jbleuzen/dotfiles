@@ -55,7 +55,7 @@ git_prompt_info() {
 # Customers named folders :D
 CUSTOMERS_FOLDER=~/BLZN/Code/
 if [ -d $CUSTOMERS_FOLDER ]; then
-  for CUSTOMER in $(/bin/ls $CUSTOMERS_FOLDER 2> /dev/null); 
+  for CUSTOMER in $(/bin/ls $CUSTOMERS_FOLDER | grep -v Icon  2> /dev/null); 
   do
     hash -d $CUSTOMER=${CUSTOMERS_FOLDER}${CUSTOMER}; 
   done
