@@ -514,8 +514,13 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+" Polyglot : markdown
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_fenced_languages = ['nginx=nginx', 'jsx=javascript', 'js=javascript', 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini']
+
 " always display left sign column on JS project
-autocmd FileType javascript,react,typescriptreact,typescript set signcolumn=yes
+autocmd FileType javascript,react,typescriptreact,typescript,vue set signcolumn=yes
 
 nmap <silent> <leader>< <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>> <Plug>(coc-diagnostic-next)
