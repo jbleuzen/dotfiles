@@ -83,6 +83,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
+    #family: Momo
     family: monaco
 
     # The `style` can be specified to pick a specific face.
@@ -453,7 +454,11 @@ key_bindings:
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # (macOS only)
-  #- { key: Key0,   mods: Command, action: ResetFontSize    }
+  - { key: Key0,   mods: Command, action: ResetFontSize    }
+  - { key: Add,     mods: Command,    action: IncreaseFontSize              }
+  - { key: Minus,    mods: Command,    action: DecreaseFontSize              }
+  - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/SheevaBoite.app", "--args", "-e", "tmux"] } }
+  #- { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
   #- { key: Equals, mods: Command, action: IncreaseFontSize }
   #- { key: Add,    mods: Command, action: IncreaseFontSize }
   #- { key: Minus,  mods: Command, action: DecreaseFontSize }
@@ -464,16 +469,3 @@ key_bindings:
   #- { key: H,      mods: Command, action: Hide             }
   #- { key: Q,      mods: Command, action: Quit             }
   #- { key: W,      mods: Command, action: Quit             }
-    - { key: Minus,    mods: Command,    action: DecreaseFontSize              }
-    - { key: Equals,     mods: Command,    action: IncreaseFontSize              }
-    - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app", "--args", "--title", "sheevaboite", ] } }
-    #- { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
-  #  - { key: A,         mods: Command,    action: Quit                          }
-  #  - { key: Z,         mods: Command,    action: Quit                          }
-  #  - { scancode: 37,         mods: Alt|Shift,  chars: "|"                            }
-  #  - { key: LBracket,      mods: Alt,        chars: "{"                            }
-  #  - { key: RBracket,     mods: Alt,        chars: "}"                            }
-  #  - { key: LBracket,      mods: Alt|Shift,  chars: "["                            }
-  #  - { key: RBracket,     mods: Alt|Shift,  chars: "]"                            }
-  #  - { key: N,         mods: Alt,        chars: "~"                            }
-  #  - { scancode: 47,    mods: Alt|Shift,  chars: "\\"                           }
