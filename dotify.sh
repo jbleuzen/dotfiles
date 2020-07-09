@@ -10,7 +10,7 @@ backup_all=false
 function link {
 
 
-	for file in `find ~/.dotfiles -name "*.symlink" | grep -v '\.git'`; do
+	for file in `find ~/.dotfiles -name "*.symlink" -not -path "*/\.*"`; do
 		filename=$(basename $file)
 		filename=~/.${filename%.*}
 	
