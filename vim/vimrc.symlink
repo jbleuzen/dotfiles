@@ -323,30 +323,18 @@ let g:goyo_width=100
 let g:goyo_height="75%"
 function! s:goyo_enter()
   silent ! tmux set status off
-  silent ! osascript -e 'repeat 2 times' -e 'tell application "System Events" to keystroke "+" using command down' -e 'end repeat'
+  silent ! tmux resize-pane -Z
   set wrap
   set linebreak
-  let b:quitting = 0
-  let b:quitting_bang = 0
 	set tabline=0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
 
 function! s:goyo_leave()
   silent ! tmux set status on
-  silent ! osascript -e 'tell application "System Events" to keystroke "0" using command down'
+  silent ! tmux resize-pane -Z
   set nowrap
   set nolinebreak
 	call buftabline#update(0)
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
 endfunction
 
 autocmd User GoyoEnter call <SID>goyo_enter()
