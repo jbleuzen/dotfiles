@@ -19,6 +19,8 @@ Plug 'jesseleite/vim-agriculture'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 Plug 'moll/vim-bbye'
+"Plug 'posva/vim-vue'
+Plug 'leafOfTree/vim-vue-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
@@ -44,4 +46,5 @@ let g:coc_global_extensions = [
 " Syntax
 Plug 'sheerun/vim-polyglot'
 Plug 'dag/vim-fish', {'for': 'fish'}
+" For highlighting the YAML frontmatter
 Plug 'PProvost/vim-markdown-jekyll', {'for': ['markdown', 'md']}

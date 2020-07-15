@@ -528,3 +528,27 @@ autocmd ColorScheme *
   \ hi CocInfoSign  ctermfg=Yellow guifg=#fab005 |
   \ hi CocHintSign  ctermfg=Blue guifg=#15aabf |
   \ hi CocUnderline  cterm=underline gui=underline
+
+" Enable multiple comments style for Vue SFC
+let g:ft = ''
+function! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+      endif
+    endif
+  endif
+endfunction
+function! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfunction
+
+" Vue configuration
+let g:vim_vue_plugin_use_sass = 1
