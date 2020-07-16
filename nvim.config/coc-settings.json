@@ -3,7 +3,8 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "vue"
   ],
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
@@ -12,6 +13,7 @@
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
   // Prettier
   "prettier.disableSuccessMessage": true,
+
   "diagnostic.errorSign": "!!",
   "diagnostic.warningSign": ">>"
 }
