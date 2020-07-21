@@ -4,13 +4,23 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "vue"
+    "vue",
+    "json"
   ],
+
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
+
   // ESLint
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+
   // Prettier
   "prettier.disableSuccessMessage": true,
 
