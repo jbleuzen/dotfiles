@@ -10,7 +10,7 @@ backup_all=false
 function link {
 
 
-	for file in `find ~/.dotfiles -name "*.symlink" -not -path "*/\.*"`; do
+	for file in `find ~/.dotfiles -name "*.symlink" -path "*/\.*"`; do
 		filename=$(basename $file)
 		filename=~/.${filename%.*}
 	
