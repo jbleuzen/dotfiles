@@ -32,7 +32,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && . "/usr/local/etc/profile.d/z.sh"
 
 # Load fnm if exists
-[[ -s `which fnm` ]] && eval "$(fnm env --multi)"
+[[ -s `which fnm` ]] && eval "$(fnm env)"
 
 # Load dircolors if exists
 [[ -s `which dircolor` ]] && eval "$(dircolors ~/.dircolors)"
