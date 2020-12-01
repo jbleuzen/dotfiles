@@ -88,7 +88,7 @@ set fillchars+=vert:│
 "  Find
 "  --
 set path=.,/usr/include,src,node_nodules
-set suffixesadd=.js,.php
+set suffixesadd=.js,.jsx,.ts,.tsx,.vue,.php
 
 " ----------------------------------------------------------------------------
 " Mappings
@@ -153,7 +153,7 @@ nmap <leader>o o<esc>
 nmap <leader>O O<esc>
 
 " Easy insert
-nmap <leader>a ea
+"nmap <leader>a ea
 nmap <leader>i bi
 
 " empty last search highlight
@@ -183,18 +183,36 @@ nmap <Leader>F :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>h :History<CR>
 
-nmap <Leader>a <Plug>AgRawSearch
+nmap <Leader>a :Rg 
 vmap <Leader>/ <Plug>AgRawVisualSelection
 nmap <Leader>* <Plug>AgRawWordUnderCursor
 
 " The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+"if executable('ag')
+  "" Use ag over grep
+  "set grepprg=ag\ --nogroup\ --ignore\='package-lock.json'
+  "set wildignore+=*-local.json
+"endif
+if executable('rg')
+  " Use rg over grep
+  "set grepprg="rg --no-heading --no-line-number --no-column --colors 'match:fg:yellow' --colors 'path:fg:green'"
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepformat=%f:%l:%c:%m
 endif
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep('rg --no-column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,fzf#vim#with_preview(), <bang>0)
+"command! -bang -nargs=* Rg
+  "\ call fzf#vim#grep('rg --column --no-heading --line-number --color=always --no-heading --no-line-number --no-column --colors "match:fg:yellow" --colors "path:fg:green" '.shellescape(<q-args>),
+  "\ 1,
+  "\ fzf#vim#with_preview(),
+  "\ <bang>0)
+
+
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+nnoremap K :Rg \b<C-R><C-W>\b<CR>:cw<CR>
+nnoremap <leader>K :Rg <C-R><C-W><CR>
 
 " ----------------------------------------------------------------------------
 " Backups
@@ -286,7 +304,7 @@ function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
   noremap <buffer> <right> <nop>
 endfunction
-let NERDTreeIgnore = ['node_modules','dist', 'coverage']
+let NERDTreeIgnore = ['node_modules','dist', 'coverage', 'package-lock.json']
 
 " Tmux-Navigator
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -490,13 +508,15 @@ autocmd  FileType fzf set norelativenumber | set  signcolumn=no
 syntax sync fromstart
 
 " QuickFixToggle
-nmap <leader>q <Plug>window:quickfix:toggle
+nmap <leader>q <Plug>window:quickfix:toggle<Esc>
 
 " Coc and JS
 let g:coc_global_extensions = ['coc-tsserver']
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
+
+let g:prettier#autoformat = 1
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
@@ -518,7 +538,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+"nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
