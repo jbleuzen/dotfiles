@@ -170,10 +170,10 @@ set -g @offline_icon "#[fg=colour160] ▼ #[default]"
 set -g @route_to_ping "fdn.fr"
 
  # tmux-battery configuration
-set -g @batt_icon_status_charging ' #[fg=colour160,bold]⚡ #[default]'
-set -g @batt_icon_status_attached ' #[fg=colour160,bold]⚡ #[default]'
-set -g @batt_icon_status_charged ' #[fg=colour148,bold]⚡ #[default]'
-set -g @batt_icon_status_discharging ' '
+set -g @batt_icon_status_charging ' #[fg=colour160,bold]☈ #[default]'
+set -g @batt_icon_status_attached ' #[fg=colour160,bold]☈ #[default]'
+set -g @batt_icon_status_charged ' #[fg=colour148,bold]☈ #[default]'
+set -g @batt_icon_status_discharging ' #[default]'
 
 set -g @vpn_online_icon "#[fg=colour148]VPN"
 set -g @vpn_offline_icon "#[fg=colour160][VPN]"
