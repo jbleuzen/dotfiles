@@ -211,7 +211,7 @@ command! -bang -nargs=* Rg
 
 " bind K to grep word under cursor
 
-nnoremap K :Rg \b<C-R><C-W>\b<CR>:cw<CR>
+nnoremap K :Rg \b<C-R><C-W>\b<CR>
 nnoremap <leader>K :Rg <C-R><C-W><CR>
 
 " ----------------------------------------------------------------------------
