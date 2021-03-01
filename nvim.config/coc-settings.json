@@ -5,15 +5,21 @@
     "typescript",
     "typescriptreact",
     "vue",
-    "json"
+    "json",
+    "css"
   ],
 
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
+  "diagnostic.enableHighlightLineNumber": true,
 
   // ESLint
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
+  "eslint.run": "onSave",
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  //"eslint.debug": true,
+  "eslint.probe": [
     "javascript",
     "javascriptreact",
     "typescript",
@@ -22,7 +28,10 @@
   ],
 
   // Prettier
-  "prettier.disableSuccessMessage": true,
+  //"prettier.disableSuccessMessage": true,
+  //"prettier.onlyUseLocalVersion": true,
+  //"prettier.stylelintIntegration": true,
+  //"prettier.eslintIntegration": true,
 
   "diagnostic.errorSign": "!!",
   "diagnostic.warningSign": ">>"
