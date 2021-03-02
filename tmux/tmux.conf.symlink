@@ -53,8 +53,8 @@ unbind C-b
 bind C-x send-prefix
 
 # Simple changing window position
-bind-key -r "<" swap-window -t -1
-bind-key -r ">" swap-window -t +1
+bind-key -r "<" swap-window -t -1 \; prev
+bind-key -r ">" swap-window -t +1 \; next
 
 # Faster resize actions
 bind-key -r C-Up resize-pane -U 5
