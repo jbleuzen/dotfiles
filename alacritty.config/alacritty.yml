@@ -455,9 +455,10 @@ key_bindings:
 
   # (macOS only)
   - { key: Key0,   mods: Command, action: ResetFontSize    }
-  - { key: Add,     mods: Command,    action: IncreaseFontSize              }
+  - { key: Equals,     mods: Command|Shift,    action: IncreaseFontSize              }
   - { key: Minus,    mods: Command,    action: DecreaseFontSize              }
-  - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/SheevaBoite.app", "--args", "-e", "tmux"] } }
+  - { key: Equals, mods: Command, action: ResetFontSize }
+  - { key: F,        mods: Command|Shift, action: ToggleFullscreen}
   - { key: Space,        mods: Alt, chars: " "}
   #- { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
   #- { key: Equals, mods: Command, action: IncreaseFontSize }
