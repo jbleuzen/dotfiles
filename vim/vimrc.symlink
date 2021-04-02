@@ -167,8 +167,17 @@ nmap <leader>; :set hlsearch!<CR>
 " Insert ; at the end of the line if ; inserted then enter pressed
 inoremap ;<CR> <C-o>A;
 
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gl :Glog<CR>
+function! s:ToggleGstatus() abort
+	for l:winnr in range(1, winnr('$'))
+		if !empty(getwinvar(l:winnr, 'fugitive_status'))
+			execute l:winnr.'close'
+		else
+			Gstatus
+		endif
+	endfor
+endfunction
+nmap <F2> :call <SID>ToggleGstatus()<CR>
+nmap <F3> :Glog<CR>:bot copen<CR>
 
 nmap <leader>z :Goyo<CR>
 
@@ -306,7 +315,7 @@ function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
   noremap <buffer> <right> <nop>
 endfunction
-let NERDTreeIgnore = ['node_modules','dist', 'coverage', 'package-lock.json', '.DS_Store']
+let NERDTreeIgnore = ['node_modules', 'dist', 'build', 'coverage', 'package-lock.json', '.DS_Store']
 
 " Tmux-Navigator
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -514,17 +523,17 @@ nmap <leader>q <Plug>window:quickfix:toggle<Esc>
 
 " Coc and JS
 let g:coc_global_extensions = ['coc-tsserver']
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
+"if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  "let g:coc_global_extensions += ['coc-prettier']
+"endif
 
-let g:prettier#autoformat = 1
+"let g:prettier#autoformat = 1
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+"command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Polyglot : markdown
 let g:vim_markdown_frontmatter = 1

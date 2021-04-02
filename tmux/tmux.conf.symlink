@@ -1,3 +1,6 @@
+# inspiration
+# => https://github.com/samoshkin/tmux-config/blob/master/tmux/tmux.conf
+#
 #------------------------------------------------------------------------------
 #   DEFAULT CONFIGURATION
 #------------------------------------------------------------------------------
@@ -14,12 +17,33 @@ set -g default-shell $SHELL
 
 if-shell "type 'reattach-to-user-namespace' >/dev/null" "set -g default-command 'reattach-to-user-namespace -l $SHELL'"
 
-
 # enable everything you can do with a mouse
 set -g mouse on
 set-option -g -q mode-mouse on
 # enable scroll
-bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
+#bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e; send-keys -M'"
+# Mouse wheel scroll: scroll pane under the cursor without explicitly activating it.
+# if in non-alt-screen -> always enter/use copy mode. In alt screen, if the app
+# registers "complex" mouse events (e.g. vim with set ttymouse=xterm2) - then
+# passthrough the event, otherwise send up/down arrows. gnome-terminal sends
+# up/down only if the app doesn't register any mouse events. To get that
+# behavior, replace _button_ with _any_ at the mouse flags below.
+
+# the original wheel up/down in copy mode select the pane. redefine without select
+bind-key -T copy-mode-vi WheelUpPane   send-keys -X -N3 scroll-up
+bind-key -T copy-mode-vi WheelDownPane send-keys -X -N3 scroll-down
+
+bind-key -n WheelUpPane \
+    if-shell -Ft= "#{?pane_in_mode,1,#{mouse_button_flag}}" \
+        "send-keys -N3 -Mt=" \
+        "if-shell -Ft= '#{alternate_on}' \
+            'send-keys -N3 -t= Up' \
+            'copy-mode -et=; send-keys -N3 -Mt='"
+
+bind-key -n WheelDownPane \
+    if-shell -Ft= "#{?pane_in_mode,1,#{?mouse_button_flag,1,#{?alternate_on,0,1}}}" \
+        "send-keys -N3 -Mt=" \
+        "send-keys -N3 -t= Down"
 # When scrolling with mouse wheel, reduce number of scrolled rows per tick to "2" (default is 5)
 bind -T copy-mode-vi WheelUpPane select-pane \; send-keys -X -N 2 scroll-up
 bind -T copy-mode-vi WheelDownPane select-pane \; send-keys -X -N 2 scroll-down
@@ -111,6 +135,41 @@ unbind -
 bind - set status
 
 #------------------------------------------------------------------------------
+#   NESTED TMUX
+#------------------------------------------------------------------------------
+
+# Session is considered to be remote when we ssh into host
+if-shell 'test -n "$SSH_CLIENT"' \
+    'source-file ~/.tmux/tmux.remote.conf'
+
+# We want to have single prefix key "C-a", usable both for local and remote session
+# we don't want to "C-a" + "a" approach either
+# Idea is to turn off all key bindings and prefix handling on local session,
+# so that all keystrokes are passed to inner/remote session
+
+# see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
+
+bind -T root F12  \
+  set prefix None \;\
+  set key-table off \;\
+  set window-status-current-format "  ▬▬▬▬▬▬▬▬▬ SSH MODE ▬▬▬▬▬▬▬▬  " \;\
+  set -g window-status-format '' \;\
+  set window-status-activity-style fg=colour15 \;\
+  set -g window-status-current-style fg=colour15 \;\
+  set status-style fg=colour245,bg=colour160 \;\
+  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+  refresh-client -S
+
+bind -T off F12 \
+  set -u prefix \;\
+  set -u key-table \;\
+  set -u window-status-current-format \;\
+  set -u window-status-activity-style \;\
+  set status-style fg=colour245,bg=colour236 \;\
+  setw -g window-status-format " #W "\;\
+  refresh-client -S
+
+#------------------------------------------------------------------------------
 #   PANE
 #------------------------------------------------------------------------------
 # not active pane separator
@@ -118,33 +177,39 @@ set -g pane-border-style fg=colour237,bg=colour233
 # active pane separator
 set -g pane-active-border-style fg=colour232,bg=colour16
 
-set -g window-style 'bg=colour233'
-set -g window-active-style 'bg=terminal'
+set -g window-style "bg=colour233"
+set -g window-active-style "bg=terminal"
 
 #------------------------------------------------------------------------------
 #   STATUSBAR
 #------------------------------------------------------------------------------
+wg_is_keys_off="#[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'OFF')#[default]"
 
 # default statusbar colors
 set -g status-style fg=colour245,bg=colour236
 
 # current or active window in status bar
 setw -g window-status-current-style fg=colour148,bg=colour236
-setw -g window-status-current-format '#[bg=color250 fg=color0] #W '
+setw -g window-status-current-format "#[bg=color250 fg=color0] #W #[default]"
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
 setw -g window-status-activity-style fg=colour160
 
 # command/message line colors
-set -g message-style fg=colour0,bg=colour11
+set -g message-style  fg=colour15,bg=colour160
 
 # left side of status bar
 set -g status-left-length 20
-set -g status-left '#[bg=colour148 fg=colour22]  #S  #[fg=colour148 bg=colour240]  #h  #[default]'
+session_name="#[bg=colour148 fg=colour22]  #S  "
+host_name="#[fg=colour148 bg=colour240] #h "
+set -g status-left "$session_name$host_name#[default]"
 
 # right side of status bar
 set -g status-right-length 50
-set -g status-right '#{online_status} #{vpn} #{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}#[default]#[bg=colour240 fg=colour250] %Y/%m/%d #[bg=colour240 fg=colour250]#[fg=colour0 bg=colour250] %H:%M '
+battery="#{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}"
+date="#[bg=colour240 fg=colour250] %Y/%m/%d"
+time="#[fg=colour0 bg=colour250] %H:%M"
+set -g status-right "#{online_status} #{vpn} $battery$date #[default]$time "
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
@@ -160,26 +225,23 @@ set -g @tpm_plugins " \
       jbleuzen/tmux-vpn \
       tmux-plugins/tmux-online-status \
       christoomey/vim-tmux-navigator \
-      robhurring/tmux-spotify \
       "
       #tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
-set -g @online_icon "#[fg=colour148,bold] ▲ #[default]"
-set -g @offline_icon "#[fg=colour160] ▼ #[default]"
+set -g @online_icon "#[fg=colour148 bg=colour238,bold] ▲ "
+set -g @offline_icon "#[fg=colour160 bg=colour238] ▼ "
 set -g @route_to_ping "fdn.fr"
 
  # tmux-battery configuration
-set -g @batt_icon_status_charging ' #[fg=colour160,bold]☈ #[default]'
-set -g @batt_icon_status_attached ' #[fg=colour160,bold]☈ #[default]'
-set -g @batt_icon_status_charged ' #[fg=colour148,bold]☈ #[default]'
-set -g @batt_icon_status_discharging ' #[default]'
+set -g @batt_icon_status_charging " #[fg=colour160,bold]⚡ #[default]"
+set -g @batt_icon_status_attached " #[fg=colour160,bold]⚡ #[default]"
+set -g @batt_icon_status_charged " #[fg=colour148,bold]⚡ #[default]"
+set -g @batt_icon_status_discharging " #[default]"
 
 set -g @vpn_online_icon "#[fg=colour148]VPN"
 set -g @vpn_offline_icon "#[fg=colour160][VPN]"
 
-
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
 run-shell ~/.dotfiles/tmux/plugins/tpm/tpm
-# run-shell ~/.dotfiles/tmux/plugins/tmux-resurrect/resurrect.tmux
