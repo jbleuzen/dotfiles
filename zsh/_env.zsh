@@ -43,3 +43,5 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__
 
 # added by travis gem
 #[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
+[[ -f ./.secrets.zsh ]] && source .secrets.zsh

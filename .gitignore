@@ -21,3 +21,4 @@ vim/vim.symlink/plugins/
 info
 vifm.symlink/scripts/README
 vifm.symlink/vifminfo.json
+.secrets.zsh
