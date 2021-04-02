@@ -155,8 +155,8 @@ bind -T root F12  \
   set window-status-current-format "  ▬▬▬▬▬▬▬▬▬ SSH MODE ▬▬▬▬▬▬▬▬  " \;\
   set -g window-status-format '' \;\
   set window-status-activity-style fg=colour15 \;\
-  set -g window-status-current-style fg=colour15 \;\
-  set status-style fg=colour245,bg=colour160 \;\
+  set -g window-status-current-style fg=colour22 \;\
+  set status-style fg=colour22,bg=colour148 \;\
   if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
   refresh-client -S
 
@@ -209,7 +209,7 @@ set -g status-right-length 50
 battery="#{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}"
 date="#[bg=colour240 fg=colour250] %Y/%m/%d"
 time="#[fg=colour0 bg=colour250] %H:%M"
-set -g status-right "#{online_status} #{vpn} $battery$date #[default]$time "
+set -g status-right "#[bg=colour160]#{online_status} #{vpn} $battery$date #[default]$time "
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
@@ -229,7 +229,7 @@ set -g @tpm_plugins " \
       #tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
-set -g @online_icon "#[fg=colour148 bg=colour238,bold] ▲ "
+set -g @online_icon "#[fg=colour148 bg=colour236,bold] ▲ "
 set -g @offline_icon "#[fg=colour160 bg=colour238] ▼ "
 set -g @route_to_ping "fdn.fr"
 
