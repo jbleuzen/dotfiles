@@ -175,7 +175,7 @@ bind -T off F12 \
 # not active pane separator
 set -g pane-border-style fg=colour237,bg=colour233
 # active pane separator
-set -g pane-active-border-style fg=colour232,bg=colour16
+set -g pane-active-border-style fg=colour237,bg=colour16
 
 set -g window-style "bg=colour233"
 set -g window-active-style "bg=terminal"
