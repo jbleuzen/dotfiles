@@ -12,10 +12,18 @@ else
   colorflag="-G --ignore=Icon*"
 fi
 alias ls="ls -lFh ${colorflag} -v"
-
-alias l='ll'
-alias ll='ls -l'
-alias la='ls -lA'
+if [[ -s "/usr/local/bin/exa" ]]; then
+  # color configuration
+  export EXA_COLORS="da=37:uu=37:gu=37:sn=37:sb=31"
+  exaParams="-l -g --group-directories-first --time-style=long-iso"
+  alias l="exa ${exaParams} --git-ignore --git"
+  alias ll="exa ${exaParams} --git-ignore --git"
+  alias la="exa ${exaParams} -a --git"
+else 
+  alias l='ls'
+  alias ll='ls'
+  alias la='ls -lA'
+fi
 
 # Navigation
 alias cd..="cd .."
