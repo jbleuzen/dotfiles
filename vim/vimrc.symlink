@@ -138,6 +138,20 @@ endfunction
 
 " Disabling <F1> because it's so close to <Esc>
 inoremap <F1> <Esc>
+inoremap <F2> <nop>
+inoremap <F3> <nop>
+inoremap <F4> <nop>
+inoremap <F5> <nop>
+inoremap <F6> <nop>
+inoremap <F7> <nop>
+inoremap <F8> <nop>
+inoremap <F9> <nop>
+inoremap <F10> <nop>
+inoremap <F11> <nop>
+inoremap <F12> <nop>
+inoremap <F13> <nop>
+inoremap <F14> <nop>
+inoremap <F15> <nop>
 noremap <F1> :call MapF1()<CR>
 
 " Source vim config
