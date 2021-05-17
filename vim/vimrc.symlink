@@ -194,31 +194,12 @@ nmap <Leader>F :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>h :History<CR>
 
-nmap <Leader>a :Rg 
+nmap <Leader>a :Rg<CR>
 vmap <Leader>/ <Plug>AgRawVisualSelection
 nmap <Leader>* <Plug>AgRawWordUnderCursor
 
-" The Silver Searcher
-"if executable('ag')
-  "" Use ag over grep
-  "set grepprg=ag\ --nogroup\ --ignore\='package-lock.json'
-  "set wildignore+=*-local.json
-"endif
-if executable('rg')
-  " Use rg over grep
-  "set grepprg="rg --no-heading --no-line-number --no-column --colors 'match:fg:yellow' --colors 'path:fg:green'"
-  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-  set grepformat=%f:%l:%c:%m
-endif
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep('rg --no-column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,fzf#vim#with_preview(), <bang>0)
-"command! -bang -nargs=* Rg
-  "\ call fzf#vim#grep('rg --column --no-heading --line-number --color=always --no-heading --no-line-number --no-column --colors "match:fg:yellow" --colors "path:fg:green" '.shellescape(<q-args>),
-  "\ 1,
-  "\ fzf#vim#with_preview(),
-  "\ <bang>0)
-
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..  --height 50% --border'}), <bang>0)
+"command! -bang -nargs=* -complete=file Rg call fzf#vim#grep('rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*" --glob "!*.png"' . <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 
 " bind K to grep word under cursor
 
