@@ -44,7 +44,8 @@ set backspace=2            " allow backspacing over everything in insert mode
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
-set guicursor=a:blinkon0   " disable blinking cursor
+set guicursor=i-c-r-v:ver30-iCursor-blinkwait300-blinkon200-blinkoff150   " disable blinking cursor
+au VimLeave * set guicursor=a:ver25 " Reset cursor to default | vertical beamer
 set nowrap
 set display=lastline	     " prevent the @ when lines are too long
 set tabstop=2			         " Tabs width
@@ -78,7 +79,6 @@ set ignorecase             " ignore case when searching
 set hlsearch               " don't highlight searches
 set visualbell             " shut the fuck up
 set cursorline				     " highlight current line
-set laststatus=2           " Always display the statusline in all windows
 set noshowmode             " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " Use the same symbols as TextMate for tabstops and EOLs
