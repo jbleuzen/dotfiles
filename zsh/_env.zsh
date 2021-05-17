@@ -1,6 +1,6 @@
 export LANG="en_US.UTF-8"
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Less configuration for manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'
