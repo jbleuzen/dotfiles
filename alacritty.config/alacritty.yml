@@ -460,6 +460,7 @@ key_bindings:
   - { key: Equals, mods: Command, action: ResetFontSize }
   - { key: F,        mods: Command|Shift, action: ToggleFullscreen}
   - { key: Space,        mods: Alt, chars: " "}
+  - { key: Space,        mods: Alt|Shift, chars: " "}
   #- { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
   #- { key: Equals, mods: Command, action: IncreaseFontSize }
   #- { key: Add,    mods: Command, action: IncreaseFontSize }
