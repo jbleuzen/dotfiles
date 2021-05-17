@@ -186,7 +186,7 @@ function! s:ToggleGstatus() abort
 		if !empty(getwinvar(l:winnr, 'fugitive_status'))
 			execute l:winnr.'close'
 		else
-			Gstatus
+			Git
 		endif
 	endfor
 endfunction
