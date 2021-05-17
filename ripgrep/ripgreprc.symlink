@@ -1,0 +1,17 @@
+
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+# Add my 'custom' type.
+--type-add=custom:*.{html,css,js,md,yaml,toml,xml,json}
+
+# Using glob patterns to include/exclude files or folders
+--glob=!git/*
+
+# Set the colors.
+--colors=line:none
+--colors=line:style:bold
+
+# Because who cares about case!?
+--smart-case
