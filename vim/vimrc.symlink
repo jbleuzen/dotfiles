@@ -186,10 +186,19 @@ function! s:ToggleGstatus() abort
 		if !empty(getwinvar(l:winnr, 'fugitive_status'))
 			execute l:winnr.'close'
 		else
-			Git
+      Git
+      20wincmd_ "Resize the git status pane to height of 20
 		endif
 	endfor
 endfunction
+command! ToggleGStatus :call ToggleGStatus()
+nnoremap <silent> <leader>gg :ToggleGStatus<cr>
+
+augroup fugitive_au
+  autocmd!
+  autocmd FileType fugitive setlocal winfixheight
+augroup END
+
 nmap <F2> :call <SID>ToggleGstatus()<CR>
 nmap <F3> :Glog<CR>:bot copen<CR>
 
@@ -580,3 +589,4 @@ endfunction
 
 " Vue configuration
 let g:vim_vue_plugin_use_sass = 1
+
