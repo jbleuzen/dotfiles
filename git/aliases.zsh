@@ -1,9 +1,11 @@
 # The rest of my fun git aliases
 if which fzf >/dev/null 2> /dev/null ; then
-  alias ga='git ls-files -m -o --exclude-standard | fzf --print0 -m --preview-window right:75%  --preview "git diff --color=always {}" | xargs -0 -t -o git add'
+  alias fga='git ls-files -m -o --exclude-standard | fzf --height=50% --print0 -m --preview-window right:75%  --preview "git diff --color=always {}" | xargs -0 -t -o git add'
+  alias fgco='git ls-files -m -o --exclude-standard | fzf --height=50% --print0 -m --preview-window right:75%  --preview "git diff --color=always {}" | xargs -0 -t -o git checkout'
+  alias fgb='git branch | grep -v "^\*" | fzf --height=40% --reverse --info=inline | xargs git checkout'
 else 
-  alias ga='git add -A'
 fi
+alias ga='git add -A'
 alias gb='git branch'
 alias gc='git commit'
 alias gca='git commit --amend'
@@ -19,3 +21,4 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gu="git reset --soft HEAD^"
 alias gsa="git stash apply"
 alias gss="git stash save"
+
