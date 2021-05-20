@@ -134,6 +134,11 @@ bind L send-keys -R\; clear-history\; send-keys C-m\; display "Clearing history"
 unbind -
 bind - set status
 
+bind -T root F11 run-shell 'tmux ls | \
+    grep -v "attached" | \
+    fzf-tmux -h 20 -w 80 --reverse --no-info --prompt "" --bind f11:abort,j:down,k:up --disabled --header=$"Select tmux session" | \
+    cut -d ":" -f 1 |\
+    xargs tmux switch-client -t'
 #------------------------------------------------------------------------------
 #   NESTED TMUX
 #------------------------------------------------------------------------------
