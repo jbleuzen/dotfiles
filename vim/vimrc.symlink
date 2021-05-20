@@ -1,4 +1,5 @@
-"let g:polyglot_disabled = ['vue']
+let g:polyglot_disabled = ['vue']
+
 " ----------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -588,5 +589,17 @@ function! NERDCommenter_after()
 endfunction
 
 " Vue configuration
-let g:vim_vue_plugin_use_sass = 1
+let g:vim_vue_plugin_config = { 
+      \'syntax': {
+      \   'template': ['html'],
+      \   'script': ['javascript'],
+      \   'style': ['scss'],
+      \},
+      \'full_syntax': [],
+      \'initial_indent': [],
+      \'attribute': 0,
+      \'keyword': 0,
+      \'foldexpr': 0,
+      \'debug': 0,
+      \}
 
