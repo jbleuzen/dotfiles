@@ -1,4 +1,4 @@
-
+# This force to draw the beam cursor on each prompt
 _fix_cursor() {
    echo -ne '\033[6 q'
 }
