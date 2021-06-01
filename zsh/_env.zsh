@@ -1,6 +1,12 @@
 export LANG="en_US.UTF-8"
 
-export EDITOR='nvim'
+if type nvim > /dev/null 2>&1; then
+  export EDITOR='nvim'
+  export GIT_EDITOR='nvim'
+else
+  export EDITOR='vim'
+  export GIT_EDITOR='vim'
+fi
 
 # Less configuration for manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'
