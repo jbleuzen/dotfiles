@@ -32,6 +32,7 @@
   //"prettier.onlyUseLocalVersion": true,
   //"prettier.stylelintIntegration": true,
   //"prettier.eslintIntegration": true,
+  "prettier.disableSuccessMessage": true,
 
   "diagnostic.errorSign": "!!",
   "diagnostic.warningSign": ">>"
