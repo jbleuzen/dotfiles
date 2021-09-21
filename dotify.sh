@@ -46,9 +46,10 @@ function link {
 	done
 
   # Install config folders
-  [[ ! -L ~/.config/fish ]] && ln -s ~/.dotfiles/fish.config ~/.config/fish
-  [[ ! -L ~/.config/nvim ]] && ln -s ~/.dotfiles/nvim.config ~/.config/nvim
-
+	for file in `find ~/.dotfiles -name "*.config"`; do
+		filename=$(basename $file)
+		[[ ! -L ~/.config/"${filename%.*}" ]] && ln -s ~/.dotfiles/$filename ~/.config/${filename%.*}
+	done
 }
 
 function unlink {
