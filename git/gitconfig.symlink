@@ -9,7 +9,7 @@
 	branch = auto
 	ui = true
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 [url "https://"]        
 	insteadOf = git://
@@ -19,3 +19,7 @@
 	default = simple
 [status]
 	showUntrackedFiles = all
+
+# Work
+[includeIf "gitdir:~/Bridge/"]
+    path = ~/Bridge/.gitconfig
