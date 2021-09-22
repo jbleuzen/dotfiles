@@ -19,6 +19,8 @@
 	default = simple
 [status]
 	showUntrackedFiles = all
+[tag]
+  sort = v:refname
 
 # Work
 [includeIf "gitdir:~/Bridge/"]
