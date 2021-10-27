@@ -26,7 +26,8 @@ export PATH=$PATH:$HOMEBREW_PREFIX/share/npm/bin # Add npm binaries
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Brew options
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[[ -s "${HOMEBREW_PREFIX}/bin/brew" ]] && eval "${HOMEBREW_PREFIX}/bin/brew shellenv"
+
 # Don't display emoji after brew install
 export HOMEBREW_NO_EMOJI=1
 
@@ -47,4 +48,4 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__
 # Load dircolors if exists
 [[ -s `which dircolor` ]] && eval "$(dircolors ~/.dircolors)"
 
-[[ -f ./.secrets.zsh ]] && source .secrets.zsh
+[[ -f ~/.dotfiles/zsh/.secrets.zsh ]] && source ~/.dotfiles/zsh/.secrets.zsh
