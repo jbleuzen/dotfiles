@@ -9,16 +9,30 @@
     "css"
   ],
 
-  "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
+
   "diagnostic.enableHighlightLineNumber": true,
+  "diagnostic.errorSign": "!!",
+  "diagnostic.warningSign": ">>",
+
+  "vetur.trace.server": "verbose",
+  "vetur.format.enable": true,
+  "vetur.format.defaultFormatter.scss": "prettier",
+  "vetur.format.defaultFormatter.css": "prettier",
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+
+  "tsserver.formatOnType": true,
+  "tsserver.enable": true,
+
+  "javascript.suggest.autoImports": true, 
+  "typescript.suggest.autoImports": true,
 
   // ESLint
   "eslint.autoFixOnSave": true,
   "eslint.run": "onSave",
   "eslint.alwaysShowStatus": true,
   "eslint.format.enable": true,
-  //"eslint.debug": true,
+  "eslint.debug": true,
   "eslint.probe": [
     "javascript",
     "javascriptreact",
@@ -28,12 +42,10 @@
   ],
 
   // Prettier
-  //"prettier.disableSuccessMessage": true,
-  //"prettier.onlyUseLocalVersion": true,
-  //"prettier.stylelintIntegration": true,
+  "prettier.formatterPriority": "-1",
+  "prettier.onlyUseLocalVersion": false,
+  "prettier.stylelintIntegration": true,
   //"prettier.eslintIntegration": true,
-  "prettier.disableSuccessMessage": true,
+  "prettier.disableSuccessMessage": false
 
-  "diagnostic.errorSign": "!!",
-  "diagnostic.warningSign": ">>"
 }
