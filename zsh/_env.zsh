@@ -19,14 +19,15 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export PAGER='less'
 
 export PATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin
-export PATH=$PATH:$HOMEBREW_PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+export PATH=$PATH:$HOMEBREW_PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:$HOME/.dotfiles/bin # Add dotfiles bin to path
 export PATH=$PATH:$HOMEBREW_PREFIX/share/npm/bin # Add npm binaries
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Brew options
-[[ -s "${HOMEBREW_PREFIX}/bin/brew" ]] && eval "${HOMEBREW_PREFIX}/bin/brew shellenv"
+[[ -s "/opt/homebrew/bin/brew" ]] && eval "$(/opt/homebrew/bin/brew shellenv)" # Mac M1
+[[ -s "/usr/local/bin/brew" ]] && eval "$(/usr/local/bin/brew shellenv)" # Mac Intel
 
 # Don't display emoji after brew install
 export HOMEBREW_NO_EMOJI=1
