@@ -6,7 +6,9 @@ if which fzf >/dev/null 2> /dev/null ; then
 else 
 fi
 alias ga='git add -A'
-alias gb='git branch'
+alias gb='git branch --color="always" --sort=authordate --format="%(color:white)%(refname:short);%(color:green)(%(authordate:relative));%(color:blue)<%(authorname)>" "$@" | column -s ";" -t'
+alias gba='git branch --all --color="always" --sort=authordate --format="%(color:white)%(refname:short);%(color:green)(%(authordate:relative));%(color:blue)<%(authorname)>" "$@" | column -s ";" -t'
+alias gbm='git branch --all --merged | grep -v master | grep -v develop'
 alias gc='git commit'
 alias gca='git commit --amend'
 alias gco='git checkout'
@@ -14,7 +16,7 @@ alias gd='git diff'
 alias gdi='git diff --ignore-space-change'
 alias gf='git fetch'
 alias gl='git pull --prune'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias glog="git log --graph --pretty=format:'%C(yellow)%h%Creset - %s %C(red)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-merges"
 alias gp='git push'
 alias gpo="git push origin"
 alias gpmr="git push -o merge_request.create"
