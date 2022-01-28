@@ -25,3 +25,5 @@
 # Work
 [includeIf "gitdir:~/Bridge/"]
     path = ~/Bridge/.gitconfig
+[pull]
+	rebase = true
