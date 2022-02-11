@@ -46,6 +46,8 @@
   "prettier.onlyUseLocalVersion": false,
   "prettier.stylelintIntegration": true,
   //"prettier.eslintIntegration": true,
-  "prettier.disableSuccessMessage": false
+  "prettier.disableSuccessMessage": false,
 
+  // Tailwind
+  "tailwindCSS.emmetCompletions" : true
 }
