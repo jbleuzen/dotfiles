@@ -29,13 +29,8 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 [[ -s "/opt/homebrew/bin/brew" ]] && eval "$(/opt/homebrew/bin/brew shellenv)" # Mac M1
 [[ -s "/usr/local/bin/brew" ]] && eval "$(/usr/local/bin/brew shellenv)" # Mac Intel
 
-# Don't display emoji after brew install
-export HOMEBREW_NO_EMOJI=1
-
-# Disable tmux queuing for macOS Sierra
-export EVENT_NOKQUEUE=1
-
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__snapshots__'
+export HOMEBREW_NO_EMOJI=1 # Don't display emoji after brew install
+export EVENT_NOKQUEUE=1 # Disable tmux queuing for macOS Sierra
 
 # rbenv if exists
 [[ -s "${HOMEBREW_PREFIX}/bin/rbenv" ]] && eval "$(rbenv init -)"
@@ -48,5 +43,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__
 
 # Load dircolors if exists
 [[ -s `which dircolor` ]] && eval "$(dircolors ~/.dircolors)"
+
+# Setup FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__snapshots__'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [[ -f ~/.dotfiles/zsh/.secrets.zsh ]] && source ~/.dotfiles/zsh/.secrets.zsh
