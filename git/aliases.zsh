@@ -6,8 +6,8 @@ if which fzf >/dev/null 2> /dev/null ; then
 else 
 fi
 alias ga='git add -A'
-alias gb='git branch --color="always" --sort=authordate --format="%(color:white)%(refname:short);%(color:green)(%(authordate:relative));%(color:blue)<%(authorname)>" "$@" | column -s ";" -t'
-alias gba='git branch --all --color="always" --sort=authordate --format="%(color:white)%(refname:short);%(color:green)(%(authordate:relative));%(color:blue)<%(authorname)>" "$@" | column -s ";" -t'
+alias gb='git branch --color="always" --sort=authordate --format="%(color:red)%(refname:short);%(color:green)(%(authordate:relative));%(color:white)%(subject);%(color:blue)<%(authorname)> " "$@" | column -s ";" -t | cut -c 1-120'
+alias gba='git branch --all --color="always" --sort=authordate --format="%(color:red)%(refname:short);%(color:green)(%(authordate:relative));%(color:white)%(subject) %(color:blue)<%(authorname)>" "$@" | column -s ";" -t | cut -c 1-150'
 alias gbm='git branch --all --merged | grep -v master | grep -v develop'
 alias gc='git commit'
 alias gca='git commit --amend'
