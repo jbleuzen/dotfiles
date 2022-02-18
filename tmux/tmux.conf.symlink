@@ -179,10 +179,10 @@ setw -g window-status-current-style fg=colour148,bg=colour236
 setw -g window-status-current-format "#[bg=color250 fg=color0] #W #[default]"
 
 # alerted window in status bar. Windows which have an alert (bell, activity or content).
-setw -g window-status-activity-style fg=colour160
+setw -g window-status-activity-style fg=colour124
 
 # command/message line colors
-set -g message-style  fg=colour15,bg=colour160
+set -g message-style  fg=colour15,bg=colour124
 
 #------------------------------------------------------------------------------
 #   STATUS BAR - Variables
