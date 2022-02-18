@@ -125,7 +125,7 @@ bind-key -T copy-mode-vi 'v' send -X begin-selection
 bind-key -T copy-mode-vi 'y' send -X copy-selection
 
 # synchronize panes input
-bind C-s set -g synchronize-panes
+bind = set -g synchronize-panes
 
 # clear pane history
 bind L send-keys -R\; clear-history\; send-keys C-m\; display "Clearing history"\;
@@ -143,35 +143,18 @@ bind -T root F12 run-shell 'tmux ls | \
 #   NESTED TMUX
 #------------------------------------------------------------------------------
 
-# Session is considered to be remote when we ssh into host
-if-shell 'test -n "$SSH_CLIENT"' \
-    'source-file ~/.tmux/tmux.remote.conf'
-
-# We want to have single prefix key "C-a", usable both for local and remote session
-# we don't want to "C-a" + "a" approach either
-# Idea is to turn off all key bindings and prefix handling on local session,
-# so that all keystrokes are passed to inner/remote session
-
 # see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
 
 bind -T root F11  \
   set prefix None \;\
   set key-table off \;\
-  set window-status-current-format "  ▬▬▬▬▬▬▬▬▬ SSH MODE ▬▬▬▬▬▬▬▬  " \;\
-  set -g window-status-format '' \;\
-  set window-status-activity-style fg=colour15 \;\
-  set -g window-status-current-style fg=colour22 \;\
-  set status-style fg=colour22,bg=colour148 \;\
-  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+  set status off \;\
   refresh-client -S
 
 bind -T off F11 \
   set -u prefix \;\
   set -u key-table \;\
-  set -u window-status-current-format \;\
-  set -u window-status-activity-style \;\
-  set status-style fg=colour245,bg=colour236 \;\
-  setw -g window-status-format " #W "\;\
+  set status on \;\
   refresh-client -S
 
 #------------------------------------------------------------------------------
@@ -186,10 +169,8 @@ set -g window-style "bg=colour233"
 set -g window-active-style "bg=terminal"
 
 #------------------------------------------------------------------------------
-#   STATUSBAR
+#   STATUS BAR
 #------------------------------------------------------------------------------
-wg_is_keys_off="#[fg=$color_light,bg=$color_window_off_indicator]#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'OFF')#[default]"
-
 # default statusbar colors
 set -g status-style fg=colour245,bg=colour236
 
@@ -203,18 +184,22 @@ setw -g window-status-activity-style fg=colour160
 # command/message line colors
 set -g message-style  fg=colour15,bg=colour160
 
-# left side of status bar
-set -g status-left-length 20
-session_name="#[bg=colour148 fg=colour22]  #S  "
-host_name="#[fg=colour148 bg=colour240] #h "
-set -g status-left "$session_name$host_name#[default]"
-
-# right side of status bar
-set -g status-right-length 50
+#------------------------------------------------------------------------------
+#   STATUS BAR - Variables
+#------------------------------------------------------------------------------
+session="#[bold bg=colour148 fg=colour22] #S #[default]"
+sync="#{?pane_synchronized,#[bg=colour12 fg=colour21] SYNC #[default],       }" # Adds extra spacing so pane are not moved right
+hostname="#{?SSH_CLIENT,#[fg=colour15 bg=colour124] @#h #[default],}"
 battery="#{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}"
-date="#[bg=colour240 fg=colour250] %Y/%m/%d"
+date="#[bg=colour240 fg=colour250] %d/%m/%Y"
 time="#[fg=colour0 bg=colour250] %H:%M"
-set -g status-right "#[bg=colour160]#{online_status} #{vpn} $battery$date #[default]$time "
+online="#{?SSH_CLIENT,#[fg=colour196 bg=colour52], #{online_status} }"
+vpn="#{?SSH_CLIENT,,#{vpn} }"
+
+set -g status-left-length 50
+set -g status-left "$hostname$session$sync#[default]"
+set -g status-right-length 50
+set -g status-right "$online$vpn$battery$date #[default]$time "
 
 # status bar options
 set-option -g status-justify centre                       # alignment of windows
@@ -234,16 +219,17 @@ set -g @tpm_plugins " \
       #tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
-set -g @online_icon "#[fg=colour148 bg=colour236,bold] ▲"
-set -g @offline_icon "#[fg=colour160 bg=colour238] ▼"
+set -g @online_icon "#[fg=colour148 bg=colour236,bold]▲#[default]"
+set -g @offline_icon "#[fg=colour160 bg=colour238]▼#[default]"
 set -g @route_to_ping "fdn.fr"
 
- # tmux-battery configuration
+# tmux-battery configuration
 set -g @batt_icon_status_charging " #[fg=colour160,bold]⚡#[default]"
 set -g @batt_icon_status_attached " #[fg=colour160,bold]⚡#[default]"
 set -g @batt_icon_status_charged " #[fg=colour148,bold]⚡#[default]"
 set -g @batt_icon_status_discharging " #[default]"
 
+# tmux-vpn
 set -g @vpn_online_icon "#[fg=colour148]VPN"
 set -g @vpn_offline_icon "#[fg=colour160][VPN]"
 
