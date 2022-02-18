@@ -24,3 +24,8 @@ for config_file ($ZSH/**/completion.sh) source $config_file
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# Automatically attach to tmux on SSH connection
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach-session -t Default || tmux new-session -s ssh_tmux
+fi
