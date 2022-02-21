@@ -51,19 +51,25 @@ unbind C-b
 bind C-x send-prefix
 
 # Simple changing window position
-bind-key -r "<" swap-window -t -1 \; prev
-bind-key -r ">" swap-window -t +1 \; next
+bind -r "<" swap-window -t -1 \; prev
+bind -r ">" swap-window -t +1 \; next
+
+# Faster switch client
+bind -n M-Left switch-client -n
+bind -n C-Left switch-client -n
+bind -n M-Right switch-client -p
+bind -n C-Right switch-client -p
 
 # Faster resize actions
-bind-key -r C-Up resize-pane -U 5
-bind-key -r C-Down resize-pane -D 5
-bind-key -r C-Left resize-pane -L 10
-bind-key -r C-Right resize-pane -R 10
+bind -r C-Up resize-pane -U 5
+bind -r C-Down resize-pane -D 5
+bind -r C-Left resize-pane -L 9
+bind -r C-Right resize-pane -R 10
 
 # kill session
 unbind q
 unbind C-q
-bind-key C-q confirm-before -p "kill-session #S ? (y/n)" kill-session
+bind C-q confirm-before -p "kill-session #S ? (y/n)" kill-session
 
 # kill windows
 unbind w
@@ -76,7 +82,7 @@ bind x kill-pane
 
 # window movement / renumbering like in screen's :number
 unbind m
-bind-key m command-prompt -p "move window to:"  "swap-window -t '%%'"
+bind m command-prompt -p "move window to:"  "swap-window -t '%%'"
 
 # new window on the top right
 unbind c
@@ -84,9 +90,9 @@ bind c new-window -c "$HOME" -n '*'
 
 # open panes in current folder
 unbind "%"
-bind-key  "%"   split-window -h -c "#{pane_current_path}"
+bind  "%"   split-window -h -c "#{pane_current_path}"
 unbind '"'
-bind-key  '"'   split-window -v -c "#{pane_current_path}"
+bind  '"'   split-window -v -c "#{pane_current_path}"
 
 # reload .tmux.conf file
 unbind r
@@ -94,17 +100,17 @@ bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
 
 # ctrl+left/right cycles thru windows
 unbind C-l
-bind-key C-l next
+bind C-l next
 unbind C-h
-bind-key C-h prev
+bind C-h prev
 
 # vi configuration
 unbind [
 bind v copy-mode
 unbind p
 bind p paste-buffer
-bind-key -T copy-mode-vi 'v' send -X begin-selection
-bind-key -T copy-mode-vi 'y' send -X copy-selection
+bind -T copy-mode-vi 'v' send -X begin-selection
+bind -T copy-mode-vi 'y' send -X copy-selection
 
 # synchronize panes input
 unbind =
@@ -148,17 +154,17 @@ bind -T root F12 run-shell 'tmux ls | \
 # behavior, replace _button_ with _any_ at the mouse flags below.
 
 # the original wheel up/down in copy mode select the pane. redefine without select
-bind-key -T copy-mode-vi WheelUpPane   send-keys -X -N3 scroll-up
-bind-key -T copy-mode-vi WheelDownPane send-keys -X -N3 scroll-down
+bind -T copy-mode-vi WheelUpPane   send-keys -X -N3 scroll-up
+bind -T copy-mode-vi WheelDownPane send-keys -X -N3 scroll-down
 
-bind-key -n WheelUpPane \
+bind -n WheelUpPane \
   if-shell -Ft= "#{?pane_in_mode,1,#{mouse_button_flag}}" \
     "send-keys -N3 -Mt=" \
     "if-shell -Ft= '#{alternate_on}' \
       'send-keys -N3 -t= Up' \
       'copy-mode -et=; send-keys -N3 -Mt='"
 
-bind-key -n WheelDownPane \
+bind -n WheelDownPane \
   if-shell -Ft= "#{?pane_in_mode,1,#{?mouse_button_flag,1,#{?alternate_on,0,1}}}" \
     "send-keys -N3 -Mt=" \
     "send-keys -N3 -t= Down"
