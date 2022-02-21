@@ -175,19 +175,18 @@ bind -T copy-mode-vi WheelDownPane select-pane \; send-keys -X -N 2 scroll-down
 #------------------------------------------------------------------------------
 #   PANE
 #------------------------------------------------------------------------------
-# not active pane separator
-set -g pane-border-style fg=colour237,bg=colour233
-# active pane separator
+# Inactive pane separator
 set -g pane-active-border-style fg=colour237,bg=colour16
-
-set -g window-style "bg=colour233"
+# Active pane separator
+set -g pane-border-style fg=colour237,bg=colour234
+set -g window-style "bg=colour234"
 set -g window-active-style "bg=terminal"
 
 #------------------------------------------------------------------------------
 #   STATUS BAR
 #------------------------------------------------------------------------------
 # Configuration ---------------------------------------------------------------
-setw -g status-justify centre 
+setw -g status-justify absolute-centre 
 setw -g status-style fg=colour245,bg=colour236
 # Inactive windows in status bar
 setw -g window-status-format ' #W '
@@ -202,18 +201,17 @@ setw -g message-style  fg=colour15,bg=colour124
 
 #- Variables ------------------------------------------------------------------
 session="#[bold bg=colour148 fg=colour22] #S #[default]"
-sync="#{?pane_synchronized,#[bg=colour12 fg=colour21] SYNC #[default],       }" # Adds extra spacing so pane are not moved right
+sync="#{?pane_synchronized,#[bg=colour12 fg=colour21]  =  #[default],}"
 hostname="#{?SSH_CLIENT,#[fg=colour15 bg=colour124] @#h #[default],}"
 battery="#{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}"
 date="#[bg=colour240 fg=colour250] %d/%m/%Y"
 time="#[fg=colour0 bg=colour250] %H:%M"
 online="#{?SSH_CLIENT,#[fg=colour196 bg=colour52], #{online_status} }"
-zoom="#{?window_zoomed_flag,#[bg=colour5 fg=0]  ◾ #[default],    }"
+zoom="#{?window_zoomed_flag,#[bg=colour5 fg=0]  ◾ #[default],}"
 vpn="#{?SSH_CLIENT,,#{vpn} }"
+prefix="#{?client_prefix,#[bg=colour226 fg=colour16]  ^  ,}"
 
-set -g status-left-length 50
 set -g status-left "$hostname$session$zoom$sync#[default]"
-set -g status-right-length 50
 set -g status-right "$online$vpn$battery$date #[default]$time "
 
 #------------------------------------------------------------------------------
