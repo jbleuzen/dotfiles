@@ -27,5 +27,5 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 # Automatically attach to tmux on SSH connection
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-  tmux attach-session -t Default || tmux new-session -s ssh_tmux
+  tmux attach-session -t Default || tmux new-session -s Default
 fi
