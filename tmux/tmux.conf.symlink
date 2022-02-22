@@ -212,7 +212,9 @@ vpn="#{?SSH_CLIENT,,#{vpn} }"
 prefix="#{?client_prefix,#[bg=colour226 fg=colour16]  ^  ,}"
 
 set -g status-left "$hostname$session$zoom$sync#[default]"
+set -g status-left-length 40
 set -g status-right "$online$vpn$battery$date #[default]$time "
+set -g status-right-length 40
 
 #------------------------------------------------------------------------------
 #   TPM PLUGINS
