@@ -124,24 +124,30 @@ bind L send-keys -R\; clear-history\; send-keys C-m\; display "Clearing history"
 unbind -
 bind - set status
 
-# see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
-if-shell -b '[ "$SSH_CLIENT" ]' \
-  "bind -T root F11 \
+if-shell '[ -z $SSH_CLIENT ]' {
+  # Register binding when not on SSH session
+  # see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
+  bind -T root F11 \
     set prefix None \;\
+    display "f11 on" \;\
     set key-table off \;\
     set status off \;\
-    refresh-client -S\;\
+    refresh-client -S
   bind -T off F11 \
+    display "f11 off" \;\
     set -u prefix \;\
     set -u key-table \;\
     set status on \;\
-    refresh-client -S"
-
-bind -T root F12 run-shell 'tmux ls | \
-  grep -v "attached" | \
-  fzf-tmux -h 20 -w 80 --reverse --no-info --prompt "" --bind f12:abort,j:down,k:up --disabled --header=$"Select tmux session" | \
-  cut -d ":" -f 1 | \
-  xargs tmux switch-client -t'
+    refresh-client -S
+  bind -T root F12 \
+    run-shell 'tmux ls | \
+      grep -v "attached" | \
+      fzf-tmux -h 20 -w 80 --reverse --no-info --prompt "" --bind f12:abort,j:down,k:up --disabled --header=$"Select tmux session" | \
+      cut -d ":" -f 1 | \
+      xargs tmux switch-client -t'
+} {
+ # WE DO NOTHING IN SSH SESSION
+}
 
 #------------------------------------------------------------------------------
 #   MOUSE
