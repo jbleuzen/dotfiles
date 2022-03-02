@@ -129,12 +129,12 @@ if-shell '[ -z $SSH_CLIENT ]' {
   # see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
   bind -T root F11 \
     set prefix None \;\
-    display "f11 on" \;\
+    display "Mode SSH ON" \;\
     set key-table off \;\
     set status off \;\
     refresh-client -S
   bind -T off F11 \
-    display "f11 off" \;\
+    display "Mode SSH OFF" \;\
     set -u prefix \;\
     set -u key-table \;\
     set status on \;\
