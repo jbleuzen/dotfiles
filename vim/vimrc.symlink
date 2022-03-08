@@ -93,6 +93,9 @@ set path=.,/usr/include,src,node_nodules
 "set inex=substitute(v:fname,'^\\@','src','')
 set suffixesadd=.js,.jsx,.ts,.tsx,.vue,.php
 
+set includeexpr=substitute(v:fname,'^@\/','src/','')
+set isfname+=@-@
+
 " ----------------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------------
