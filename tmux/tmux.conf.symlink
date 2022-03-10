@@ -55,10 +55,12 @@ bind -r "<" swap-window -t -1 \; prev
 bind -r ">" swap-window -t +1 \; next
 
 # Faster switch client
-bind -n M-Left switch-client -n
-bind -n C-Left switch-client -n
-bind -n M-Right switch-client -p
-bind -n C-Right switch-client -p
+bind "^" switch-client -p
+bind "$" switch-client -n
+
+# Swap pane order 
+bind -r "{" swap-pane -U
+bind -r "}" swap-pane -D
 
 # Faster resize actions
 bind -r C-Up resize-pane -U 5

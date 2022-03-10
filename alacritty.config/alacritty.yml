@@ -120,7 +120,7 @@ font:
     style: Italic
 
   # Point size
-  size: 13.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -454,22 +454,13 @@ key_bindings:
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # (macOS only)
-  - { key: Key0,   mods: Command, action: ResetFontSize    }
-  - { key: Equals,     mods: Command|Shift,    action: IncreaseFontSize              }
-  - { key: Minus,    mods: Command,    action: DecreaseFontSize              }
+  - { key: Key0, mods: Command, action: ResetFontSize    }
+  - { key: Equals, mods: Command|Shift,    action: IncreaseFontSize              }
+  - { key: Minus, mods: Command,    action: DecreaseFontSize              }
   - { key: Equals, mods: Command, action: ResetFontSize }
-  - { key: F,        mods: Command|Shift, action: ToggleFullscreen}
-  - { key: Return,        mods: Command, action: ToggleFullscreen}
-  - { key: Space,        mods: Alt, chars: " "}
-  - { key: Space,        mods: Alt|Shift, chars: " "}
-  #- { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
-  #- { key: Equals, mods: Command, action: IncreaseFontSize }
-  #- { key: Add,    mods: Command, action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command, action: DecreaseFontSize }
-  #- { key: K,      mods: Command, action: ClearHistory     }
-  #- { key: K,      mods: Command, chars: "\x0c"            }
-  #- { key: V,      mods: Command, action: Paste            }
-  #- { key: C,      mods: Command, action: Copy             }
-  #- { key: H,      mods: Command, action: Hide             }
-  #- { key: Q,      mods: Command, action: Quit             }
-  #- { key: W,      mods: Command, action: Quit             }
+  - { key: F, mods: Command|Shift, action: ToggleFullscreen}
+  - { key: Return, mods: Command, action: ToggleFullscreen}
+  - { key: Space, mods: Alt, chars: " "}
+  - { key: Space, mods: Alt|Shift, chars: " "}
+  - { key: Right, mods: Command, chars: "\x18\x5e" }  # CMD + $
+  - { key: Left, mods: Command, chars: "\x18\x24" } # CMD + ^
