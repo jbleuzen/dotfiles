@@ -55,8 +55,8 @@ bind -r "<" swap-window -t -1 \; prev
 bind -r ">" swap-window -t +1 \; next
 
 # Faster switch client
-bind "^" switch-client -p
-bind "$" switch-client -n
+bind "^" switch-client -p # Mapped with alacritty binding
+bind "$" switch-client -n # Mapped with alacritty binding
 
 # Swap pane order 
 bind -r "{" swap-pane -U
@@ -67,6 +67,9 @@ bind -r C-Up resize-pane -U 5
 bind -r C-Down resize-pane -D 5
 bind -r C-Left resize-pane -L 9
 bind -r C-Right resize-pane -R 10
+
+# Create new session
+bind C-n new-session # Mapped with alacritty binding
 
 # kill session
 unbind q

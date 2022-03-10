@@ -464,3 +464,4 @@ key_bindings:
   - { key: Space, mods: Alt|Shift, chars: " "}
   - { key: Right, mods: Command, chars: "\x18\x5e" }  # CMD + $
   - { key: Left, mods: Command, chars: "\x18\x24" } # CMD + ^
+  - { key: N, mods: Command, chars: "\x18\x0e" } # CMD + ^
