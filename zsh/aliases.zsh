@@ -87,39 +87,29 @@ cdf() {
   fi
 }
 
-export SYSLOG_PATH='/Volumes/syslog/'
-last-log(){
-  zparseopts -A table -- -service:=zservice -app:=zapp -date:=zday f=f
-  local app=${zapp[2]:-}
-  local service=${zservice[2]:-httpd}
-  local day=${zday[2]:-`date "+%Y/%m/%d"`}
-  if [[ -z "$app" ]]; then
-    lista=("${(@f)$(find "${SYSLOG_PATH}" -maxdepth 1 -mindepth 1 -type d)}")
-    if [[ ${#lista} -ne 1 ]]; then
-      for (( i=1; i<=$#lista; i++ )); do
-        >&2 echo "[${i}] ${lista[i]:t}"
-      done
-      >&2 echo -n "Please, choose an app: "
-      read num
-      service=${lista[num]:t}
-    else
-      service=${lista[1]:t}
-    fi
+convertMkv() {
+  FILE=$1
+  MKV_FILE=${FILE%%.*}.mkv
+  ffmpeg -i $FILE -c copy $MKV_FILE
+}
+
+mergeMkvs() {
+  if [ "$#" -lt 2 ]; then
+    echo "Please give some files to merge"
+    return
   fi
-  list=("${(@f)$(find "${SYSLOG_PATH}/$service/$day" -type f -iname "*${app}*")}")
-  if [[ ${#list} -ne 1 ]]; then
-    for (( i=1; i<=$#list; i++ )); do
-      >&2 echo "[${i}] ${list[i]:t}"
-    done
-    >&2 echo -n "Please, choose a file: "
-    read num
-    file=${list[num]}
-  else
-    file=${list[1]}
+  TEMP_FILE="mkvmerge.txt"
+  OUTPUT_FILE="Merge.mkv"
+  rm $OUTPUT_FILE 2> /dev/null
+  rm $TEMP_FILE 2> /dev/null
+  for ARG do
+    shift
+    echo "file '$ARG'" >> $TEMP_FILE
+  done
+  echo "File will be merged in this order :"
+  cat $TEMP_FILE
+  if read -q "choice?Confirm merge: "; then
+    ffmpeg -safe 0 -f concat -i $TEMP_FILE -c copy $OUTPUT_FILE
   fi
-  if [[ -n $f ]];then
-    tail -n 100 -f $file
-  else
-    cat ${file:-NotFound}
-  fi
+  rm $TEMP_FILE
 }
