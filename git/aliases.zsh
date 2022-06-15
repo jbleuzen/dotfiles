@@ -16,7 +16,8 @@ alias gd='git diff'
 alias gdi='git diff --ignore-space-change'
 alias gf='git fetch'
 alias gl='git pull --prune'
-alias glog="git log --graph --pretty=format:'%C(yellow)%h%Creset - %s %C(red)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-merges"
+alias glog="git log --pretty=format:'%C(yellow)%h%Creset - %s %C(red)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-merges"
+alias glogg="git log --graph --pretty=format:'%C(yellow)%h%Creset - %s %C(red)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-merges"
 alias gp='git push'
 alias gpo="git push origin"
 alias gpmr="git push -o merge_request.create"
