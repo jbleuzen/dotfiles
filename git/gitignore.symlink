@@ -39,6 +39,7 @@ logs
 ehthumbs.db
 Thumbs.db
 .AppleDouble
+Icon^M
 
 # Backups #
 ###########
@@ -52,4 +53,4 @@ tags
 tags.lock
 tags.temp
 
-Icon
+Icon
