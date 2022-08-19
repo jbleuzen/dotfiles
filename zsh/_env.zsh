@@ -39,7 +39,7 @@ export EVENT_NOKQUEUE=1 # Disable tmux queuing for macOS Sierra
 [[ -s "${HOMEBREW_PREFIX}/etc/profile.d/z.sh" ]] && . "${HOMEBREW_PREFIX}/etc/profile.d/z.sh"
 
 # Load fnm if exists
-[[ -s `which fnm` ]] && eval "$(fnm env)"
+[[ -s `which fnm` ]] && eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
 
 # Load dircolors if exists
 [[ -s `which dircolor` ]] && eval "$(dircolors ~/.dircolors)"
