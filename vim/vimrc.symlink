@@ -132,14 +132,6 @@ inoremap Ï  <Esc>:m .-2<CR>==gi
 vnoremap È :m '<-2<CR>gv=gv
 vnoremap Ï :m '>+1<CR>gv=gv
 
-function! MapF1()
-  if &buftype == "help"
-    exec 'quit'
-  else
-    exec 'help'
-  endif
-endfunction
-
 " Disabling <F1> because it's so close to <Esc>
 inoremap <F1> <Esc>
 inoremap <F2> <nop>
@@ -156,7 +148,7 @@ inoremap <F12> <nop>
 inoremap <F13> <nop>
 inoremap <F14> <nop>
 inoremap <F15> <nop>
-noremap <F1> :call MapF1()<CR>
+noremap <F1> <nop>
 
 " Source vim config
 nmap <F5> :so ~/.vimrc<CR>
