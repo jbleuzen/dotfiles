@@ -315,7 +315,7 @@ function! Disable_arrow_mapping()
   noremap <buffer> <left> <nop>
   noremap <buffer> <right> <nop>
 endfunction
-let NERDTreeIgnore = ['node_modules', 'dist', 'build', 'coverage', 'package-lock.json', '.DS_Store', '^out', '^Icon']
+let NERDTreeIgnore = ['node_modules', 'dist', 'build', 'coverage', 'package-lock.json', '.DS_Store', '^out', '^Icon[^s]$']
 
 " Tmux-Navigator
 let g:tmux_navigator_disable_when_zoomed = 1
