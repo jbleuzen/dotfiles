@@ -4,7 +4,7 @@ Plug 'jbleuzen/molokai'
 " Plugins
 Plug 'jbleuzen/vim-buftabline'
 Plug 'amadeus/vim-mjml'
-Plug 'cohama/lexima.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'drmingdrmer/vim-toggle-quickfix'
 Plug 'editorconfig/editorconfig-vim'
