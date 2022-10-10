@@ -5,7 +5,8 @@
 #   DEFAULT CONFIGURATION
 #------------------------------------------------------------------------------
 # default colors configuration (needed for vim)
-set -g default-terminal "screen-256color"
+set -g default-terminal "xterm-256color"
+set -ag terminal-overrides ",alacritty:RGB"
 
 #  make FocusGained and FocusLost work inside tmux
 set -g focus-events on
