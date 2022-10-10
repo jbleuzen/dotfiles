@@ -42,12 +42,12 @@
   ],
 
   // Prettier
-  "prettier.formatterPriority": "-1",
+  "prettier.formatterPriority": -1,
   "prettier.onlyUseLocalVersion": false,
-  "prettier.stylelintIntegration": true,
-  //"prettier.eslintIntegration": true,
-  "prettier.disableSuccessMessage": false,
 
   // Tailwind
-  "tailwindCSS.emmetCompletions" : true
+  "tailwindCSS.emmetCompletions" : true,
+  "tailwindCSS.dashForceCompletions" : false,
+
+  "suggest.noselect": true
 }
