@@ -12,6 +12,9 @@ tmux/plugins/*
 # fish 
 fish.config/fish_history
 
+# Neovim packer compile file
+nvim.config/plugin/packer_compiled.lua
+
 # Ignore vifm local files
 vifm.symlink/Trash
 vifm.symlink/vifminfo
