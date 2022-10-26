@@ -130,6 +130,19 @@ bind L send-keys -R\; clear-history\; send-keys C-m\; display "Clearing history"
 unbind -
 bind - set status
 
+# Toggle pane name
+unbind _
+bind _ set pane-border-status top
+bind – set pane-border-status off
+
+# Rename window
+unbind ,
+bind , command-prompt -p "Rename window"  "rename-window '%%'"
+
+# Rename pane
+unbind \;
+bind \; command-prompt -p "Rename pane"  "select-pane -T '%%'"
+
 if-shell '[ -z $SSH_CLIENT ]' {
   # Register binding when not on SSH session
   # see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
@@ -185,7 +198,7 @@ bind -T copy-mode-vi WheelUpPane select-pane \; send-keys -X -N 2 scroll-up
 bind -T copy-mode-vi WheelDownPane select-pane \; send-keys -X -N 2 scroll-down
 
 #------------------------------------------------------------------------------
-#   PANE
+#   PANES
 #------------------------------------------------------------------------------
 # Inactive pane separator
 set -g pane-active-border-style fg=colour237,bg=colour16
@@ -193,6 +206,12 @@ set -g pane-active-border-style fg=colour237,bg=colour16
 set -g pane-border-style fg=colour237,bg=colour234
 set -g window-style "bg=colour234"
 set -g window-active-style "bg=terminal"
+# Display the pane name if it doesn't contain "local" or "NVIM" in it
+set -g pane-border-status top
+# #{?test,yes,no}
+# ? : variable exists
+# #{m/r:REGEXP_PATTERN} : returns 1 or -1
+set -g pane-border-format "#{?#{m/r:NVIM|local,#{pane_title}},,#[fg=colour148 align=right bold] #T }"
 
 #------------------------------------------------------------------------------
 #   STATUS BAR
