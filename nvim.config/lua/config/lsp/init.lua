@@ -1,118 +1,237 @@
+-- {{{ Mason require
+local status, mason = pcall(require, "mason")
+if not status then
+  vim.notify("Problem with mason")
+  return
+end
+-- }}}
+
+-- {{{ Mason LSPConfig require
+local statusMasonLspConfig, masonLspConfig = pcall(require, "mason-lspconfig")
+if not statusMasonLspConfig then
+  vim.notify("Problem with mason-lspconfig")
+  return
+end
+-- }}}
+
+-- {{{  LSPConfig require
+-- lspconfig must be loaded after Mason
+local statusLspConfig, lspconfig = pcall(require, "lspconfig")
+if not statusLspConfig then
+  vim.notify("Problem with lspconfig")
+  return
+end
+-- }}}
+
+mason.setup({
+    ui = {
+    -- Whether to automatically check for new versions when opening the :Mason window.
+    check_outdated_packages_on_open = true,
+    -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+    border = "single",
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  }
+})
+
+masonLspConfig.setup({
+  -- A list of servers to automatically install if they're not already installed
+  ensure_installed = {
+    "bashls",
+    "cssls",
+    "eslint",
+    "graphql",
+    "html",
+    "jsonls",
+    "sumneko_lua",
+    "tailwindcss",
+    "tsserver",
+    "vuels",
+  },
+
+  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+  -- This setting has no relation with the `ensure_installed` setting.
+  -- Can either be:
+  --   - false: Servers are not automatically installed.
+  --   - true: All servers set up via lspconfig are automatically installed.
+  --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+  --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+  automatic_installation = true,
+})
+
 local lspconfig = require('lspconfig')
 
--- Automatically update diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = true,
-	update_in_insert = false,
-	virtual_text = { spacing = 4, prefix = "●" },
-	severity_sort = true,
-})
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>k', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>l', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+   client.server_capabilities.document_formatting = true
+    if client.server_capabilities.document_formatting then
+      local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.format()
+        end,
+        group = au_lsp,
+      })
+    end
+  client.server_capabilities.documentFormattingProvider = true
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require("nvim-lsp-installer").setup({
-    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
-    }
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- capabilities.textDocument.foldingRange = {
+--   dynamicRegistration = false,
+--   lineFoldingOnly = true
+-- }
 
--- {{{ lua lsp
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-lspconfig.sumneko_lua.setup {
-	settings = {
-		Lua = {
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = {'vim'},
-			},
-			workspace = {
-				maxPreload = 100000,
-				preloadFileSize = 10000,
-			},
-		},
-	},
-}
+-- {{{ Typescript
+lspconfig.tsserver.setup({
+  on_attach = on_attach
+})
 -- }}}
 
--- {{{ TailwindCSS lsp
+-- {{{ Eslint
+-- Need to install neovim npm package to make it work
+-- npm install -g neovim
+lspconfig.eslint.setup({
+  root_dir = lspconfig.util.root_pattern( 
+   '.eslintrc', 
+   '.eslintrc.js', 
+   '.eslintrc.cjs', 
+   '.eslintrc.yaml', 
+   '.eslintrc.yml', 
+   '.eslintrc.json', 
+   'package.json' 
+  ),
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    debug=true,
+    codeAction = {
+      disableRuleComment = {
+        enable = true,
+        location = "separateLine"
+      },
+      showDocumentation = {
+        enable = true
+      }
+    },
+    codeActionOnSave = {
+      enable = true,
+      mode = "all"
+    },
+    experimental = {
+      useFlatConfig = false
+    },
+    format = true,
+    nodePath = "",
+    onIgnoredFiles = "off",
+    packageManager = "npm",
+    problems = {
+      shortenToSingleLine = false
+    },
+    quiet = false,
+    rulesCustomizations = {},
+    run = "onType",
+    useESLintClass = false,
+    validate = "on",
+    workingDirectory = {
+      mode = "location"
+    }
+  }
+})
+-- }}}
+
+-- {{{ Vue.js
+-- lspconfig.vuels.setup({
+--   root_dir= lspconfig.util.root_pattern("package.json", "vue.config.js"),
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   settings = {
+--     codeActionOnSave = {
+--       enable = true,
+--       mode = "all"
+--     },
+--   },
+--   init_options = {
+--     config = {
+--       css = {},
+--       emmet = {},
+--       html = {
+--         suggest = {}
+--       },
+--       javascript = {
+--         format = {}
+--       },
+--       stylusSupremacy = {},
+--       vetur = {
+--         completion = {
+--           autoImport = true,
+--           tagCasing = "kebab",
+--           useScaffoldSnippets = false
+--         },
+--         dev= {logLevel = "DEBUG"},
+--         format = {
+--           options = {
+--             tabsize = 12
+--           },
+--           defaultFormatter = {
+--             html= "eslint",
+--             js = "eslint",
+--             sass= "sass-formatter",
+--             ts = "eslint"
+--           },
+--           defaultFormatterOptions = {},
+--           scriptInitialIndent = false,
+--           styleInitialIndent = false
+--         },
+--         useWorkspaceDependencies = true,
+--         validation = {
+--           script = true,
+--           style = true,
+--           template = true
+--         }
+--       }
+--     }
+--   }
+-- })
+-- }}}
+
+-- {{{ TailwindCSS
 lspconfig.tailwindcss.setup{}
 -- }}}
-
--- {{{ React lsp
-local buf_map = function(bufnr, mode, lhs, rhs, opts)
-    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
-        silent = true,
-    })
-end
-
-require'lspconfig'.tsserver.setup{
-  on_attach = function(client, bufnr)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-    --    local ts_utils = require("nvim-lsp-ts-utils")
-    --    ts_utils.setup({})
-    --    ts_utils.setup_client(client)
-    --    buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-    --    buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
-    --    buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-    --    on_attach()
-  end,
-}
-
-local tsserver_on_attach = function(client, bufnr)
-  vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-  vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-  vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
-  vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
-  vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
-  vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
-  vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
-  vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
-  vim.cmd("command! LspDiagPrev lua vim.diagnostic.goto_prev()")
-  vim.cmd("command! LspDiagNext lua vim.diagnostic.goto_next()")
-  vim.cmd("command! LspDiagLine lua vim.diagnostic.open_float()")
-  vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
-  buf_map(bufnr, "n", "gd", ":LspDef<CR>")
-  buf_map(bufnr, "n", "gr", ":LspRename<CR>")
-  buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
-  buf_map(bufnr, "n", "K", ":LspHover<CR>")
-  buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
-  buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
-  buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
-  buf_map(bufnr, "n", "<Leader>z", ":LspDiagLine<CR>")
-  buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format({ bufnr = bufnr })
-      end,
-    })
-  end
-end
-
-local null_ls = require("null-ls")
-null_ls.setup({
-  debug = true,
-  sources = {
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.completion.spell,
-    null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.eslint_d,
-  },
-  on_attach = tsserver_on_attach
-})
-

@@ -14,7 +14,7 @@ for type, icon in pairs(signs) do
 end
 
 -- vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#]]
--- vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#ffffff]]
+vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#ffffff]]
 
 -- LSP settings
 local on_attach = function(client)

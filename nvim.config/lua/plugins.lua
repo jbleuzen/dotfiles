@@ -32,24 +32,19 @@ for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1
 end
 
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
   -- Packer can manage itself
   use ({ 'wbthomason/packer.nvim' })
-
-  use({ 'rktjmp/lush.nvim' })
 
   -- utils
   use ({ 'nvim-lua/plenary.nvim' })
 
   -- lsp
   use ({
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    config = [[require('config.lsp.init')]],
   })
-  use ({'williamboman/nvim-lsp-installer'})
-  use({'jose-elias-alvarez/nvim-lsp-ts-utils'})
-  use({'jose-elias-alvarez/null-ls.nvim'})
-  use({'MunifTanjim/eslint.nvim'})
 
   -- completion
   use ({
@@ -64,27 +59,20 @@ return require('packer').startup(function(use)
       "onsails/lspkind-nvim",
     }
   })
-
+  
   -- treesitter
   use ({
     'nvim-treesitter/nvim-treesitter',
     config = [[require('config.treesitter')]]
   })
 
-  use { 'ibhagwan/fzf-lua',
-      config = [[require('config.fzf')]],
-
-  -- optional for icon support
-  requires = { 'kyazdani42/nvim-web-devicons' }
-}
-  -- telescope
-
-  -- use ({ 'nvim-lua/popup.nvim' })
-  -- use ({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
-  -- use ({
-  --   'nvim-telescope/telescope.nvim',
-  --   config = [[require('config.telescope')]],
-  -- })
+  -- fzf-lua
+  use ({ 
+    'ibhagwan/fzf-lua',
+    config = [[require('config.fzf')]],
+    -- optional for icon support
+    requires = { 'kyazdani42/nvim-web-devicons' }
+  })
 
   -- undotree
   use ({
@@ -92,6 +80,8 @@ return require('packer').startup(function(use)
     cmd = { 'UndotreeShow', 'UndotreeToggle', 'UndotreeHide', 'UndotreeFocus' }
   })
 
+
+  -- nvim-surround
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -116,20 +106,8 @@ return require('packer').startup(function(use)
   })
 
   -- colorscheme
-  use ( {
-    "olimorris/onedarkpro.nvim"
-  }) 
-
   use ({
-    'jbleuzen/monokai.nvim',
-  })
-
-  use ({
-    'folke/tokyonight.nvim',
-  })
-
-  use ({
-    'rebelot/kanagawa.nvim',
+    'tanvirtin/monokai.nvim',
   })
 
   -- statusline
@@ -143,42 +121,50 @@ return require('packer').startup(function(use)
       disable_when_zoomed = true, -- defaults to false
     }
   end
-}
+  }
 
--- bufferline
-use ({
-  'akinsho/bufferline.nvim',
-  config = [[require('config.bufferline')]],
-  requires = 'kyazdani42/nvim-web-devicons',
-})
+  -- bufferline
+  use ({
+    'akinsho/bufferline.nvim',
+    config = [[require('config.bufferline')]],
+    requires = 'kyazdani42/nvim-web-devicons',
+  })
 
--- nvim tree
-use ({
-  'kyazdani42/nvim-tree.lua',
-  cmd = {
-    "NvimTreeClipboard",
-    "NvimTreeClose",
-    "NvimTreeFindFile",
-    "NvimTreeOpen",
-    "NvimTreeRefresh",
-    "NvimTreeToggle",
-  },
-  requires = 'kyazdani42/nvim-web-devicons',
-  config = [[require('config.tree')]]
-})
+  -- nvim tree
+  use ({
+    'kyazdani42/nvim-tree.lua',
+    cmd = {
+      "NvimTreeClipboard",
+      "NvimTreeClose",
+      "NvimTreeFindFile",
+      "NvimTreeOpen",
+      "NvimTreeRefresh",
+      "NvimTreeToggle",
+    },
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = [[require('config.tree')]]
+  })
 
--- ccs colors
-use ({ 
-  'norcalli/nvim-colorizer.lua',
-})
+  -- ccs colors
+  -- use ({ 
+  --   'norcalli/nvim-colorizer.lua',
+  -- })
 
--- startup time
-use ({
-  'lewis6991/impatient.nvim',
-  config = [[require('config.impatient')]]
-})
+  -- startup time
+  use ({
+    'lewis6991/impatient.nvim',
+    config = [[require('config.impatient')]]
+  })
+  
+  use ({ 'tweekmonster/startuptime.vim' })
 
-use ({ 'tweekmonster/startuptime.vim' })
+  require('config.lsp.init')
 
-end)
-
+  end,
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})

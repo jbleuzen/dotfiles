@@ -34,59 +34,65 @@ vim.o.signcolumn = 'yes'
 
 vim.o.lazyredraw = true
 
--- Enable the mouse
-vim.cmd [[set mouse=a]]
+local cmd = vim.cmd
 
--- require("onedarkpro").setup({
---   dark_theme = "onedarkdark", -- The default dark theme
---   highlights = {
---     NormalNC = "#FF00FF"
---   },
---   options = {
---     window_unfocused_color = true
---   }
--- })
--- vim.cmd("colorscheme onedarkpro")
+-- Enable the mouse
+cmd [[set mouse=a]]
 
 local monokai = require('monokai')
 local palette = monokai.soda
 
 monokai.setup {
-    palette = {
-        base2 = '#000000',
+  palette = {
+    base2 = "#000000"
+  },
+  custom_hlgroups = {
+    NormalNC = {
+      bg = "#1C1C1C",
+      -- fg = "#1C1C1C"
     },
-    custom_hlgroups = {
-      -- nvim-tree
-        NvimTreeFolderName = {
-          fg = palette.green,
-        },
-        NvimTreeRootFolder = {
-          fg = palette.base8,
-        },
-        NvimTreeFolderIcon = {
-          fg = palette.green,
-        },
-        NvimTreeOpenedFolderName = {
-          fg = palette.aqua,
-        },
-        NvimTreeFileIcon = {
-          fg = palette.aqua,
-        },
-        NvimTreeSpecialFile = {
-          fg = palette.purple
-        },
-        NvimTreeSymlink = {
-          fg = palette.green,
-        },
+    -- nvim-tree
+    -- NvimTreeNormal = {
+    --   bg = "#000000"
+    -- },
+    NvimTreeNormalNC = {
+      bg= "#1C1C1C"
+    },
+    NvimTreeIndentMarker = {
+      fg= "#333333"
+    },
+    NvimTreeFolderName = {
+      fg = palette.green,
+    },
+    NvimTreeRootFolder = {
+      fg = palette.base8,
+    },
+    NvimTreeFolderIcon = {
+      fg = palette.green,
+    },
+    NvimTreeOpenedFolderName = {
+      fg = palette.green,
+    },
+    -- NvimTreeFileIcon = {
+    --   fg = palette.aqua,
+    -- },
+    NvimTreeSpecialFile = {
+      fg = palette.purple
+    },
+    NvimTreeSymlink = {
+      fg = palette.aqua,
+    },
+    NvimTreeGitDirty = {
+      bg="#00FF00"
     }
+  }
 }
 
-local cmd = vim.cmd
 
--- Change the background color  of inactive pane/window
+-- Change the background color of inactive pane/window
 cmd [[
-  autocmd WinEnter,FocusGained * hi Normal guibg=#000000 | hi LineNr guibg=#000000 | hi SignColumn guibg=#000000 | hi CursorLineNr guibg=#000000
-  autocmd WinLeave,FocusLost * hi Normal guibg=#1C1C1C | hi LineNr guibg=#1C1C1C | hi SignColumn guibg=#1C1C1C | hi CursorLineNr guibg=#1C1C1C
+  autocmd WinEnter,FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000 | hi NvimTreeGitDirty guibg=#000000
+  autocmd WinLeave,FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#FF0000 | hi NvimTreeGitDirty guibg=#1C1C1C
 ]]
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

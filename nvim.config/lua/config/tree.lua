@@ -1,3 +1,4 @@
+
 require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   reload_on_bufenter = true,
   view = {
@@ -51,4 +52,4 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     custom = { "Icon\r" }, -- Hides MacOS Icon files
     exclude = { }
   },
-} -- END_DEFAULT_OPTS
+}

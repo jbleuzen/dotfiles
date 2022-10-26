@@ -4,6 +4,8 @@ vim.g.mapleader = ','
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+--# PERSO --------------------------------------------------------------------------------
+
 map('n', '<F1>', '<nop>', {silent = true})
 map('i', '<F1>', '<nop>', {silent = true})
 map('v', '<F1>', '<nop>', {silent = true})
@@ -29,6 +31,13 @@ map('v', 'È', ':m -2<CR>gv=gv', opts)
 -- reload
 map('n', '<Leader>r', '<Cmd>lua ReloadConfig()<CR>', opts)
 
+-- Delete all buffers
+map('n', '<Leader>wa', ':bufdo bd!', opts)
+
+-- Disable highlight for previous search
+map('n', '<Leader>/', ':let @/ = ""<CR>', opts)
+
+--# PLUGINS ------------------------------------------------------------------------------
 -- undotree
 map('n', '<Leader>u', ':UndotreeToggle<CR>', opts)
 
@@ -39,7 +48,7 @@ map('n', '<Leader>-', ':vertical resize +5<CR>', opts)
 -- tab movements
 map('n', '<Left>', ':bp<CR>', {noremap = true})
 map('n', '<Right>', ':bn<CR>', {noremap = true})
-map('n', '<Leader>w', ':bn | bd#<CR>', {noremap = true})
+map('n', '<Leader>w', ':bn|bd#<CR>', {noremap = true})
 
 -- quickfix
 map('n', '<Leader>j', ':cnext<CR>', opts)
@@ -53,13 +62,13 @@ map('n', '<Leader>n', ':NvimTreeFindFile<CR>', {noremap = true})
 map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
 map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
 map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-map('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
+map('n', '<Leader>s', ':lua vim.lsp.buf.rename()<CR>', opts)
 map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts)
 
 -- fzf-lua
 map('n', '<Leader>f', ':FzfLua files<CR>', opts)
-map('n', '<leader>a', ":FzfLua live_grep<CR>", opts)
-map('n', '<leader>q', ":FzfLua quickfix<CR>", opts)
+map('n', '<Leader>a', ":FzfLua live_grep<CR>", opts)
+map('n', '<Leader>q', ":FzfLua quickfix<CR>", opts)
 
 -- nvim-tmux-navigation
 map('n', "<C-h>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<cr>", opts)

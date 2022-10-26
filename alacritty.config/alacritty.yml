@@ -157,40 +157,39 @@ draw_bold_text_with_bright_colors: true
 
 # Colors (Molokai Dark)
 colors:
-
   # Fix a bug with "%" parenthesis
   cursor:
-    text: '#000000'
-    cursor: '#ffffff'
+    text: "#000000"
+    cursor: "#ffffff"
 
   selection:
-    text: '#BBBBBB'
-    background: '#4B4B4B'
-  
+    text: "#BBBBBB"
+    background: "#4B4B4B"
+
   # Default colors
   primary:
-    background: '#000000'
-    foreground: '#F8F8F2'
+    background: "#000000"
+    foreground: "#F8F8F2"
   # Normal colors
   normal:
-    black:   '#333333'
-    red:     '#C4265E'
-    green:   '#86B42B'
-    yellow:  '#B3B42B'
-    blue:    '#6A7EC8'
-    magenta: '#8C6BC8'
-    cyan:    '#56ADBC'
-    white:   '#E3E3DD'
+    black: "#333333"
+    red: "#C4265E"
+    green: "#86B42B"
+    yellow: "#B3B42B"
+    blue: "#6A7EC8"
+    magenta: "#8C6BC8"
+    cyan: "#56ADBC"
+    white: "#E3E3DD"
   # Bright colors
   bright:
-    black:   '#666666'
-    red:     '#F92672'
-    green:   '#A6E22E'
-    yellow:  '#E2E22E'
-    blue:    '#819AFF'
-    magenta: '#AE81FF'
-    cyan:    '#66D9EF'
-    white:   '#F8F8F2'
+    black: "#666666"
+    red: "#F92672"
+    green: "#A6E22E"
+    yellow: "#E2E22E"
+    blue: "#819AFF"
+    magenta: "#AE81FF"
+    cyan: "#66D9EF"
+    white: "#F8F8F2"
   indexed_colors: []
 
 # Visual Bell
@@ -217,7 +216,7 @@ colors:
 bell:
   animation: EaseOutExpo
   duration: 0
-  color: '0xffffff'
+  color: "0xffffff"
 
 # Mouse bindings
 #
@@ -273,7 +272,7 @@ hints:
     modifiers: None
 
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: true
@@ -455,14 +454,14 @@ key_bindings:
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # (macOS only)
-  - { key: Key0, mods: Command, action: ResetFontSize    }
-  - { key: Equals, mods: Command|Shift,    action: IncreaseFontSize              }
-  - { key: Minus, mods: Command,    action: DecreaseFontSize              }
+  - { key: Key0, mods: Command, action: ResetFontSize }
+  - { key: Equals, mods: Command|Shift, action: IncreaseFontSize }
+  - { key: Minus, mods: Command, action: DecreaseFontSize }
   - { key: Equals, mods: Command, action: ResetFontSize }
-  - { key: F, mods: Command|Shift, action: ToggleFullscreen}
-  - { key: Return, mods: Command, action: ToggleFullscreen}
-  - { key: Space, mods: Alt, chars: " "}
-  - { key: Space, mods: Alt|Shift, chars: " "}
-  - { key: Right, mods: Command, chars: "\x18\x5e" }  # CMD + $
+  - { key: F, mods: Command|Shift, action: ToggleFullscreen }
+  - { key: Return, mods: Command, action: ToggleFullscreen }
+  - { key: Space, mods: Alt, chars: " " }
+  - { key: Space, mods: Alt|Shift, chars: " " }
+  - { key: Right, mods: Command, chars: "\x18\x5e" } # CMD + $
   - { key: Left, mods: Command, chars: "\x18\x24" } # CMD + ^
   - { key: N, mods: Command, chars: "\x18\x0e" } # CMD + ^
