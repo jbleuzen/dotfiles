@@ -6,7 +6,6 @@ if which fzf >/dev/null 2> /dev/null ; then
 else 
 fi
 alias ga='git add -A'
-alias gb='git branch --color="always" --sort=authordate --format="%(color:red)%(refname:short);%(color:green)(%(authordate:relative));%(color:white)%(subject);%(color:blue)<%(authorname)> " "$@" | column -s ";" -t | cut -c 1-120'
 alias gba='git branch --all --color="always" --sort=authordate --format="%(color:red)%(refname:short);%(color:green)(%(authordate:relative));%(color:white)%(subject) %(color:blue)<%(authorname)>" "$@" | column -s ";" -t | cut -c 1-150'
 alias gbm='git branch --all --merged | grep -v master | grep -v develop'
 alias gc='git commit'
@@ -27,3 +26,11 @@ alias gu="git reset --soft HEAD^"
 alias gsa="git stash apply"
 alias gss="git stash save"
 
+# Rewrite the default git branch with better branch list
+gb(){
+  if [ $# -eq 0 ]; then
+    git branch --color="always" --sort=authordate --format="%(color:red)%(refname:short);%(color:green)(%(authordate:relative));%(color:white)%(subject);%(color:blue)<%(authorname)> " "$@" | column -s ";" -t | cut -c 1-120
+  else 
+    git branch $@
+  fi
+}
