@@ -32,7 +32,7 @@ map('v', 'È', ':m -2<CR>gv=gv', opts)
 map('n', '<Leader>r', '<Cmd>lua ReloadConfig()<CR>', opts)
 
 -- Delete all buffers
-map('n', '<Leader>wa', ':bufdo bd!', opts)
+-- map('n', '<Leader>wa', ':bufdo bd!', opts)
 
 -- Disable highlight for previous search
 map('n', '<Leader>/', ':let @/ = ""<CR>', opts)
@@ -48,7 +48,8 @@ map('n', '<Leader>-', ':vertical resize +5<CR>', opts)
 -- tab movements
 map('n', '<Left>', ':bp<CR>', {noremap = true})
 map('n', '<Right>', ':bn<CR>', {noremap = true})
-map('n', '<Leader>w', ':bn|bd#<CR>', {noremap = true})
+map('n', '<Leader>x', ':bufdo :Bdelete<CR>', {noremap = true})
+map('n', '<Leader>w', ':Bdelete<CR>', {noremap = true})
 
 -- quickfix
 map('n', '<Leader>j', ':cnext<CR>', opts)

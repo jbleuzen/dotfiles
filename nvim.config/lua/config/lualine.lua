@@ -96,6 +96,10 @@ local config = {
         separator = '|',
       },
       {
+        'filetype',
+        separator = '|',
+      },
+      {
         function()
           local msg = 'NO LSP'
           local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')

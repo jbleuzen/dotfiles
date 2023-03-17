@@ -20,7 +20,6 @@ require("bufferline").setup({
     background = {
       fg = colors.white,
       bg = colors.background,
-      -- gui = "bold",
     },
     buffer_visible = {
       fg = colors.green,
@@ -29,7 +28,6 @@ require("bufferline").setup({
     buffer_selected = {
       fg = colors.darkGreen,
       bg = colors.green,
-      -- gui = "bold",
     },
     diagnostic = {
       fg = colors.green,
@@ -43,6 +41,33 @@ require("bufferline").setup({
       fg = colors.blue,
       bg = colors.green,
       -- gui = "bold"
+    },
+    -- HINT
+    hint = {
+      fg = colors.white,
+      bg = colors.background,
+    },
+    hint_visible = {
+      fg = colors.green,
+      bg = colors.background,
+    },
+    hint_selected = {
+      fg = colors.darkGreen,
+      bg = colors.green,
+      bold = true,
+    },
+    hint_diagnostic = {
+      fg = colors.white,
+      bg = colors.background,
+    },
+    hint_diagnostic_visible = {
+      fg = colors.green,
+      bg = colors.background
+    },
+    hint_diagnostic_selected = {
+      fg = colors.darkGreen,
+      bg = colors.green,
+      bold = true,
     },
     -- INFO
     info = {

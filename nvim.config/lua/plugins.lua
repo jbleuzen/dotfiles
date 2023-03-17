@@ -145,6 +145,9 @@ return require('packer').startup({function(use)
     config = [[require('config.tree')]]
   })
 
+
+  use {'famiu/bufdelete.nvim'}
+
   -- ccs colors
   -- use ({ 
   --   'norcalli/nvim-colorizer.lua',

@@ -91,8 +91,8 @@ monokai.setup {
 
 -- Change the background color of inactive pane/window
 cmd [[
-  autocmd WinEnter,FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000 | hi NvimTreeGitDirty guibg=#000000
-  autocmd WinLeave,FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#FF0000 | hi NvimTreeGitDirty guibg=#1C1C1C
+  autocmd WinEnter,FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000 | hi NvimTreeGitDirty guibg=#000000 | hi LineNr guibg=#000000 | hi CursorLineNr guibg=#000000 | highlight! link SignColumn LineNr
+  autocmd FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#1C1C1C | hi NvimTreeGitDirty guibg=#1C1C1C | hi LineNr guibg=#1C1C1C | hi CursorLineNr guibg=#1C1C1C | highlight! link SignColumn LineNr
 ]]
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
