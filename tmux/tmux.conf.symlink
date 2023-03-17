@@ -113,10 +113,11 @@ bind C-h prev
 # vi configuration
 unbind [
 bind v copy-mode
-unbind p
-bind p paste-buffer
+bind -T copy-mode-vi 'Escape' send -X cancel
 bind -T copy-mode-vi 'v' send -X begin-selection
-bind -T copy-mode-vi 'y' send -X copy-selection
+bind -T copy-mode-vi 'y' send-keys -X copy-pipe-and-cancel "pbcopy"
+#bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X end-selection
 
 # synchronize panes input
 unbind =
@@ -211,7 +212,7 @@ set -g pane-border-status top
 # #{?test,yes,no}
 # ? : variable exists
 # #{m/r:REGEXP_PATTERN} : returns 1 or -1
-set -g pane-border-format "#{?#{m/r:NVIM|local,#{pane_title}},,#[fg=colour148 align=right bold] #T }"
+set -g pane-border-format "#{?#{m/r:NVIM|local,#{pane_title}},,#[fg=colour4 align=right bold] #T }"
 
 #------------------------------------------------------------------------------
 #   STATUS BAR
@@ -229,6 +230,8 @@ setw -g window-status-current-style fg=colour148,bg=colour236
 setw -g window-status-activity-style fg=colour124
 # Command/message line colors
 setw -g message-style  fg=colour15,bg=colour124
+
+set -wg mode-style bg=colour214,fg=colour232
 
 #- Variables ------------------------------------------------------------------
 session="#[bold bg=colour148 fg=colour22] #S #[default]"
