@@ -49,14 +49,13 @@ monokai.setup {
   custom_hlgroups = {
     NormalNC = {
       bg = "#1C1C1C",
-      -- fg = "#1C1C1C"
     },
     -- nvim-tree
     -- NvimTreeNormal = {
     --   bg = "#000000"
     -- },
     NvimTreeNormalNC = {
-      bg= "#1C1C1C"
+      bg = "#1C1C1C"
     },
     NvimTreeIndentMarker = {
       fg= "#333333"
