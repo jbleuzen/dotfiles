@@ -46,7 +46,7 @@ masonLspConfig.setup({
     "graphql",
     "html",
     "jsonls",
-    "sumneko_lua",
+    "lua_ls",
     "tailwindcss",
     "tsserver",
     "vuels",
