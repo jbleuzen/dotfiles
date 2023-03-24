@@ -28,6 +28,7 @@ require("bufferline").setup({
     buffer_selected = {
       fg = colors.darkGreen,
       bg = colors.green,
+      bold = true,
     },
     diagnostic = {
       fg = colors.green,
@@ -223,6 +224,18 @@ require("bufferline").setup({
     show_buffer_close_icons = false,
     show_close_icon =  false,
     show_tab_indicators = false,
+    custom_filter = function(bufnr)
+      -- if the result is false, this buffer will be shown, otherwise, this
+      -- buffer will be hidden.
+      -- filter out filetypes you don't want to see
+      local exclude_ft = { "qf", "fugitive", "git" }
+      local cur_ft = vim.bo[bufnr].filetype
+      local should_filter = vim.tbl_contains(exclude_ft, cur_ft)
+      if should_filter then
+        return false
+      end
+      return true
+    end,
     diagnostics_indicator = function(_, _, diagnostics_dict)
       local s = ""
       for e, n in pairs(diagnostics_dict) do
