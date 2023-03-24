@@ -1,4 +1,3 @@
-
 require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   reload_on_bufenter = true,
   view = {
@@ -36,12 +35,12 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
           symlink_open = "",
         },
         git = {
-          unstaged = "✗",
-          staged = "✓",
+          unstaged = "•",
+          staged = "+",
           unmerged = "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
+          renamed = "→",
+          untracked = "?",
+          deleted = "-",
           ignored = "◌",
         },
       },
