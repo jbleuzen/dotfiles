@@ -71,7 +71,7 @@ return require('packer').startup({function(use)
     'ibhagwan/fzf-lua',
     config = [[require('config.fzf')]],
     -- optional for icon support
-    requires = { 'kyazdani42/nvim-web-devicons' }
+    requires = { 'nvim-tree/nvim-web-devicons' }
   })
 
   -- undotree
@@ -127,26 +127,26 @@ return require('packer').startup({function(use)
   use ({
     'akinsho/bufferline.nvim',
     config = [[require('config.bufferline')]],
-    requires = 'kyazdani42/nvim-web-devicons',
+    requires = 'nvim-tree/nvim-web-devicons',
   })
 
   -- nvim tree
   use ({
-    'kyazdani42/nvim-tree.lua',
-    cmd = {
-      "NvimTreeClipboard",
-      "NvimTreeClose",
-      "NvimTreeFindFile",
-      "NvimTreeOpen",
-      "NvimTreeRefresh",
-      "NvimTreeToggle",
-    },
-    requires = 'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-tree.lua',
+    requires = 'nvim-tree/nvim-web-devicons',
     config = [[require('config.tree')]]
   })
 
 
   use {'famiu/bufdelete.nvim'}
+
+  use({
+    "folke/trouble.nvim",
+    requires = 'nvim-tree/nvim-web-devicons',
+    config = [[require('config.trouble')]]
+  })
+
+  use 'tpope/vim-fugitive'
 
   -- ccs colors
   -- use ({ 
