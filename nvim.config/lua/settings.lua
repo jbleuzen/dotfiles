@@ -32,7 +32,7 @@ vim.o.updatetime = 50
 vim.o.signcolumn = 'yes'
 
 vim.o.lazyredraw = true
-vim.cmd([[ set diffopt+=internal,algorithm:patience ]])
+vim.cmd([[ set diffopt+=iwhite,internal,algorithm:patience ]])
 
 local cmd = vim.cmd
 
