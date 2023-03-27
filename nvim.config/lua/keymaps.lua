@@ -41,6 +41,9 @@ map('n', '<Leader>/', ':let @/ = ""<CR>', opts)
 -- undotree
 map('n', '<Leader>u', ':UndotreeToggle<CR>', opts)
 
+-- Trouble
+map("n", "<F1>", ":TroubleToggle<CR>",opts)
+
 -- resizing
 map('n', '<Leader>)', ':vertical resize -5<CR>', opts)
 map('n', '<Leader>-', ':vertical resize +5<CR>', opts)

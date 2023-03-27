@@ -209,8 +209,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
--- Trouble
-vim.keymap.set("n", "<F1>", "<cmd>TroubleToggle<cr>",
-  {silent = true, noremap = true}
-)
