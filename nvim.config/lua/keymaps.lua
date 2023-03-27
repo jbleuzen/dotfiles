@@ -44,6 +44,9 @@ map('n', '<Leader>u', ':UndotreeToggle<CR>', opts)
 -- Trouble
 map("n", "<F1>", ":TroubleToggle<CR>",opts)
 
+-- Neogit
+map("n", "<F2>", ":Neogit<CR>", opts)
+
 -- resizing
 map('n', '<Leader>)', ':vertical resize -5<CR>', opts)
 map('n', '<Leader>-', ':vertical resize +5<CR>', opts)
