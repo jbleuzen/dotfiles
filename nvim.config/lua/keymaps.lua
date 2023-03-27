@@ -46,8 +46,10 @@ map('n', '<Leader>)', ':vertical resize -5<CR>', opts)
 map('n', '<Leader>-', ':vertical resize +5<CR>', opts)
 
 -- tab movements
-map('n', '<Left>', ':bp<CR>', {noremap = true})
-map('n', '<Right>', ':bn<CR>', {noremap = true})
+map('n', '<left>', ':BufferLineCyclePrev<CR>', {noremap = true})
+map('n', '<right>', ':BufferLineCycleNext<CR>', {noremap = true})
+map('n', '<S-left>', ':BufferLineMovePrev<CR>', {noremap = true})
+map('n', '<S-right>', ':BufferLineMoveNext<CR>', {noremap = true})
 map('n', '<Leader>x', ':bufdo :Bdelete<CR>', {noremap = true})
 map('n', '<Leader>w', ':Bdelete<CR>', {noremap = true})
 
