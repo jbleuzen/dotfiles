@@ -47,6 +47,41 @@ map("n", "<F1>", ":TroubleToggle<CR>",opts)
 -- Neogit
 map("n", "<F2>", ":Neogit<CR>", opts)
 
+
+local function showFugitiveGit()
+  if vim.fn.FugitiveHead() ~= '' then
+    vim.cmd [[
+    Git
+    " setlocal winfixwidth
+    " vertical resize 31
+    " setlocal winfixwidth
+    autocmd User FugitiveBlob setlocal readonly nomodifiable noswapfile
+    setlocal nonumber
+    setlocal norelativenumber
+    setlocal signcolumn=no
+    ]]
+  end
+end
+local function toggleFugitiveGit()
+  if vim.fn.buflisted(vim.fn.bufname('fugitive:///*/.git//$')) ~= 0 then
+    vim.cmd[[ execute ":bdelete" bufname('fugitive:///*/.git//$') ]]
+  else
+    showFugitiveGit()
+  end
+end
+vim.cmd[[
+
+ augroup Fugitive
+      autocmd!
+      autocmd FileType fugitive nnoremap <silent> <buffer> <F1> <Nop>
+      autocmd FileType fugitive nnoremap <buffer> q <C-W>q
+      autocmd FileType fugitive nmap <buffer> <C-N> )
+      autocmd FileType fugitive nmap <buffer> <C-P> (
+      autocmd FileType fugitive nmap <buffer> <Tab> =
+    augroup END
+]]
+vim.keymap.set('n', '<F3>', toggleFugitiveGit, opts)
+
 -- resizing
 map('n', '<Leader>)', ':vertical resize -5<CR>', opts)
 map('n', '<Leader>-', ':vertical resize +5<CR>', opts)
