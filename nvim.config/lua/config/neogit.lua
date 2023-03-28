@@ -1,7 +1,7 @@
 local neogit = require'neogit'
 
 neogit.setup {
-  disable_signs = true,
+  disable_signs = false,
   disable_hint = true,
   disable_context_highlighting = true,
   disable_commit_confirmation = false,
@@ -22,9 +22,9 @@ neogit.setup {
   -- Automatically show console if a command takes more than console_timeout milliseconds
   auto_show_console = true,
   -- Persist the values of switches/options within and across sessions
-  remember_settings = true,
+  remember_settings = false,
   -- Scope persisted settings on a per-project basis
-  use_per_project_settings = true,
+  use_per_project_settings = false,
   -- Array-like table of settings to never persist. Uses format "Filetype--cli-value"
   --   ie: `{ "NeogitCommitPopup--author", "NeogitCommitPopup--no-verify" }`
   ignored_settings = {},
@@ -43,9 +43,9 @@ neogit.setup {
   -- customize displayed signs
   signs = {
     -- { CLOSED, OPENED }
-    section = { "", "" },
+    section = { "", "" },
     item = { "", "" },
-    hunk = { "", "" },
+    hunk = { " ", " " },
   },
   integrations = {
     -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
