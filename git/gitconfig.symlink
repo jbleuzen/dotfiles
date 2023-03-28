@@ -27,3 +27,5 @@
     path = ~/Bridge/.gitconfig
 [pull]
 	rebase = true
+[advice]
+	statusHints = false
