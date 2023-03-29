@@ -52,9 +52,6 @@ local function showFugitiveGit()
   if vim.fn.FugitiveHead() ~= '' then
     vim.cmd [[
     Git
-    " setlocal winfixwidth
-    " vertical resize 31
-    " setlocal winfixwidth
     autocmd User FugitiveBlob setlocal readonly nomodifiable noswapfile
     setlocal nonumber
     setlocal norelativenumber
@@ -75,6 +72,7 @@ vim.cmd[[
       autocmd!
       autocmd FileType fugitive nnoremap <silent> <buffer> <F1> <Nop>
       autocmd FileType fugitive nnoremap <buffer> q <C-W>q
+      autocmd FileType fugitive nnoremap <buffer> <Esc> <C-W>q
       autocmd FileType fugitive nmap <buffer> <C-N> )
       autocmd FileType fugitive nmap <buffer> <C-P> (
       autocmd FileType fugitive nmap <buffer> <Tab> =
