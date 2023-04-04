@@ -8,8 +8,6 @@ overwrite_all=false
 backup_all=false
 
 function link {
-
-
 	for file in `find ~/.dotfiles -name "*.symlink" -path "*/\.*"`; do
 		filename=$(basename $file)
 		filename=~/.${filename%.*}
@@ -41,7 +39,6 @@ function link {
 		fi
 		
 		# TODO : Add a filter for OSX folder
-
 		ln -s $file $filename 2> /dev/null
 	done
 
@@ -78,3 +75,4 @@ if [ "$1" == "-t" ]; then
 fi
 
 link
+exit 0
