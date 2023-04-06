@@ -31,8 +31,8 @@ mason.setup({
     border = "single",
     icons = {
       package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗"
+      package_pending = "→",
+      package_uninstalled = "✕"
     }
   }
 })
@@ -49,7 +49,7 @@ masonLspConfig.setup({
     "lua_ls",
     "tailwindcss",
     "tsserver",
-    "vuels",
+    -- "vetur-vls",
   },
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
@@ -92,6 +92,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
+
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -124,6 +125,12 @@ lspconfig.tsserver.setup({
   on_attach = on_attach
 })
 -- }}}
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.jsonls.setup({
+   capabilities = capabilities
+})
 
 -- {{{ Eslint
 -- Need to install neovim npm package to make it work
@@ -178,58 +185,8 @@ lspconfig.eslint.setup({
 -- }}}
 
 -- {{{ Vue.js
--- lspconfig.vuels.setup({
---   root_dir= lspconfig.util.root_pattern("package.json", "vue.config.js"),
---   on_attach = on_attach,
---   capabilities = capabilities,
---   settings = {
---     codeActionOnSave = {
---       enable = true,
---       mode = "all"
---     },
---   },
---   init_options = {
---     config = {
---       css = {},
---       emmet = {},
---       html = {
---         suggest = {}
---       },
---       javascript = {
---         format = {}
---       },
---       stylusSupremacy = {},
---       vetur = {
---         completion = {
---           autoImport = true,
---           tagCasing = "kebab",
---           useScaffoldSnippets = false
---         },
---         dev= {logLevel = "DEBUG"},
---         format = {
---           options = {
---             tabsize = 12
---           },
---           defaultFormatter = {
---             html= "eslint",
---             js = "eslint",
---             sass= "sass-formatter",
---             ts = "eslint"
---           },
---           defaultFormatterOptions = {},
---           scriptInitialIndent = false,
---           styleInitialIndent = false
---         },
---         useWorkspaceDependencies = true,
---         validation = {
---           script = true,
---           style = true,
---           template = true
---         }
---       }
---     }
---   }
--- })
+lspconfig.vuels.setup({
+})
 -- }}}
 
 -- {{{ TailwindCSS

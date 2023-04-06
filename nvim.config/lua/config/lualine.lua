@@ -1,6 +1,4 @@
 -- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local lualine = require 'lualine'
 
 -- Color table for highlights
@@ -36,54 +34,98 @@ local theme = {
   }
 }
 
+local componentMode =  {
+  {
+    'mode',
+    fmt = function (mode)
+      return mode:sub(1,1) -- Just return the first letter of the mode
+    end,
+    padding = { left = 1, right = 1 }, -- We don't need space before this
+  },
+}
+
+local nvimTreeExtension  = { 
+  sections = {
+    lualine_a =  componentMode, 
+    lualine_b = {
+      {
+        'branch',
+        icon = '',
+      },
+    },
+    lualine_y = {
+      'progress'
+    },
+    lualine_z = {
+      { 
+        'searchcount',
+        separator = '|',
+      },
+      {
+        'location',
+      },
+    }
+  },
+  filetypes = {'NvimTree'} 
+}
+
+
 -- Config
 local config = {
   options = {
-  -- Disable sections and component separators
+    -- Disable sections and component separators
     globalstatus = true, -- Display only one status bar for all panes
+    -- disabled_filetypes = {'NvimTree'},
+    refresh = {                  -- sets how often lualine should refresh it's contents (in ms)
+      statusline = 500,         -- The refresh option sets minimum time that lualine tries
+      tabline = 500,            -- to maintain between refresh. It's not guarantied if situation
+      winbar = 500              -- arises that lualine needs to refresh itself before this time
+    },
     section_separators = "",
     component_separators = "",
     theme = theme,
   },
-  extensions = {'quickfix'},
+  extensions = {'quickfix', nvimTreeExtension},
   sections = {
-    lualine_a = {
-      {
-        'mode',
-        fmt = function (mode)
-          return mode:sub(1,1) -- Just return the first letter of the mode
-        end,
-        padding = { left = 1, right = 1 }, -- We don't need space before this
-       },
-     },
+    lualine_a = componentMode,
     lualine_b = {
-       {
-         'branch',
-         icon = '',
+      {
+        'branch',
+        icon = '',
+      },
+      {
+        'diff',
+        colored = true, -- Displays a colored diff status if set to true
+        symbols = {added = '+', modified = '•', removed = '-'}, -- Changes the symbols used by the diff.
+        source = nil, -- A function that works as a data source for diff.
+        -- It must return a table as such:
+        --   { added = add_count, modified = modified_count, removed = removed_count }
+        -- or nil on failure. count <= 0 won't be displayed.
+      },
+      {
+        'filename',
+        color = { fg = colors.white },
+        file_status = true,      -- Displays file status (readonly status, modified status)
+        newfile_status = false,   -- Display new file status (new file means no write after created)
+        path = 1,                -- 0: Just the filename 1: Relative path 2: Absolute path 3: Absolute path, with tilde as the home directory
+        shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
+        -- for other components. (terrible name, any suggestions?)
+        symbols = {
+          modified = '●',      -- Text to show when the file is modified.
+          readonly = '',      -- Text to show when the file is non-modifiable or readonly.
+          unnamed = '[No Name]', -- Text to show for unnamed buffers.
+          newfile = '[New]',     -- Text to show for new created file before first writting
+        }
       }
     },
---      {
---        'filename',
---        color = { fg = colors.white, bg = colors.grey },
---        file_status = true,      -- Displays file status (readonly status, modified status)
---        newfile_status = false,   -- Display new file status (new file means no write after created)
---        path = 1,                -- 0: Just the filename 1: Relative path 2: Absolute path 3: Absolute path, with tilde as the home directory
---        shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
---        -- for other components. (terrible name, any suggestions?)
---        symbols = {
---          modified = '●',      -- Text to show when the file is modified.
---          readonly = '',      -- Text to show when the file is non-modifiable or readonly.
---          unnamed = '[No Name]', -- Text to show for unnamed buffers.
---          newfile = '[New]',     -- Text to show for new created file before first writting
---        }
---      }
     lualine_c = {
       {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
         symbols = { error = ' ', warn = ' ', hint = ' ', info = ' ' },
-        diagnostics_color = {
-        },
+        --symbols = {error = 'E ', warn = 'W', info = 'I', hint = 'H'},
+        colored = true,    
+        sections = { 'error', 'warn', 'info', 'hint' },
       }
     },
     lualine_x = {
@@ -116,27 +158,27 @@ local config = {
           return msg
         end,
         separator = '|',
+      },
     },
- -- {
- --     'diff',
- --     colored = true, -- Displays a colored diff status if set to true
- --     diff_color = {
- --       -- Same color values as the general color option can be used here.
- --       added    = 'DiffAdd',    -- Changes the diff's added color
- --       modified = 'DiffChange', -- Changes the diff's modified color
- --       removed  = 'DiffDelete', -- Changes the diff's removed color you
- --     },
- --     symbols = {added = '+', modified = '~', removed = '-'}, -- Changes the symbols used by the diff.
- --     source = nil, -- A function that works as a data source for diff.
- --                   -- It must return a table as such:
- --                   --   { added = add_count, modified = modified_count, removed = removed_count }
- --                   -- or nil on failure. count <= 0 won't be displayed.
- --   }
-  },
     lualine_y = {
       'progress'
     },
     lualine_z = {
+      {
+        color = { fg = "#333333", bg = colors.orange },
+        function()
+          if vim.v.hlsearch == 0 then
+            return ""
+          end
+          local last_search = vim.fn.getreg("/")
+          if not last_search or last_search == "" then
+            return ""
+          end
+          local searchcount = vim.fn.searchcount({ maxcount = 0 })
+          return "Search '" .. last_search .. "' => [" .. searchcount.current .. "/" .. searchcount.total .. "]"
+        end,
+        separator = '|',
+      },
       {
         'location',
       },
@@ -146,19 +188,7 @@ local config = {
     -- these are to remove the defaults
     lualine_a = {},
     lualine_v = {},
-    lualine_c = {{
-      'filename',
-       file_status = false,      -- Displays file status (readonly status, modified status)
-       newfile_status = false,   -- Display new file status (new file means no write after created)
-       path = 1,                -- 0: Just the filename 1: Relative path 2: Absolute path 3: Absolute path, with tilde as the home directory
-  },
-      {
-        'diagnostics',
-        sources = { 'nvim_diagnostic' },
-        symbols = { error = ' ', warn = ' ', hint = ' ', info = ' ' },
-        diagnostics_color = {
-        },
-      }},
+    lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {},
