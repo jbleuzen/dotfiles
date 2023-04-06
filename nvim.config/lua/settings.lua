@@ -131,13 +131,13 @@ monokai.setup {
       fg = "#D7D787"
     },
     TroubleTextHint = {
-      fg = "#D75F87"
+      fg = "#5FD7FF"
     },
     TroubleFoldIcon = {
-      fg = "#FFFFFF"
+      fg = "#87D700"
     },
     TroubleFile = {
-      fg = "#FFFFFF"
+      fg = "#87D700"
     }
   }
 }
