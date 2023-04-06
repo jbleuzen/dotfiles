@@ -1,6 +1,6 @@
 local colors = {
+  red = "#FF005F",
   lightRed = "#D75F87",
-  red = "#D7005F",
   green = "#AFD700",
   darkGreen = "#005F00",
   orange = "#FA8419",
@@ -28,7 +28,6 @@ require("bufferline").setup({
     buffer_selected = {
       fg = colors.darkGreen,
       bg = colors.green,
-      bold = true,
     },
     diagnostic = {
       fg = colors.green,
@@ -97,11 +96,11 @@ require("bufferline").setup({
     },
     -- WARNING 
     warning = {
-      fg = colors.white,
+      fg = colors.orange,
       bg = colors.background,
     },
     warning_visible = {
-      fg = colors.purple,
+      fg = colors.orange,
       bg = colors.background,
     },
     warning_selected = {
@@ -122,11 +121,11 @@ require("bufferline").setup({
     },
     -- ERROR
     error = {
-      fg = colors.white,
+      fg = colors.lightRed,
       bg = colors.background,
     },
     error_visible = {
-      fg = colors.red,
+      fg = colors.lightRed,
       bg = colors.background
     },
     error_selected = {
@@ -134,15 +133,15 @@ require("bufferline").setup({
       bg = colors.green,
     },
     error_diagnostic = { -- buffer not active but not visible 
-      fg = colors.red,
+      fg = colors.lightRed,
       bg = colors.background,
     },
     error_diagnostic_visible = { -- buffer not active but visible in another pane
-      fg = colors.red,
+      fg = colors.lightRed,
       bg = colors.background
     },
     error_diagnostic_selected = { -- buffer active
-      fg = colors.red,
+      fg = colors.lightRed,
       bg = colors.green,
     },
     --
@@ -215,7 +214,8 @@ require("bufferline").setup({
     offsets ={{
       filetype = "NvimTree",
       text = function()
-        return vim.fn.getcwd()
+        local path = vim.fn.getcwd()
+        return string.match(path, "[^/]+$")
       end,
       highlight = "Directory",
       text_align = "left"
@@ -236,14 +236,26 @@ require("bufferline").setup({
       end
       return true
     end,
-    diagnostics_indicator = function(_, _, diagnostics_dict)
+    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+         if context.buffer:current() then
+            return ''
+        end
       local s = ""
+
+      local a = 0
       for e, n in pairs(diagnostics_dict) do
-        local sym = e == "error" and " " or (e == "warning" and " " or (e == "info" and " " or " "))
-        s = s .. " " .. sym .. n
+        if( e == "error" or e == "warning") then
+          a = a + n
+        end
       end
-      return s
+      local limitedCount = a > 9 and '9+' or tostring(a)
+      return limitedCount == 0 and "" or limitedCount
     end,
+    -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
+    --   local icon = level:match("error") and "✕" or "!"
+    --   local limitedCount = count > 9 and '9+' or count
+    --   return "" .. limitedCount
+    -- end
   },
 })
 
