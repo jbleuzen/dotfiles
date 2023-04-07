@@ -148,6 +148,17 @@ return require('packer').startup({function(use)
     config = [[require('config.trouble')]]
   })
 
+  use({
+    "utilyre/barbecue.nvim",
+    tag = "*",
+    requires = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    after = "nvim-web-devicons", -- keep this if you're using NvChad
+    config = [[ require('config.barbecue') ]]
+  })
+
   use 'tpope/vim-fugitive'
 
   use { 
