@@ -31,6 +31,8 @@ vim.o.completeopt = 'menuone,noselect,noinsert'
 vim.o.updatetime = 50
 vim.o.signcolumn = 'yes'
 
+vim.opt.ignorecase = true
+
 vim.o.lazyredraw = true
 vim.cmd([[ set diffopt+=iwhite,internal,algorithm:patience,vertical ]])
 
