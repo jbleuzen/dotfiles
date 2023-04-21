@@ -22,6 +22,7 @@ vim.o.foldmethod = 'marker'
 vim.o.title = true
 vim.o.errorbells = false
 vim.o.cursorline = true
+vim.opt.updatetime = 200
 vim.o.showmode = false -- Hide the mode in command line
 vim.o.splitright = true
 vim.o.splitbelow = true

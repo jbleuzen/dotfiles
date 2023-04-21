@@ -80,7 +80,6 @@ return require('packer').startup({function(use)
     cmd = { 'UndotreeShow', 'UndotreeToggle', 'UndotreeHide', 'UndotreeFocus' }
   })
 
-
   -- nvim-surround
   use({
     "kylechui/nvim-surround",
@@ -146,6 +145,11 @@ return require('packer').startup({function(use)
     "folke/trouble.nvim",
     requires = 'nvim-tree/nvim-web-devicons',
     config = [[require('config.trouble')]]
+  })
+
+  use ({
+    "lukas-reineke/indent-blankline.nvim",
+    config = [[require('config.indent-blankline')]]
   })
 
   use({
