@@ -2,7 +2,6 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   reload_on_bufenter = true,
   view = {
     signcolumn = "yes",
-    hide_root_folder = true,
   },
   actions = {
     change_dir = {
@@ -12,6 +11,7 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   renderer = {
     add_trailing = false,
     special_files= { 'package.json' },
+    root_folder_label = false,
     icons = {
       git_placement = "signcolumn",
       show={
