@@ -19,6 +19,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export PAGER='less'
 
 export PATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin
+export PATH=$PATH:/opt/homebrew/opt/ruby/bin
 export PATH=$PATH:$HOMEBREW_PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:$HOME/.dotfiles/bin # Add dotfiles bin to path
 export PATH=$PATH:$HOMEBREW_PREFIX/share/npm/bin # Add npm binaries
