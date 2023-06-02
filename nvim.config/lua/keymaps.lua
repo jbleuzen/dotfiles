@@ -32,6 +32,9 @@ map('i', 'Ï', ':m +1<CR>==gi', opts)
 map('v', 'Ï', ':m +1<CR>gv=gv', opts)
 map('v', 'È', ':m -2<CR>gv=gv', opts)
 
+-- Allow to return to the first char in command mode
+map('c', '<C-a>', '<Home>', {silent = false})
+
 -- reload
 map('n', '<Leader>r', '<Cmd>lua ReloadConfig()<CR>', opts)
 
