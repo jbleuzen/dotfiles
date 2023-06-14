@@ -25,3 +25,6 @@ info
 vifm.symlink/scripts/README
 vifm.symlink/vifminfo.json
 .secrets.zsh
+
+# mpv
+mpv.config/watch_later
