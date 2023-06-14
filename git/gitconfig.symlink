@@ -29,3 +29,5 @@
 	rebase = true
 [advice]
 	statusHints = false
+[init]
+	defaultBranch = main
