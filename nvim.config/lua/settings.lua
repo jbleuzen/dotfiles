@@ -203,6 +203,9 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
 })
 
 
+-- Set wrap line for markdown
+vim.api.nvim_command('autocmd FileType markdown setlocal wrap')
+
 -- Allow to highlight what have been yanked
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
