@@ -9,6 +9,7 @@ ts.setup {
     enable = true,
     disable = {},
   },
+  auto_install = true,
   ensure_installed = {
     "tsx",
     "toml",
@@ -17,12 +18,15 @@ ts.setup {
     "javascript",
     "json",
     "jsonc",
+    "markdown",
+    "markdown_inline",
     "yaml",
     "swift",
     "css",
     "html",
     "lua",
-    "vue"
+    "vim",
+    "vue",
   },
   autotag = {
     enable = false,
