@@ -51,6 +51,10 @@ alias launchctl='reattach-to-user-namespace -l launchctl'
 
 alias sniff="sudo ngrep -W byline -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 
+if [[ -s /opt/homebrew/bin/gsed ]]; then
+  alias sed="gsed"
+fi
+
 # neovim 
 # /usr/local/bin/nvim => macOS brew
 # /usr/bin/nvim => Debian
