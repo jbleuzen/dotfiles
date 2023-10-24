@@ -1,4 +1,4 @@
-local neogit = require'neogit'
+local neogit = require('neogit')
 
 neogit.setup {
   disable_signs = false,
@@ -64,26 +64,50 @@ neogit.setup {
   },
   -- Setting any section to `false` will make the section not render at all
   sections = {
+    -- Reverting/Cherry Picking
+    sequencer = {
+      folded = false,
+      hidden = false,
+    },
     untracked = {
-      folded = false
+      folded = false,
+      hidden = false,
     },
     unstaged = {
-      folded = false
+      folded = false,
+      hidden = false,
     },
     staged = {
-      folded = false
+      folded = false,
+      hidden = false,
     },
     stashes = {
-      folded = true
+      folded = true,
+      hidden = false,
     },
-    unpulled = {
-      folded = true
+    unpulled_upstream = {
+      folded = true,
+      hidden = false,
     },
-    unmerged = {
-      folded = false
+    unmerged_upstream = {
+      folded = false,
+      hidden = false,
+    },
+    unpulled_pushRemote = {
+      folded = true,
+      hidden = false,
+    },
+    unmerged_pushRemote = {
+      folded = false,
+      hidden = false,
     },
     recent = {
-      folded = true
+      folded = true,
+      hidden = false,
+    },
+    rebase = {
+      folded = true,
+      hidden = false,
     },
   },
   -- override/add mappings
@@ -93,7 +117,7 @@ neogit.setup {
       ['<F2>'] = 'Close',
       ["<Space>"] = 'Toggle',
       -- Adds a mapping with "B" as key that does the "BranchPopup" command
-      ["Tab"] = '',
+      ["Tab"] = false,
       ["B"] = "BranchPopup"
       -- Removes the default mapping of "s"
       -- ["s"] = "",
