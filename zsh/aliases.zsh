@@ -67,7 +67,9 @@ else
   alias vi="vim"
 fi
 
+# Dev
 alias n="npm"
+alias jekyll="bundle exec jekyll"
 
 
 # not aliases but works like an alias
