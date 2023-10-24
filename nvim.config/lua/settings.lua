@@ -202,10 +202,6 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
   group = nt_au_group,
 })
 
-
--- Set wrap line for markdown
-vim.api.nvim_command('autocmd FileType markdown setlocal wrap')
-
 -- Allow to highlight what have been yanked
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -222,7 +218,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "gitcommit", "markdown" },
   callback = function()
     vim.opt_local.conceallevel = 2
-    vim.opt_local.textwidth = 80
     vim.opt_local.wrap = true
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
