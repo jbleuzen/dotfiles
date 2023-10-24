@@ -116,6 +116,7 @@ map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts)
 
 -- fzf-lua
 map('n', '<Leader>f', ':FzfLua files<CR>', opts)
+map('n', '<Leader>k', ':FzfLua grep_cword<CR>', opts)
 map('n', '<Leader>a', ":FzfLua live_grep<CR>", opts)
 map('n', '<Leader>q', ":FzfLua quickfix<CR>", opts)
 
