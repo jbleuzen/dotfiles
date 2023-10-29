@@ -66,6 +66,18 @@ return require('packer').startup({function(use)
     config = [[require('config.treesitter')]]
   })
 
+  -- formatting
+  use ({
+    'sbdchd/neoformat'
+  })
+
+  vim.cmd [[
+    let g:neoformat_verbose = 0
+    let g:neoformat_enabled_html = ['prettier']
+    autocmd BufWritePre *.html Neoformat
+    autocmd BufWritePre *.js Neoformat
+  ]]
+
   -- fzf-lua
   use ({ 
     'ibhagwan/fzf-lua',
