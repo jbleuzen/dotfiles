@@ -109,6 +109,11 @@ return require('packer').startup({function(use)
     config = [[require('config.comment')]]
   })
 
+  use ({ 
+    "Pocco81/true-zen.nvim",
+    config = [[require('config.true-zen')]]
+  })
+
   -- autopairs
   use ({
     'windwp/nvim-autopairs',
