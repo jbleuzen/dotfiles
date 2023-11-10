@@ -118,9 +118,30 @@ neogit.setup {
       ["<Space>"] = 'Toggle',
       -- Adds a mapping with "B" as key that does the "BranchPopup" command
       ["Tab"] = false,
-      ["B"] = "BranchPopup"
+      --["B"] = "BranchPopup"
       -- Removes the default mapping of "s"
-      -- ["s"] = "",
+      -- ["-"] = "",
+      ["I"] = "InitRepo",
+      ["1"] = "Depth1",
+      ["2"] = "Depth2",
+      ["3"] = "Depth3",
+      ["4"] = "Depth4",
+      ["x"] = "Discard",
+      ["s"] = "Stage",
+      ["S"] = "StageUnstaged",
+      ["<c-s>"] = "StageAll",
+      ["u"] = "Unstage",
+      ["U"] = "UnstageStaged",
+      ["d"] = "DiffAtFile",
+      ["$"] = "CommandHistory",
+      ["#"] = "Console",
+      ["<c-r>"] = "RefreshBuffer",
+      ["<enter>"] = "GoToFile",
+      ["<c-v>"] = "VSplitOpen",
+      ["<c-x>"] = "SplitOpen",
+      ["<c-t>"] = "TabOpen",
+      ["{"] = "GoToPreviousHunkHeader",
+      ["}"] = "GoToNextHunkHeader",
     }
   }
 }
