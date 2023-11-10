@@ -87,6 +87,10 @@ vim.cmd[[
 ]]
 vim.keymap.set('n', '<F3>', toggleFugitiveGit, opts)
 
+-- navigation
+map('n', 'j', 'gj', opts)
+map('n', 'k', 'gk', opts)
+
 -- resizing
 map('n', '<Leader>)', ':vertical resize -5<CR>', opts)
 map('n', '<Leader>-', ':vertical resize +5<CR>', opts)
