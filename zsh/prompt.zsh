@@ -69,7 +69,7 @@ PROMPT='${SSH_TTY:+$HOSTNAME}%(?.%F{green}.%F{red})❯ $PATHNAME'
 RPROMPT='$(git_prompt_info) %F{245}%*'
 
 
-if ls --color > /dev/null 2>&1; then 
+if ls --color -d . >/dev/null 2>&1; then
   # GNU `ls`
   eval `dircolors ~/.dircolors`
 else 
