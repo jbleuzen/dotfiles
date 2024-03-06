@@ -63,6 +63,7 @@ return require('packer').startup({function(use)
   -- treesitter
   use ({
     'nvim-treesitter/nvim-treesitter',
+    version = '0.9.2', -- https://github.com/nvim-treesitter/nvim-treesitter/issues/2293
     config = [[require('config.treesitter')]]
   })
 

@@ -113,6 +113,7 @@ map('n', '<Leader>n', ':NvimTreeFindFile<CR>', {noremap = true})
 
 -- lsp
 map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
 map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 map('n', '<Leader>s', ':lua vim.lsp.buf.rename()<CR>', opts)

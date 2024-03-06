@@ -132,7 +132,7 @@ neogit.setup {
       ["<c-s>"] = "StageAll",
       ["u"] = "Unstage",
       ["U"] = "UnstageStaged",
-      ["d"] = "DiffAtFile",
+      --["d"] = "DiffAtFile",
       ["$"] = "CommandHistory",
       ["#"] = "Console",
       ["<c-r>"] = "RefreshBuffer",
