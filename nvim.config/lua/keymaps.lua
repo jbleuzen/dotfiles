@@ -131,3 +131,7 @@ map('n', "<C-j>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<cr>
 map('n', "<C-k>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<cr>", opts)
 map('n', "<C-l>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<cr>", opts)
 map('n', "<C-Space>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastActive()<cr>", opts)
+
+-- Disable horizontal scrolling
+map('n', '<ScrollWheelLeft>', '<nop>', {silent = true})
+map('n', '<ScrollWheelRight>', '<nop>', {silent = true})
