@@ -78,11 +78,11 @@ y = 0
 [[keyboard.bindings]]
 action = "ResetFontSize"
 key = "Key0"
-mods = "Command"
+mods = "Command|Shift"
 
 [[keyboard.bindings]]
 action = "IncreaseFontSize"
-key = "Equals"
+key = "Plus"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
