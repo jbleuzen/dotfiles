@@ -6,7 +6,7 @@ alias grep='grep --color'
 # Find the option for using colors in ls, depending on the version: Linux or BSD
 if ls --color -d . >/dev/null 2>&1; then
   # GNU `ls`
-  colorflag="--color=auto --group-directories-first --time-style=long-iso --indicator-style=none -I 'Icon*'"
+  colorflag="--color=auto --group-directories-first --time-style=long-iso --indicator-style=none -I 'Icon*' -I '.DS_Store'"
 else 
   # OS X `ls`
   colorflag="-G --ignore=Icon*"
