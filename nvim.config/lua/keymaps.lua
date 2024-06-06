@@ -27,8 +27,8 @@ map('v', '>', '>gv', opts)
 -- better moving lines
 map('n', 'È', ':m -2<CR>==', opts)
 map('n', 'Ï', ':m +1<CR>==', opts)
-map('i', 'È', ':m -2<CR>==gi', opts)
-map('i', 'Ï', ':m +1<CR>==gi', opts)
+map('i', 'È', '<Esc>:m -2<CR>==gi', opts)
+map('i', 'Ï', '<Esc>:m +1<CR>==gi', opts)
 map('v', 'Ï', ':m +1<CR>gv=gv', opts)
 map('v', 'È', ':m -2<CR>gv=gv', opts)
 
