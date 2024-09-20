@@ -134,7 +134,7 @@ neogit.setup {
       ["U"] = "UnstageStaged",
       --["d"] = "DiffAtFile",
       ["$"] = "CommandHistory",
-      ["#"] = "Console",
+      --["#"] = "Console",
       ["<c-r>"] = "RefreshBuffer",
       ["<enter>"] = "GoToFile",
       ["<c-v>"] = "VSplitOpen",
