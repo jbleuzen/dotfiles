@@ -48,7 +48,7 @@ masonLspConfig.setup({
     "jsonls",
     "lua_ls",
     "tailwindcss",
-    "tsserver",
+    "ts_ls",
     -- "vetur-vls",
   },
 
@@ -121,7 +121,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- }
 
 -- {{{ Typescript
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   on_attach = on_attach
 })
 -- }}}
