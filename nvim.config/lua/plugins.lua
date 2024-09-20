@@ -194,6 +194,13 @@ return require('packer').startup({function(use)
   --   'norcalli/nvim-colorizer.lua',
   -- })
 
+
+  -- use ({
+  --   "pmizio/typescript-tools.nvim",
+  --   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   config = [[ require('config.typescript-tools') ]]
+  -- })
+  
   -- startup time
   use ({
     'lewis6991/impatient.nvim',

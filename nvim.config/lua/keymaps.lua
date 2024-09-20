@@ -135,3 +135,6 @@ map('n', "<C-Space>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastAc
 -- Disable horizontal scrolling
 map('n', '<ScrollWheelLeft>', '<nop>', {silent = true})
 map('n', '<ScrollWheelRight>', '<nop>', {silent = true})
+
+-- Typescript
+map('n', '<Leader>g', ':TSToolsGoToSourceDefinition<CR>', {silent = true})
