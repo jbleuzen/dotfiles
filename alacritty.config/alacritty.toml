@@ -92,6 +92,11 @@ mods = "Command"
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
+key = "à"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
 key = "Equals"
 mods = "Command"
 
