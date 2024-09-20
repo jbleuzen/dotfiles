@@ -1,13 +1,42 @@
 local actions = require'fzf-lua.actions'
 
 require('fzf-lua').setup({
-  global_resume = true,
+  file_icon_padding = ' ',
+  defaults = {
+    cwd_prompt = false,
+    header = false,
+    file_icons = false,
+    color_icons = false,
+    winopts = {
+      backdrop = 50,
+      row = 0,
+      height = .65,
+      fullscreen = false,
+      preview = {
+        title = false,
+      }
+    },
+  },
+  keymap = {
+    builtin = {
+      ["<Esc>"] = "abort",
+      ["<F1>"]     = "toggle-help",
+      ["<F2>"]     = "toggle-fullscreen",
+      ["<F3>"]     = "toggle-preview-wrap",
+      -- nvim registers <C-/> as <C-_>, use insert mode
+      -- and press <C-v><C-/> should output ^_
+      ["<C- >"]    = "toggle-preview",
+      ["<C-j>"] = "preview-page-down",
+      ["<C-k>"] = "preview-page-up",
+      ["<C-h>"] = "preview-page-reset",
+      ["<C-l>"] = "preview-page-reset",
+    },
+  },
+  grep = {
+    prompt = " Search ❯ ",
+  },
   files = {
-    prompt       = '❯ ',
-    multiprocess = true, -- run command in a separate process
-    git_icons    = true, -- show git icons?
-    file_icons   = false, -- show file icons?
-    color_icons  = true,
+    prompt = " Files ❯ ",
   },
   previewers = {
     builtin = {
@@ -29,5 +58,5 @@ require('fzf-lua').setup({
       ["ctrl-t"]        = actions.file_tabedit,
       ["ctrl-q"]         = actions.file_sel_to_qf,
     },
-  },
+  }
 })
