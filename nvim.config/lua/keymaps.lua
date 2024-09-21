@@ -49,43 +49,10 @@ map('n', '<Leader>/', ':let @/ = ""<CR>', opts)
 map('n', '<Leader>u', ':UndotreeToggle<CR>', opts)
 
 -- Trouble
-map("n", "<F1>", ":TroubleToggle<CR>",opts)
+map("n", "<F1>", ":Trouble diagnostics toggle<CR>",opts)
 
 -- Neogit
 map("n", "<F2>", ":Neogit<CR>", opts)
-
-
-local function showFugitiveGit()
-  if vim.fn.FugitiveHead() ~= '' then
-    vim.cmd [[
-    Git
-    autocmd User FugitiveBlob setlocal readonly nomodifiable noswapfile
-    setlocal nonumber
-    setlocal norelativenumber
-    setlocal signcolumn=no
-    ]]
-  end
-end
-local function toggleFugitiveGit()
-  if vim.fn.buflisted(vim.fn.bufname('fugitive:///*/.git//$')) ~= 0 then
-    vim.cmd[[ execute ":bdelete" bufname('fugitive:///*/.git//$') ]]
-  else
-    showFugitiveGit()
-  end
-end
-vim.cmd[[
-
- augroup Fugitive
-      autocmd!
-      autocmd FileType fugitive nnoremap <silent> <buffer> <F1> <Nop>
-      autocmd FileType fugitive nnoremap <buffer> q <C-W>q
-      autocmd FileType fugitive nnoremap <buffer> <Esc> <C-W>q
-      autocmd FileType fugitive nmap <buffer> <C-N> )
-      autocmd FileType fugitive nmap <buffer> <C-P> (
-      autocmd FileType fugitive nmap <buffer> <Tab> =
-    augroup END
-]]
-vim.keymap.set('n', '<F3>', toggleFugitiveGit, opts)
 
 -- navigation
 map('n', 'j', 'gj', opts)
@@ -132,7 +99,7 @@ map('n', "<C-k>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<cr>",
 map('n', "<C-l>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<cr>", opts)
 map('n', "<C-Space>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastActive()<cr>", opts)
 
--- Disable horizontal scrolling
+-- Disable mouse horizontal scrolling
 map('n', '<ScrollWheelLeft>', '<nop>', {silent = true})
 map('n', '<ScrollWheelRight>', '<nop>', {silent = true})
 
