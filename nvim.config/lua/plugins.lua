@@ -181,11 +181,13 @@ return require('packer').startup({function(use)
     config = [[ require('config.barbecue') ]]
   })
 
-  use 'tpope/vim-fugitive'
-
   use { 
-    'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim',
+    "TimUntersberger/neogit",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim", 
+      "ibhagwan/fzf-lua",
+    },
     config = [[ require('config.neogit') ]]
   }
 
