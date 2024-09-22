@@ -27,3 +27,4 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t Default || tmux new-session -s Default
 fi
+export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
