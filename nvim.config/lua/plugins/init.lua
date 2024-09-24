@@ -22,15 +22,6 @@ return {
     end
   },
 
-  -- formatting
-  'sbdchd/neoformat',
-  -- vim.cmd [[
-  --   let g:neoformat_verbose = 0
-  --   let g:neoformat_enabled_html = ['prettier']
-  --   autocmd BufWritePre *.html Neoformat
-  --   autocmd BufWritePre *.js Neoformat
-  -- ]]
-
   -- undotree
   'mbbill/undotree',
   -- cmd = { 'UndotreeShow', 'UndotreeToggle', 'UndotreeHide', 'UndotreeFocus' }
@@ -38,10 +29,8 @@ return {
   'famiu/bufdelete.nvim',
 
   -- ccs colors
-  -- use ({ 
   --   'norcalli/nvim-colorizer.lua',
-  -- })
-  --
+
   {
     "j-hui/fidget.nvim",
     opts = {
