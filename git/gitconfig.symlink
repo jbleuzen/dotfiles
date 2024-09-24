@@ -3,6 +3,7 @@
 	undo = reset --soft HEAD~1
 [user]
 	name = Johan Bleuzen
+	email = johan@bleuzen.fr
 [color]
 	diff = auto
 	status = auto

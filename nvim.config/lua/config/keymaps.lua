@@ -38,9 +38,6 @@ map('c', '<C-a>', '<Home>', {silent = false})
 -- reload
 map('n', '<Leader>r', '<Cmd>lua ReloadConfig()<CR>', opts)
 
--- Delete all buffers
--- map('n', '<Leader>wa', ':bufdo bd!', opts)
-
 -- Disable highlight for previous search
 map('n', '<Leader>/', ':let @/ = ""<CR>', opts)
 
@@ -81,16 +78,10 @@ map('n', '<Leader>n', ':NvimTreeFindFile<CR>', {noremap = true})
 -- lsp
 map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts)
+map('n', 'gi', ':FzfLua lsp_implementations<CR>', opts)
 map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 map('n', '<Leader>s', ':lua vim.lsp.buf.rename()<CR>', opts)
-map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts)
-
--- fzf-lua
-map('n', '<Leader>f', ':FzfLua files<CR>', opts)
-map('n', '<Leader>k', ':FzfLua grep_cword<CR>', opts)
-map('n', '<Leader>a', ":FzfLua live_grep<CR>", opts)
-map('n', '<Leader>q', ":FzfLua quickfix<CR>", opts)
+map('n', 'gr', ':lua require"fzf-lua".lsp_references({ winopts = { height=0.4, width=1, row=1 } })<CR>', opts)
 
 -- nvim-tmux-navigation
 map('n', "<C-h>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<cr>", opts)
@@ -102,6 +93,3 @@ map('n', "<C-Space>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastAc
 -- Disable mouse horizontal scrolling
 map('n', '<ScrollWheelLeft>', '<nop>', {silent = true})
 map('n', '<ScrollWheelRight>', '<nop>', {silent = true})
-
--- Typescript
-map('n', '<Leader>g', ':TSToolsGoToSourceDefinition<CR>', {silent = true})

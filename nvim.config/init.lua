@@ -1,4 +1,6 @@
-require('plugins')
-require('keymaps')
-require('settings')
-require('reload')
+require('config.keymaps')
+require('config.settings')
+
+-- Setup Lazy
+require("config.lazy")
+
