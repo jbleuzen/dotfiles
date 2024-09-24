@@ -45,12 +45,6 @@ map('n', '<Leader>/', ':let @/ = ""<CR>', opts)
 -- undotree
 map('n', '<Leader>u', ':UndotreeToggle<CR>', opts)
 
--- Trouble
-map("n", "<F1>", ":Trouble diagnostics toggle<CR>",opts)
-
--- Neogit
-map("n", "<F2>", ":Neogit<CR>", opts)
-
 -- navigation
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)

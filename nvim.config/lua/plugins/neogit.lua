@@ -27,7 +27,7 @@ return {
       },
       -- "ascii"   is the graph the git CLI generates
       -- "unicode" is the graph like https://github.com/rbong/vim-flog
-      graph_style = "ascii",
+      graph_style = "unicode",
       -- Used to generate URL's for branch popup action "pull request".
       git_services = {
         ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
@@ -75,25 +75,25 @@ return {
       auto_close_console = true,
       status = {
         show_head_commit_hash = false,
-        recent_commit_count = 10,
+        recent_commit_count = 5,
         HEAD_padding = 5,
         HEAD_folded = true,
-        mode_padding = 5,
+        mode_padding = 10,
         mode_text = {
-          M = "modified",
-          N = "new file",
-          A = "added",
-          D = "deleted",
-          C = "copied",
-          U = "updated",
-          R = "renamed",
-          DD = "unmerged",
-          AU = "unmerged",
-          UD = "unmerged",
-          UA = "unmerged",
-          DU = "unmerged",
-          AA = "unmerged",
-          UU = "unmerged",
+          M = " modified",
+          N = " new file",
+          A = " added",
+          D = " deleted",
+          C = " copied",
+          U = " updated",
+          R = " renamed",
+          DD = " unmerged",
+          AU = " unmerged",
+          UD = " unmerged",
+          UA = " unmerged",
+          DU = " unmerged",
+          AA = " unmerged",
+          UU = " unmerged",
           ["?"] = "",
         },
       },
@@ -297,5 +297,10 @@ return {
         },
       },
     }
+
+    -- Keymaps
+    local keymap = vim.keymap
+    keymap.set("n", "<F2>", ":Neogit<CR>", {desc= "Open neogit split"})
+
   end
 }

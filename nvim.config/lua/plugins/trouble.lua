@@ -6,11 +6,12 @@ return {
       position = "bottom", -- position of the list can be: bottom, top, left, right
       height = 15, -- height of the trouble list when position is top or bottom
       width = 50, -- width of the list when position is left or right
-      mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+      mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
       fold_open = "", -- icon used for open folds
       fold_closed = "", -- icon used for closed folds
       group = true, -- group results by file
       padding = false, -- add an extra new line on top of the list
+      focus = true,
       action_keys = { -- key mappings for actions in the trouble list
         -- map to {} to remove a mapping, for example:
         -- close = {},
@@ -42,6 +43,7 @@ return {
     }
 
     -- keymaps
-    vim.api.nvim_set_keymap("n", "<F1>", ":Trouble diagnostics toggle<CR>",{silent=true, noremap=true})
+    local keymap = vim.keymap
+    keymap.set("n", "<F1>", ":Trouble diagnostics toggle<CR>",{silent=true, noremap=true})
   end
 }
