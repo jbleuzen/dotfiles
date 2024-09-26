@@ -1,35 +1,32 @@
+local keymap = vim.keymap
+local keymapOpts = { 
+  silent = true
+}
+
 return {
 
   -- Utility lib for plugins
   'nvim-lua/plenary.nvim', 
-  -- Default icon
+
+  -- Default icons
   'nvim-tree/nvim-web-devicons',
 
-  -- TMUX
-  { 'alexghergh/nvim-tmux-navigation', 
+  -- undotree
+  {'mbbill/undotree',
     config = function()
-      require'nvim-tmux-navigation'.setup {
-        disable_when_zoomed = true, -- defaults to false
-        keybindings = {
-          left = "<C-h>",
-          down = "<C-j>",
-          up = "<C-k>",
-          right = "<C-l>",
-          last_active = "<C-\\>",
-          next = "<C-Space>",
-        }
-      }
+      -- Keymaps 
+      keymap.set('n', '<Leader>u', ':UndotreeToggle<CR>', keymapOpts)
     end
   },
 
-  -- undotree
-  'mbbill/undotree',
-  -- cmd = { 'UndotreeShow', 'UndotreeToggle', 'UndotreeHide', 'UndotreeFocus' }
-
-  'famiu/bufdelete.nvim',
-
-  -- ccs colors
-  --   'norcalli/nvim-colorizer.lua',
+  -- Bufdelete
+  {'famiu/bufdelete.nvim',
+    config = function()
+      -- Keymaps
+      keymap.set('n', '<Leader>x', ':bufdo :Bdelete<CR>', keymapOpts)
+      keymap.set('n', '<Leader>w', ':Bdelete<CR>', keymapOpts)
+    end
+  },
 
   {
     "j-hui/fidget.nvim",
@@ -37,6 +34,5 @@ return {
       -- options
     },
   }
-
 
 }

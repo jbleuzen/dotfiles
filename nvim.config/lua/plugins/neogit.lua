@@ -299,8 +299,13 @@ return {
     }
 
     -- Keymaps
-    local keymap = vim.keymap
-    keymap.set("n", "<F2>", ":Neogit<CR>", {desc= "Open neogit split"})
-
+    local function toggleNeogit()
+      if vim.bo.filetype == "NeogitStatus" then
+        require'neogit'.close()
+      else
+        require("neogit").open({kind = "floating"})
+      end
+    end
+    vim.keymap.set("n", "<F2>", toggleNeogit, {silent = true, noremap= true})
   end
 }

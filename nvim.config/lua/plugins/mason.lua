@@ -105,7 +105,6 @@ return {
       capabilities = capabilities
     })
 
-    -- {{{ Eslint
     -- Need to install neovim npm package to make it work
     -- npm install -g neovim
     lspconfig.eslint.setup({
@@ -185,5 +184,14 @@ return {
       vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = single})
     end
 
+    -- Keymaps
+    local keymap = vim.keymap
+    keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
+    keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    keymap.set('n', 'gi', ':FzfLua lsp_implementations<CR>', opts)
+    keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+    keymap.set('n', '<Leader>s', ':lua vim.lsp.buf.rename()<CR>', opts)
+    keymap.set('n', 'gr', ':lua require"fzf-lua".lsp_references({ winopts = { height=0.4, width=1, row=1 } })<CR>', opts)
   end
 }
+

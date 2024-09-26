@@ -256,11 +256,19 @@ return {
           return limitedCount == 0 and "" or limitedCount
         end,
         -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          --   local icon = level:match("error") and "✕" or "!"
-          --   local limitedCount = count > 9 and '9+' or count
-          --   return "" .. limitedCount
-          -- end
-        },
-      })
-    end
-  }
+        --   local icon = level:match("error") and "✕" or "!"
+        --   local limitedCount = count > 9 and '9+' or count
+        --   return "" .. limitedCount
+        -- end
+      },
+    })
+
+    -- Keymaps 
+    local keymap = vim.keymap
+    keymap.set('n', '<left>', ':BufferLineCyclePrev<CR>', {silent = true})
+    keymap.set('n', '<right>', ':BufferLineCycleNext<CR>', {silent = true})
+    keymap.set('n', '<S-left>', ':BufferLineMovePrev<CR>', {silent = true})
+    keymap.set('n', '<S-right>', ':BufferLineMoveNext<CR>', {silent = true})
+
+  end
+}

@@ -86,11 +86,10 @@ return {
 
     -- Keymaps
     local keymap = vim.keymap
-    keymap.set('n', '<Leader>f', ':FzfLua files<CR>', {desc="Open file selector"})
-    keymap.set('n', '<Leader>f', ':FzfLua files<CR>')
-    keymap.set('n', '<Leader>k', ':FzfLua grep_cword<CR>')
-    keymap.set('n', '<Leader>a', ":FzfLua live_grep<CR>")
-    keymap.set('n', '<Leader>b', ":FzfLua git_branches<CR>")
+    keymap.set('n', '<Leader>f', ':FzfLua files<CR>', {desc="Open FzfLua file selector"})
+    keymap.set('n', '<Leader>k', ':FzfLua grep_cword<CR>', {desc="Open FzfLua file selector"})
+    keymap.set('n', '<Leader>a', ":FzfLua live_grep<CR>", {desc="Open FzfLua file selector"})
+    keymap.set('n', '<Leader>b', ":FzfLua git_branches<CR>", {desc="Open FzfLua file selector"})
 
   end
 }
