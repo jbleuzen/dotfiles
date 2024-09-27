@@ -6,6 +6,20 @@ vim.g.maplocalleader = "\\"
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+
+local function handleEscape()
+  if vim.bo.filetype == "trouble" then
+    vim.cmd("TroubleClose")
+  end
+  if vim.bo.filetype == "NvimTree" then
+    vim.cmd("NvimTreeClose")
+  end
+  if vim.bo.filetype == "NeogitStatus" then
+    require'neogit'.close()
+  end
+end
+vim.keymap.set("n", "<Esc>", handleEscape, {silent = true, noremap= true})
+
 -- Don't accidentally open :help
 map('n', '<F1>', '<nop>', opts)
 map('i', '<F1>', '<nop>', opts)

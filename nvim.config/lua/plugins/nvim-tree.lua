@@ -51,7 +51,6 @@ return {
     -- Keymaps
     local keymap = vim.keymap
     keymap.set('n', '<Leader>n', ':NvimTreeFindFile<CR>', {desc="Open file tree to the current file", silent = true})
-    keymap.set('n', '<Esc>', ':NvimTreeClose<CR>', {desc="Open file tree to the current file", silent = true})
     keymap.set('n', '<Leader>d', ':NvimTreeToggle<CR>', {desc = "Toggle file tree", silent = true})
 
   end 
