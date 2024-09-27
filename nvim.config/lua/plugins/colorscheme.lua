@@ -117,8 +117,8 @@ return {
 
     -- Change the background color of inactive pane/window
     cmd [[
-    autocmd FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000 | hi TroubleNormal guibg=#000000
-    autocmd FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#1C1C1C | hi NvimTreeEndOfBuffer guifg=#1C1C1C guibg=#1C1C1C | hi TroubleNormal guibg=#1C1C1C
+      autocmd FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000 | hi TroubleNormal guibg=#000000
+      autocmd FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#1C1C1C | hi NvimTreeEndOfBuffer guifg=#1C1C1C guibg=#1C1C1C | hi TroubleNormal guibg=#1C1C1C
     ]]
 
     vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -139,7 +139,6 @@ return {
           ]]
         end
       end,
-      group = nt_au_group,
     })
 
     vim.api.nvim_create_autocmd({ "BufLeave" }, {
@@ -162,7 +161,6 @@ return {
           ]]
         end
       end,
-      group = nt_au_group,
     })
   end
 }

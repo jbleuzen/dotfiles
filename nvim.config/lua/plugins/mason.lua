@@ -4,9 +4,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   },
-  config = function() 
-
-
+  config = function()
     local mason = require('mason')
 
     mason.setup({
@@ -68,7 +66,6 @@ return {
 
       buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-
       -- Mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
       local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -89,20 +86,26 @@ return {
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    -- capabilities.textDocument.foldingRange = {
-    --   dynamicRegistration = false,
-    --   lineFoldingOnly = true
-    -- }
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     lspconfig.ts_ls.setup({
       on_attach = on_attach
     })
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     lspconfig.jsonls.setup({
       capabilities = capabilities
+    })
+
+    lspconfig.lua_ls.setup({
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+          },
+        },
+      },
     })
 
     -- Need to install neovim npm package to make it work
@@ -180,12 +183,13 @@ return {
 
     -- LSP settings
     local on_attach = function(client)
-      vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = rounded})
-      vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = single})
+      vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"})
+      vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
     end
 
     -- Keymaps
     local keymap = vim.keymap
+    local opts = { silent = true, noremap = true}
     keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
     keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     keymap.set('n', 'gi', ':FzfLua lsp_implementations<CR>', opts)

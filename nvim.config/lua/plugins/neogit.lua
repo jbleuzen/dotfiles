@@ -201,7 +201,6 @@ return {
       mappings = {
         commit_editor = {
           ["q"] = "Close",
-          ["<Esc>"] = "Close",
           ["<S-enter>"] = "Submit",
           ["<Esc>"] = "Abort",
         },
