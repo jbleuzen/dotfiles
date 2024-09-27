@@ -111,14 +111,14 @@ return {
     -- Need to install neovim npm package to make it work
     -- npm install -g neovim
     lspconfig.eslint.setup({
-      root_dir = lspconfig.util.root_pattern( 
-        '.eslintrc', 
-        '.eslintrc.js', 
-        '.eslintrc.cjs', 
-        '.eslintrc.yaml', 
-        '.eslintrc.yml', 
-        '.eslintrc.json', 
-        'package.json' 
+      root_dir = lspconfig.util.root_pattern(
+        '.eslintrc',
+        '.eslintrc.js',
+        '.eslintrc.cjs',
+        '.eslintrc.yaml',
+        '.eslintrc.yml',
+        '.eslintrc.json',
+        'package.json'
       ),
       on_attach = on_attach,
       capabilities = capabilities,
@@ -180,12 +180,6 @@ return {
 
     -- vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#]]
     vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#ffffff]]
-
-    -- LSP settings
-    local on_attach = function(client)
-      vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"})
-      vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
-    end
 
     -- Keymaps
     local keymap = vim.keymap
