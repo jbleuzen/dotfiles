@@ -75,7 +75,7 @@ return {
       auto_close_console = true,
       status = {
         show_head_commit_hash = false,
-        recent_commit_count = 5,
+        recent_commit_count = 0,
         HEAD_padding = 5,
         HEAD_folded = true,
         mode_padding = 10,
