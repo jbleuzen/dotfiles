@@ -92,6 +92,9 @@ return {
           fg = "#666666"
         },
         -- Trouble 
+        TroubleNormalNC = {
+          bg = "#1C1C1C"
+        },
         TroubleTextError = {
           fg = "#D75F87"
         },
@@ -114,14 +117,14 @@ return {
 
     -- Change the background color of inactive pane/window
     cmd [[
-    autocmd FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000
-    autocmd FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#1C1C1C | hi NvimTreeEndOfBuffer guifg=#1C1C1C guibg=#1C1C1C
+    autocmd FocusGained * hi Normal guibg=#000000 | hi NvimTreeNormal guibg=#000000 | hi TroubleNormal guibg=#000000
+    autocmd FocusLost * hi Normal guibg=#1C1C1C | hi NvimTreeNormal guibg=#1C1C1C | hi NvimTreeEndOfBuffer guifg=#1C1C1C guibg=#1C1C1C | hi TroubleNormal guibg=#1C1C1C
     ]]
 
     vim.api.nvim_create_autocmd({ "BufEnter" }, {
       pattern = "*",
       callback = function(opts)
-        if vim.bo[opts.buf].filetype == "NvimTree" then
+        if vim.bo[opts.buf].filetype == "NvimTree" or vim.bo[opts.buf].filetype == "trouble" then
           cmd[[
           hi NvimTreeEndOfBuffer guifg=#000000 guibg=#000000
           hi NvimTreeGitDirty guibg=#000000
@@ -132,10 +135,6 @@ return {
           hi NvimTreeGitMerge guibg=#000000
           hi NvimTreeGitIgnored guibg=#000000
           hi NvimTreeGitStaged guibg=#000000
-          ]]
-        end
-        if vim.bo[opts.buf].filetype == "Trouble" then
-          cmd[[
           hi TroubleNormal guibg=#000000 
           ]]
         end
@@ -146,7 +145,9 @@ return {
     vim.api.nvim_create_autocmd({ "BufLeave" }, {
       pattern = "*",
       callback = function(opts)
-        if vim.bo[opts.buf].filetype == "NvimTree" then
+        local a =  vim.bo[opts.buf].filetype
+        print(a)
+        if vim.bo[opts.buf].filetype == "NvimTree" or vim.bo[opts.buf].filetype == "trouble" then
           cmd[[
           hi NvimTreeEndOfBuffer guifg=#1C1C1C guibg=#1C1C1C
           hi NvimTreeGitDirty guibg=#1C1C1C
@@ -157,10 +158,6 @@ return {
           hi NvimTreeGitMerge guibg=#1C1C1C
           hi NvimTreeGitIgnored guibg=#1C1C1C
           hi NvimTreeGitStaged guibg=#1C1C1C
-          ]]
-        end
-        if vim.bo[opts.buf].filetype == "Trouble" then
-          cmd[[
           hi TroubleNormal guibg=#1C1C1C
           ]]
         end
