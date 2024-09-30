@@ -39,6 +39,6 @@ bindkey '^B' backward-word
 bindkey '^W' forward-word
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
-bindkey '^R' history-incremental-search-backward
+#bindkey '^R' history-incremental-search-backward # Use FZF CTRL-R behaviour
 bindkey '^[[Z' reverse-menu-complete # <S-Tab> to select previous menu item
 bindkey '\e' send-break

@@ -11,7 +11,7 @@ return {
         cwd_prompt = false,
         header = false,
         file_icons = false,
-        color_icons = false,
+        color_icons = true,
         winopts = {
           backdrop = 50,
           row = 0,

@@ -47,6 +47,6 @@ export EVENT_NOKQUEUE=1 # Disable tmux queuing for macOS Sierra
 
 # Setup FZF
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git,dist,__snapshots__'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -s `which fzf` ] && source <(fzf --zsh)
 
 [[ -f ~/.dotfiles/zsh/.secrets.zsh ]] && source ~/.dotfiles/zsh/.secrets.zsh
