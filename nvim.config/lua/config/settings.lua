@@ -33,6 +33,9 @@ vim.o.completeopt = 'menuone,noselect,noinsert'
 vim.o.updatetime = 50
 vim.o.signcolumn = 'yes'
 
+-- Use terminal true colors
+vim.opt.termguicolors = true
+
 vim.opt.ignorecase = true
 
 vim.o.lazyredraw = true
