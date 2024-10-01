@@ -1,0 +1,78 @@
+-- Pull in the wezterm API
+local wezterm = require 'wezterm'
+local act = wezterm.action
+
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+
+-------------------------------------------------------------------------------
+-- UI
+-------------------------------------------------------------------------------
+config.window_close_confirmation = 'NeverPrompt'
+config.native_macos_fullscreen_mode = true
+config.use_fancy_tab_bar = true
+config.show_tab_index_in_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
+
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.8,
+}
+
+
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
+
+wezterm.on(
+  'format-tab-title',
+  function(tab)
+    local title = #tab.tab_title > 0 and tab.tab_title or tab.active_pane.title
+    return {
+      { Text = "     " .. title .. "     "},
+    }
+  end
+)
+
+-- Use molokai as default but change black to be real black
+local molokai = wezterm.color.get_builtin_schemes()['Molokai']
+molokai.background = 'black'
+config.color_schemes = {
+  ['MyMolokai'] = molokai,
+}
+config.color_scheme = 'MyMolokai';
+
+-------------------------------------------------------------------------------
+-- FONTS
+-------------------------------------------------------------------------------
+
+-- You can specify some parameters to influence the font selection;
+-- for example, this selects a Bold, Italic font variant.
+config.font = wezterm.font('CodeNewRoman Nerd Font', { weight = 'Bold', italic = false  })
+wezterm.font_with_fallback { 'CodeNewRoman Nerd Font' }
+config.cell_width = .8
+config.font_size = 16
+
+-------------------------------------------------------------------------------
+-- KEY BINDINGS
+-------------------------------------------------------------------------------
+-- Allow nvim to use move line mappings
+config.send_composed_key_when_left_alt_is_pressed = true
+config.send_composed_key_when_right_alt_is_pressed = true
+
+config.keys = {
+  { key = '=', mods = 'CMD', action = act.ResetFontSize },
+  { key = '+', mods = 'CMD', action = act.IncreaseFontSize },
+  { key = 'Enter', mods = 'CMD', action = act.ToggleFullScreen },
+  { key = 'LeftArrow', mods = 'CMD', action = act.ActivateTabRelative(-1) },
+  { key = 'LeftArrow', mods = 'ALT|CMD', action = act.MoveTabRelative(-1) },
+  { key = 'RightArrow', mods = 'CMD', action = act.ActivateTabRelative(1) },
+  { key = 'RightArrow', mods = 'ALT|CMD', action = act.MoveTabRelative(1) },
+  { key = 'Space', mods = 'ALT', action = act.SendKey { key = ' ', } }, -- Prevent to type unbreakable space
+}
+
+-- and finally, return the configuration to wezterm
+return config
