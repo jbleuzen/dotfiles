@@ -124,6 +124,9 @@ return {
         TroubleNormalNC = {
           bg = "#1C1C1C"
         },
+        TroubleFilename = {
+          fg = palette.green
+        },
         TroubleTextError = {
           fg = palette.red
         },
