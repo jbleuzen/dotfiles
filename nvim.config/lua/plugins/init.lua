@@ -15,7 +15,7 @@ return {
   {'mbbill/undotree',
     config = function()
       -- Keymaps 
-      keymap.set('n', '<Leader>u', ':UndotreeToggle<CR>', keymapOpts)
+      keymap.set('n', '<F3>', ':UndotreeToggle<CR>', keymapOpts)
     end
   },
 
