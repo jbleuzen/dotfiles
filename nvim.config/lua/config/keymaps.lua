@@ -17,6 +17,12 @@ local function handleEscape()
   if vim.bo.filetype == "NeogitStatus" then
     require'neogit'.close()
   end
+  if vim.bo.filetype == "qf" then
+    vim.cmd("cclose")
+  end
+  if vim.bo.filetype == "undotree" then
+    vim.cmd("UndotreeToggle")
+  end
 end
 vim.keymap.set("n", "<Esc>", handleEscape, {silent = true, noremap= true})
 
