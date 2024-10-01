@@ -20,6 +20,9 @@ local function handleEscape()
   if vim.bo.filetype == "qf" then
     vim.cmd("cclose")
   end
+  if vim.bo.filetype == "DiffviewFiles" then
+    vim.cmd("DiffviewClose")
+  end
   if vim.bo.filetype == "undotree" then
     vim.cmd("UndotreeToggle")
   end
