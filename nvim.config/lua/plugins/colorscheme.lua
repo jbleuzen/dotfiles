@@ -37,7 +37,7 @@ return {
 
     monokai.setup {
       palette = {
-        base2 = palette.black
+        base2 = "#000000",
       },
       custom_hlgroups = {
         Normal = {
