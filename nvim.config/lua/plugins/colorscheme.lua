@@ -176,8 +176,6 @@ return {
     vim.api.nvim_create_autocmd({ "BufLeave" }, {
       pattern = "*",
       callback = function(opts)
-        local a =  vim.bo[opts.buf].filetype
-        print(a)
         if vim.bo[opts.buf].filetype == "NvimTree" or vim.bo[opts.buf].filetype == "trouble" then
           cmd[[
           hi NvimTreeEndOfBuffer guifg=#1C1C1C guibg=#1C1C1C
