@@ -50,20 +50,7 @@ return {
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)
-      client.server_capabilities.document_formatting = true
-      if client.server_capabilities.document_formatting then
-        local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          pattern = "*",
-          callback = function()
-            vim.lsp.buf.format()
-          end,
-          group = au_lsp,
-        })
-      end
-      client.server_capabilities.documentFormattingProvider = true
       local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
       buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
       -- Mappings.
