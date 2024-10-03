@@ -302,7 +302,7 @@ return {
       if vim.bo.filetype == "NeogitStatus" then
         require'neogit'.close()
       else
-        require("neogit").open({kind = "floating"})
+        require("neogit").open({kind = "tab"})
       end
     end
     vim.keymap.set("n", "<F2>", toggleNeogit, {silent = true, noremap= true})
