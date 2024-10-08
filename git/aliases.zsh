@@ -5,7 +5,7 @@ if which fzf >/dev/null 2> /dev/null ; then
   #alias fgb="git for-each-ref  refs/heads/ --format='%(HEAD) %(refname:short) - %(contents:subject) - %(authorname) %(committerdate:relative)' | grep -v '^\*' |fzf --height=40% --reverse --info=inline --query=\$1 | awk '{print \$1}' | xargs git checkout"
   fgb(){
     echo $1
-    git for-each-ref  refs/heads/ --format='%(HEAD) %(refname:short) - %(contents:subject) - %(authorname) %(committerdate:relative)' | grep -v '^\*' |fzf --height=40% --reverse --info=inline --query=$1 | awk "{print \$1}" | xargs git checkout
+    git for-each-ref  refs/heads/ --sort=-committerdate --format='%(HEAD) %(refname:short) - %(contents:subject) - %(authorname) %(committerdate:relative)' | grep -v '^\*' |fzf --height=40% --reverse --info=inline --query=$1 | awk "{print \$1}" | xargs git checkout
   }
 fi
 alias ga='git add -A'
