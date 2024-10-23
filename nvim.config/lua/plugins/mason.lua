@@ -33,6 +33,7 @@ return {
         "lua_ls",
         "tailwindcss",
         "ts_ls",
+        "yaml_ls"
         -- "vetur-vls",
       },
 
@@ -80,6 +81,10 @@ return {
     })
 
     lspconfig.jsonls.setup({
+      capabilities = capabilities
+    })
+
+    lspconfig.yamlls.setup({
       capabilities = capabilities
     })
 
