@@ -196,8 +196,10 @@ bind -n WheelDownPane \
     "send-keys -N3 -Mt=" \
     "send-keys -N3 -t= Down"
 # When scrolling with mouse wheel, reduce number of scrolled rows per tick to "2" (default is 5)
-bind -T copy-mode-vi WheelUpPane select-pane \; send-keys -X -N 2 scroll-up
-bind -T copy-mode-vi WheelDownPane select-pane \; send-keys -X -N 2 scroll-down
+# bind -T copy-mode-vi WheelUpPane select-pane \; send-keys -X -N 2 scroll-up
+# bind -T copy-mode-vi WheelDownPane select-pane \; send-keys -X -N 2 scroll-down
+unbind -n WheelUpStatus
+unbind -n WheelDownStatus
 
 #------------------------------------------------------------------------------
 #   PANES
