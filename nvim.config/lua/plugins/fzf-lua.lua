@@ -6,12 +6,19 @@ return {
 
 		require("fzf-lua").setup({
 			file_icon_padding = " ",
+			fzf_opts = {
+				["--exact"] = true, -- Désactive les expressions régulières
+				["--pointer"] = "> ",
+			},
 			defaults = {
 				cwd_prompt = false,
 				header = false,
 				file_icons = false,
 				color_icons = true,
 				winopts = {
+					title = false,
+					title_pos = "center", -- 'left', 'center' or 'right'
+					title_flags = false,
 					backdrop = 50,
 					row = 0,
 					height = 0.65,
@@ -37,11 +44,15 @@ return {
 				},
 			},
 			grep = {
+				winopts = { title = false },
 				prompt = " Search ❯ ",
 				input_prompt = "Grep For❯ ",
 			},
 			files = {
+				winopts = { title = false, preview = { hidden = true } },
+				preview = {},
 				prompt = " Files ❯ ",
+				fd_opts = "--type f --exclude '*.ttf' --exclude '*.woff*' --exclude '*.git'",
 			},
 			git = {
 				branches = {
