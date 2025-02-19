@@ -28,3 +28,10 @@ if [[ -s tmux ]] && [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTIO
   tmux attach-session -t Default || tmux new-session -s Default
 fi
 export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
+
+# bun completions
+[ -s "/Users/johan/.bun/_bun" ] && source "/Users/johan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
