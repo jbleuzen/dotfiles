@@ -44,6 +44,7 @@ return {
 				},
 			},
 			grep = {
+				rg_opts = "--column --line-number --no-heading --color=always --smart-case -F",
 				winopts = { title = false },
 				prompt = " Search ❯ ",
 				input_prompt = "Grep For❯ ",
