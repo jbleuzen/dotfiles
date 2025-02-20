@@ -54,31 +54,20 @@ return {
 				preview = {},
 				prompt = " Files ❯ ",
 				fd_opts = "--type f --exclude '*.ttf' --exclude '*.woff*' --exclude '*.git'",
+				git_icons = true, -- show git icons?
 			},
 			git = {
 				branches = {
 					prompt = " GitBranch ❯ ",
+					winopts = { title = false, preview = { hidden = true } },
 					actions = {
 						["default"] = actions.git_switch,
-						["ctrl-x"] = { fn = actions.git_branch_del, reload = true },
-						["ctrl-a"] = { fn = actions.git_branch_add, field_index = "{q}", reload = true },
+						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = false },
+						["ctrl-d"] = { fn = actions.git_branch_del, reload = true },
 					},
-					cmd = "git branch",
-					-- If you wish to add branch and switch immediately
-					-- cmd_add  = { "git", "checkout", "-b" },
-					cmd_add = { "git", "branch" },
-					-- If you wish to delete unmerged branches add "--force"
-					-- cmd_del  = { "git", "branch", "--delete", "--force" },
+					cmd = "git branch --list",
+					cmd_add = { "git", "checkout", "-b" },
 					cmd_del = { "git", "branch", "--delete" },
-				},
-			},
-			previewers = {
-				builtin = {
-					extensions = {
-						-- neovim terminal only supports `viu` block output
-						["png"] = { "viu", "-b" },
-						["jpg"] = { "viu", "-b" },
-					},
 				},
 			},
 			actions = {
@@ -99,8 +88,16 @@ return {
 		local keymap = vim.keymap
 		keymap.set("n", "<Leader>f", ":FzfLua files<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>a", ":FzfLua live_grep<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>A", ":FzfLua live_grep_resume<CR>", { desc = "Resume last FzfLua file selector" })
+		keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>G", ":FzfLua live_grep_resume<CR>", { desc = "Resume last FzfLua file selector" })
 		keymap.set("n", "<Leader>b", ":FzfLua git_branches<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>q", ":FzfLua quickfix<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>A", ":FzfInDir ", { desc = "Ask for a folder to start Fzflua content selector" })
+
+		-- Custom commands
+		-- Search in specified folder
+		vim.api.nvim_create_user_command("FzfInDir", function(opts)
+			require("fzf-lua").files({ cwd = opts.args })
+		end, { nargs = 1, complete = "dir" })
 	end,
 }
