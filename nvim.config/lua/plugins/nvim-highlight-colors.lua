@@ -1,11 +1,10 @@
 return {
-  "nvim-highlight-colors",
+	"brenoprata10/nvim-highlight-colors",
 	dependencies = {
 		"hrsh7th/nvim-cmp",
 	},
-  config = function ()
-
-    -- Ensure termguicolors is enabled if not already
+	config = function()
+		-- Ensure termguicolors is enabled if not already
 		vim.opt.termguicolors = true
 
 		-- Setup nvim-highlight-colors with required configurations
