@@ -69,6 +69,15 @@ return {
 					cmd_add = { "git", "checkout", "-b" },
 					cmd_del = { "git", "branch", "--delete" },
 				},
+				icons = {
+					["M"] = { icon = "●", color = "green" },
+					["D"] = { icon = "-", color = "red" },
+					["A"] = { icon = "+", color = "green" },
+					["R"] = { icon = "➜", color = "yellow" },
+					["C"] = { icon = "C", color = "yellow" },
+					["T"] = { icon = "T", color = "magenta" },
+					["?"] = { icon = "?", color = "green" },
+				},
 			},
 			actions = {
 				files = {
@@ -87,17 +96,41 @@ return {
 		-- Keymaps
 		local keymap = vim.keymap
 		keymap.set("n", "<Leader>f", ":FzfLua files<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>F", function()
+			require("fzf-lua").files({
+				cmd = "fd --type d --hidden --exclude '.*'",
+				title = "lol",
+				prompt = " Select folder ❯ ",
+				actions = {
+					["default"] = function(selected)
+						local sanitized_path = selected[1]:gsub("^[^%w~/.]+", "")
+						require("fzf-lua").files({
+							cwd = sanitized_path,
+							prompt = ' Files in "' .. sanitized_path:sub(1, -2) .. '" ❯ ',
+						})
+					end,
+				},
+			})
+		end, { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>r", ":FzfLua resume<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>G", ":FzfLua live_grep_resume<CR>", { desc = "Resume last FzfLua file selector" })
+		keymap.set("n", "<Leader>G", function()
+			require("fzf-lua").files({
+				cmd = "fd --type d --hidden --exclude '.*'",
+				prompt = " Search in folder ❯ ",
+				actions = {
+					["default"] = function(selected)
+						local sanitized_path = selected[1]:gsub("^[^%w~/.]+", "")
+						require("fzf-lua").live_grep({
+							cwd = sanitized_path,
+							prompt = ' Search in "' .. sanitized_path:sub(1, -2) .. '" ❯ ',
+						})
+					end,
+				},
+			})
+		end, { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>b", ":FzfLua git_branches<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>q", ":FzfLua quickfix<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>A", ":FzfInDir ", { desc = "Ask for a folder to start Fzflua content selector" })
-
-		-- Custom commands
-		-- Search in specified folder
-		vim.api.nvim_create_user_command("FzfInDir", function(opts)
-			require("fzf-lua").files({ cwd = opts.args })
-		end, { nargs = 1, complete = "dir" })
 	end,
 }
