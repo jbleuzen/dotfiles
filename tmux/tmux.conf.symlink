@@ -267,19 +267,19 @@ set -g @tpm_plugins " \
       #tmux-plugins/tmux-copycat"
 
 # tmux-online-status configuration
-set -g @online_icon "#[fg=colour148 bg=colour236,bold] #[default]"
+set -g @online_icon "#[fg=colour148 bg=colour236,bold]󱋌 #[default]"
 set -g @offline_icon "#[fg=colour160 bg=colour236] #[default]"
 set -g @route_to_ping "fdn.fr"
 
 # tmux-battery configuration
-set -g @batt_icon_status_charging " #[fg=colour160,bold] #[default]"
-set -g @batt_icon_status_attached " #[fg=colour160,bold] #[default]"
-set -g @batt_icon_status_charged " #[fg=colour148,bold] #[default]"
+set -g @batt_icon_status_charging " #[fg=colour160,bold]󱐋 #[default]"
+set -g @batt_icon_status_attached " #[fg=colour160,bold]󱐋 #[default]"
+set -g @batt_icon_status_charged " #[fg=colour148,bold]󱐋 #[default]"
 set -g @batt_icon_status_discharging " #[default]"
 
 # tmux-vpn
-set -g @vpn_online_icon "#[fg=colour148]VPN"
-set -g @vpn_offline_icon "#[fg=colour160]VPN"
+set -g @vpn_online_icon "#[fg=colour148]󰳈#[default]"
+set -g @vpn_offline_icon "#[fg=colour160]󰒘#[default]"
 
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
