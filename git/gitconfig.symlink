@@ -34,3 +34,5 @@
 	defaultBranch = main
 [rerere]
 	enabled = true
+[remote "origin"]
+	prune = true
