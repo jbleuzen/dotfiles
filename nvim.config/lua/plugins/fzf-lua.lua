@@ -8,7 +8,7 @@ return {
 			file_icon_padding = " ",
 			fzf_opts = {
 				["--exact"] = true, -- Désactive les expressions régulières
-				["--pointer"] = "> ",
+				["--pointer"] = " ",
 			},
 			defaults = {
 				cwd_prompt = false,
@@ -27,6 +27,9 @@ return {
 						title = false,
 					},
 				},
+			},
+			fzf_colors = {
+				["gutter"] = "-1", -- Hide the gutter used by the pointer
 			},
 			keymap = {
 				builtin = {
