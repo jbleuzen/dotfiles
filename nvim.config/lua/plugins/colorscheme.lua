@@ -62,6 +62,7 @@ return {
 					bg = "#303030",
 					fg = "#BCBCBC",
 				},
+
 				-- lsp
 				DiagnosticSignInfo = {
 					bg = "#202020",
@@ -75,6 +76,7 @@ return {
 				DiagnosticSignError = {
 					bg = palette.black,
 				},
+
 				-- nvim-tree
 				NvimTreeNormal = {
 					bg = "#000000",
@@ -116,10 +118,18 @@ return {
 					fg = palette.green,
 					bg = palette.black,
 				},
+
 				-- FZF
-				FZFLuaBorder = {
+				FzfLuaBorder = {
 					fg = "#666666",
 				},
+				FzfLuaDirPart = {
+					fg = palette.green,
+				},
+				FzfLuaLivePrompt = {
+					fg = palette.white,
+				},
+
 				-- Trouble
 				TroubleNormalNC = {
 					bg = "#1C1C1C",
