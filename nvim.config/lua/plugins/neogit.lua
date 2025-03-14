@@ -1,6 +1,6 @@
 return {
 	"NeogitOrg/neogit",
-	tag = "v2.0.0",
+	-- tag = "v2.0.0",
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim", -- optional - Diff integration
