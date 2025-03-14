@@ -3,12 +3,14 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		local actions = require("fzf-lua.actions")
+		local utils = require("fzf-lua.utils")
 
 		require("fzf-lua").setup({
 			file_icon_padding = " ",
+			exec_empty_query = true, -- display results event if no search typed
 			fzf_opts = {
 				["--exact"] = true, -- Désactive les expressions régulières
-				["--pointer"] = " ",
+				["--pointer"] = " ",
 			},
 			defaults = {
 				cwd_prompt = false,
@@ -47,17 +49,35 @@ return {
 				},
 			},
 			grep = {
-				rg_opts = "--column --line-number --no-heading --color=always --smart-case -F",
+				rg_opts = "--column --line-number --no-heading --smart-case --fixed-strings",
 				winopts = { title = false },
 				prompt = " Search ❯ ",
-				input_prompt = "Grep For❯ ",
+				input_prompt = " Search for ❯ ",
+				fzf_opts = {
+					["--delimiter"] = ":",
+					["--with-nth"] = "4",
+				},
+				fn_transform = function(entry)
+					local file, line, position, _ = entry:match("([^:]+):(%d+):(%d+)(.+)")
+					if file and line then
+						local filename = utils.ansi_codes.white(file:match("[^/]+$") or file)
+						local folder = utils.ansi_codes.green(utils.ansi_codes.italic(file:match("(.+)/[^/]+$")))
+						local lineNb = utils.ansi_codes.grey(utils.ansi_codes.italic("(" .. line .. ")"))
+						return string.format("%s:%s:%s:%s  %s %s", file, line, position, filename, folder, lineNb)
+					end
+					return entry
+				end,
 			},
 			files = {
 				winopts = { title = false, preview = { hidden = true } },
-				preview = {},
 				prompt = " Files ❯ ",
 				fd_opts = "--type f --exclude '*.ttf' --exclude '*.woff*' --exclude '*.git'",
 				git_icons = true, -- show git icons?
+				header_prefix = "",
+			},
+			quickfix = {
+				winopts = { title = false },
+				prompt = "  Quickfix ❯ ",
 			},
 			git = {
 				branches = {
@@ -102,7 +122,6 @@ return {
 		keymap.set("n", "<Leader>F", function()
 			require("fzf-lua").files({
 				cmd = "fd --type d --hidden --exclude '.*'",
-				title = "lol",
 				prompt = " Select folder ❯ ",
 				actions = {
 					["default"] = function(selected)
@@ -115,9 +134,16 @@ return {
 				},
 			})
 		end, { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>r", ":FzfLua resume<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>k", function()
+			local word = vim.fn.expand("<cword>")
+			require("fzf-lua").grep_cword({
+				rg_opts = "--column --line-number --no-heading --smart-case",
+				prompt = " Search in '" .. word .. "' ❯ ",
+			})
+		end, { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>G", function()
 			require("fzf-lua").files({
 				cmd = "fd --type d --hidden --exclude '.*'",

@@ -125,6 +125,7 @@ return {
 				},
 				FzfLuaDirPart = {
 					fg = palette.green,
+					style = "italic",
 				},
 				FzfLuaLivePrompt = {
 					fg = palette.white,
