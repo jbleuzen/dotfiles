@@ -16,40 +16,32 @@ git_dirty() {
 }
 
 git_status() {
-  local ahead behind remote unstaged
-  local -a gitstatus
+  local ahead behind remote unstaged modified main gitstatus
 
-  modified=$(git diff --name-only 2> /dev/null | wc -l) 
-  (( $modified )) && gitstatus+=("%F{green}●")
-
-  unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l) 
-  (( $unstaged )) && gitstatus+=("%F{yellow}✚")
+  main=$(git status -sb)
+  (( $(echo $main | grep " M " | wc -l) )) && gitstatus+=("%F{blue}●") # modified files
+  (( $(echo $main | grep "?" | wc -l) )) && gitstatus+=("%F{208}✚") # untracked files
 
   # Are we on a remote-tracking branch?
-  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-    --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+  remote=$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)
 
   if [[ -n ${remote} ]] ; then
-		# for git prior to 1.7
-		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
 		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-		(( $ahead )) && gitstatus+=("%F{cyan}󰁞")
+		(( $ahead )) && gitstatus+=("%F{green}󰁞")
 
-		# for git prior to 1.7
-		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
 		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-		(( $behind )) && gitstatus+=("%F{magenta}󰁆")
+		(( $behind )) && gitstatus+=("%F{red}󰁆")
 
 		if [[ -n ${gitstatus} ]]; then
-			echo " "${gitstatus}
+			echo "${gitstatus}"
 		fi
 	fi
 } 
 
 # get the name of the branch we are on
 git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo " $(git_dirty)${ref#refs/heads/}$(git_status)%f"
+  ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
+  echo "$(git_dirty)${ref}$(git_status)%f"
 }
 
 # Customers named folders :D
@@ -66,7 +58,7 @@ HOSTNAME="%(!.%F{red}%n.%F{blue}%n)%f@%F{red}%m%f "
 PATHNAME="%(!.%F{red}.%F{green})%~ %f"
 
 PROMPT='${SSH_TTY:+$HOSTNAME}%(?.%F{green}.%F{red})❯ $PATHNAME'
-RPROMPT='$(git_prompt_info) %F{245}%*'
+RPROMPT='$(git_prompt_info) %F{240}%*'
 
 
 if ls --color -d . >/dev/null 2>&1; then
