@@ -20,7 +20,7 @@ git_status() {
   local -a gitstatus
 
   modified=$(git diff --name-only 2> /dev/null | wc -l) 
-  (( $modified )) && gitstatus+=("%F{blue}•")
+  (( $modified )) && gitstatus+=("%F{green}●")
 
   unstaged=$(git status -sb 2> /dev/null | grep "?" | wc -l) 
   (( $unstaged )) && gitstatus+=("%F{yellow}✚")
@@ -33,12 +33,12 @@ git_status() {
 		# for git prior to 1.7
 		# ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
 		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-		(( $ahead )) && gitstatus+=("%F{cyan}⬆")
+		(( $ahead )) && gitstatus+=("%F{cyan}󰁞")
 
 		# for git prior to 1.7
 		# behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
 		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-		(( $behind )) && gitstatus+=("%F{magenta}⬇")
+		(( $behind )) && gitstatus+=("%F{magenta}󰁆")
 
 		if [[ -n ${gitstatus} ]]; then
 			echo " "${gitstatus}
