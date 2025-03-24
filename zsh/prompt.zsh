@@ -27,7 +27,7 @@ git_status() {
 
   if [[ -n ${remote} ]] ; then
 		ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-		(( $ahead )) && gitstatus+=("%F{green}󰁞")
+		(( $ahead )) && gitstatus+=("%F{blue}󰁞")
 
 		behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
 		(( $behind )) && gitstatus+=("%F{red}󰁆")
