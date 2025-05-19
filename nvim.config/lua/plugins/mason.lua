@@ -24,6 +24,7 @@ return {
 		require("mason-lspconfig").setup({
 			-- A list of servers to automatically install if they're not already installed
 			ensure_installed = {
+				"astro",
 				"bashls",
 				"cssls",
 				"eslint",
@@ -83,6 +84,13 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+		-- astro --
+		lspconfig.astro.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = { "astro" },
+		})
+
 		lspconfig.ts_ls.setup({
 			on_attach = on_attach,
 		})
@@ -94,6 +102,8 @@ return {
 		lspconfig.yamlls.setup({
 			capabilities = capabilities,
 		})
+
+		lspconfig.graphql.setup({})
 
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
