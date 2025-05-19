@@ -1,0 +1,19 @@
+theme = "molokai"
+
+font-family = "CodeNewRoman Nerd Font"
+font-size = "16"
+background = "#000"
+font-thicken = true
+adjust-cell-width = -1
+
+window-theme =dark
+
+##############################################################################
+# Keybindings 
+##############################################################################
+keybind = cmd+r=reload_config
+keybind = global:cmd+@=toggle_quick_terminal
+keybind = cmd+left=previous_tab
+keybind = cmd+right=next_tab
+keybind = cmd+alt+left=move_tab:-1
+keybind = cmd+alt+right=move_tab:1
