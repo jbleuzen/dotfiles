@@ -32,6 +32,8 @@ return {
 				"html",
 				"jsonls",
 				"lua_ls",
+				"pylsp",
+				"ruby_lsp",
 				"tailwindcss",
 				"ts_ls",
 				"yamlls",
