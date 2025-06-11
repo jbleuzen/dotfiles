@@ -29,6 +29,9 @@ alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gu="git reset --soft HEAD^"
 alias gsa="git stash apply"
 alias gss="git stash save"
+alias gsl="git stash list"
+alias gsp='printf "Confirm poping last stash (y/n):"; read rep; [[ "$rep" =~ ^[yY]$ ]] && git stash pop'
+alias gsc='printf "Confirm deleting all stashes (y/n):"; read rep; [[ "$rep" =~ ^[yY]$ ]] && git stash clear' 
 
 
 # Rewrite the default git branch with better branch list
