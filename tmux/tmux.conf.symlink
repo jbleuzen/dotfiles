@@ -87,10 +87,6 @@ bind C-w confirm-before -p "kill-window #W ? (y/n)" kill-window
 unbind x
 bind x kill-pane
 
-# window movement / renumbering like in screen's :number
-unbind m
-bind m command-prompt -p "move window to:"  "swap-window -t '%%'"
-
 # new window on the top right
 unbind c
 bind c new-window -c "$HOME" -n '*'
