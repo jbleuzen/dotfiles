@@ -135,7 +135,8 @@ return {
 			})
 		end, { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>r", ":FzfLua resume<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", { desc = "Open FzfLua file selector" })
+		-- Don't know why live_grep only when multiprocess is false
+		keymap.set("n", "<Leader>g", ":FzfLua live_grep multiprocess=false<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>k", function()
 			local word = vim.fn.expand("<cword>")
