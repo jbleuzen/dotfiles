@@ -211,7 +211,7 @@ set -g pane-border-status top
 # #{?test,yes,no}
 # ? : variable exists
 # #{m/r:REGEXP_PATTERN} : returns 1 or -1
-set -g pane-border-format "#{?#{m/r:NVIM|local,#{pane_title}},,#[fg=colour4 align=right bold] #T }"
+set -g pane-border-format "#{?#{m/r:Nvim|.lan|local,#{pane_title}},,#[fg=colour4 align=right bold] #T }"
 
 #------------------------------------------------------------------------------
 #   STATUS BAR
