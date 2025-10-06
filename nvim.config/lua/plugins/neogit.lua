@@ -1,6 +1,5 @@
 return {
 	"NeogitOrg/neogit",
-	-- tag = "v2.0.0",
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim", -- optional - Diff integration
@@ -31,10 +30,26 @@ return {
 			graph_style = "unicode",
 			-- Used to generate URL's for branch popup action "pull request".
 			git_services = {
-				["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
-				["bitbucket.org"] = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
-				["gitlab.com"] = "https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
-				["azure.com"] = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
+				["github.com"] = {
+					pull_request = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
+					commit = "https://github.com/${owner}/${repository}/commit/${oid}",
+					tree = "https://${host}/${owner}/${repository}/tree/${branch_name}",
+				},
+				["bitbucket.org"] = {
+					pull_request = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
+					commit = "https://bitbucket.org/${owner}/${repository}/commits/${oid}",
+					tree = "https://bitbucket.org/${owner}/${repository}/branch/${branch_name}",
+				},
+				["gitlab.com"] = {
+					pull_request = "https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
+					commit = "https://gitlab.com/${owner}/${repository}/-/commit/${oid}",
+					tree = "https://gitlab.com/${owner}/${repository}/-/tree/${branch_name}?ref_type=heads",
+				},
+				["azure.com"] = {
+					pull_request = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
+					commit = "",
+					tree = "",
+				},
 			},
 			-- Persist the values of switches/options within and across sessions
 			remember_settings = true,
@@ -202,12 +217,12 @@ return {
 			mappings = {
 				commit_editor = {
 					["q"] = "Close",
-					["<S-enter>"] = "Submit",
+					["<S-CR>"] = "Submit",
 					["<Esc>"] = "Abort",
 				},
 				commit_editor_I = {
-					["<s-enter>"] = "Submit",
-					["<c-c><c-k>"] = "Abort",
+					["<S-CR>"] = "Submit",
+					-- ["<Esc>"] = "Abort",
 				},
 				rebase_editor = {
 					["p"] = "Pick",
