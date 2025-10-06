@@ -89,7 +89,6 @@ config.keys = {
 	{ key = "RightArrow", mods = "CMD", action = act.ActivateTabRelative(1) },
 	{ key = "RightArrow", mods = "ALT|CMD", action = act.MoveTabRelative(1) },
 	{ key = "Space", mods = "ALT", action = act.SendKey({ key = " " }) }, -- Prevent to type unbreakable space
-	{ key = "Enter", mods = "ALT", action = act.SendKey({ key = "Enter" }) }, -- Prevent to type unbreakable space
 }
 
 -- and finally, return the configuration to wezterm
