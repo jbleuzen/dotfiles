@@ -88,7 +88,16 @@ config.keys = {
 	{ key = "LeftArrow", mods = "ALT|CMD", action = act.MoveTabRelative(-1) },
 	{ key = "RightArrow", mods = "CMD", action = act.ActivateTabRelative(1) },
 	{ key = "RightArrow", mods = "ALT|CMD", action = act.MoveTabRelative(1) },
+
 	{ key = "Space", mods = "ALT", action = act.SendKey({ key = " " }) }, -- Prevent to type unbreakable space
+	-- { key = "Enter", mods = "ALT", action = act.SendKey({ key = "Enter" }) }, -- Prevent to type unbreakable space
+	-- { key = "Enter", mods = "SHIFT", action = act.SendKey({ key = "Enter" }) }, -- Prevent to type unbreakable space
+	{ key = "Enter", mods = "SHIFT", action = wezterm.action.SendString("\x1b[13;2u") },
+	{
+		mods = "CMD",
+		key = "m",
+		action = wezterm.action.PaneSelect,
+	},
 }
 
 -- and finally, return the configuration to wezterm
