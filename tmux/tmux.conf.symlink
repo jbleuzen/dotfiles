@@ -4,10 +4,14 @@
 #------------------------------------------------------------------------------
 #   DEFAULT CONFIGURATION
 #------------------------------------------------------------------------------
+
 # default colors configuration (needed for vim)
 set -g default-terminal "xterm-256color"
 set-option -g default-terminal "tmux-256color"
-set-option -ga terminal-overrides ",xterm-256color:Tc"
+set -as terminal-features 'xterm*:extkeys'
+
+set -g allow-passthrough on
+set -g extended-keys on
 
 #  make FocusGained and FocusLost work inside tmux
 set -g focus-events on
@@ -51,6 +55,9 @@ set -g status-interval 5
 set -g prefix C-x
 unbind C-b
 bind C-x send-prefix
+
+# Unbind so it works in neovim
+unbind S-Enter
 
 # Simple changing window position
 bind -r "<" swap-window -t -1 \; prev
