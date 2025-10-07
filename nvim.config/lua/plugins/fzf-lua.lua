@@ -41,7 +41,7 @@ return {
 					["<F3>"] = "toggle-preview-wrap",
 					-- nvim registers <C-/> as <C-_>, use insert mode
 					-- and press <C-v><C-/> should output ^_
-					["<C- >"] = "toggle-preview",
+					["<C-<Space>>"] = "toggle-preview",
 					["<C-j>"] = "preview-page-down",
 					["<C-k>"] = "preview-page-up",
 					["<C-h>"] = "preview-page-reset",
@@ -82,13 +82,14 @@ return {
 			git = {
 				branches = {
 					prompt = " GitBranch ❯ ",
-					winopts = { title = false, preview = { hidden = true } },
+					winopts = { title = false, preview = { hidden = false } },
 					actions = {
 						["default"] = actions.git_switch,
 						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = false },
 						["ctrl-d"] = { fn = actions.git_branch_del, reload = true },
 					},
 					cmd = "git branch --list",
+					preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
 					cmd_add = { "git", "checkout", "-b" },
 					cmd_del = { "git", "branch", "--delete" },
 				},
