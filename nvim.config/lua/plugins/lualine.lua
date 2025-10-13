@@ -5,7 +5,7 @@ return {
 		local lualine = require("lualine")
 
 		-- Color table for highlights
-		local colors = require("monokai").soda
+		local colors = require("monokai").classic
 
 		local theme = {
 			normal = {
@@ -145,20 +145,17 @@ return {
 					},
 					{
 						function()
-							local msg = "NO LSP"
-							local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-							local clients = vim.diagnostic.config()
+							local clients = vim.lsp.get_clients({ bufnr = 0 })
 							if next(clients) == nil then
-								return msg
+								return "No LSP"
 							end
-							for _, client in ipairs(clients) do
-								local filetypes = client.config.filetypes
-								if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-									return client.name
-								end
+							local names = {}
+							for _, client in pairs(clients) do
+								table.insert(names, client.name)
 							end
-							return msg
+							return table.concat(names, " · ")
 						end,
+						color = { fg = "#333333", bg = colors.aqua },
 						separator = "|",
 					},
 				},
