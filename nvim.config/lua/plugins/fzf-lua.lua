@@ -7,10 +7,10 @@ return {
 
 		require("fzf-lua").setup({
 			file_icon_padding = " ",
-			exec_empty_query = true, -- display results event if no search typed
+			exec_empty_query = true, -- Displays results event if no search typed
 			fzf_opts = {
-				["--exact"] = true, -- Désactive les expressions régulières
-				["--pointer"] = " ",
+				["--exact"] = true, -- Disables regular expression
+				["--pointer"] = " ",
 			},
 			defaults = {
 				cwd_prompt = false,
@@ -81,15 +81,34 @@ return {
 			},
 			git = {
 				branches = {
-					prompt = " GitBranch ❯ ",
-					winopts = { title = false, preview = { hidden = false } },
+					prompt = " Branch ❯ ",
+					cmd = "git branch --sort=-committerdate --format='%(refname:short)'",
+					preview = "git log {1} --no-merges -1 --pretty=%s",
+					winopts = {
+						title = false,
+						height = 20,
+						width = 100,
+						preview = {
+							scrollbar = "false",
+							scrolloff = 10,
+							hidden = false,
+							layout = "vertical",
+							vertical = "down:1",
+							winopts = {
+								height = 1, -- force 1 ligne
+							},
+						},
+						on_create = function()
+							-- creates a local buffer mapping translating <M-BS> to <C-u>
+							vim.keymap.set("t", "<S-CR>", "<C-n>")
+							vim.keymap.set("t", "<S-BS>", "<C-d>")
+						end,
+					},
 					actions = {
 						["default"] = actions.git_switch,
 						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = false },
 						["ctrl-d"] = { fn = actions.git_branch_del, reload = true },
 					},
-					cmd = "git branch --list",
-					preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
 					cmd_add = { "git", "checkout", "-b" },
 					cmd_del = { "git", "branch", "--delete" },
 				},
