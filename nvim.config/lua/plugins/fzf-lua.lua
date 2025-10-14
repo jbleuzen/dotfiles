@@ -4,8 +4,9 @@ return {
 	config = function()
 		local actions = require("fzf-lua.actions")
 		local utils = require("fzf-lua.utils")
+		local FzfLua = require("fzf-lua")
 
-		require("fzf-lua").setup({
+		FzfLua.setup({
 			file_icon_padding = " ",
 			exec_empty_query = true, -- Displays results event if no search typed
 			fzf_opts = {
@@ -69,15 +70,27 @@ return {
 				end,
 			},
 			files = {
-				winopts = { title = false, preview = { hidden = true } },
+				winopts = {
+					title = false,
+					preview = { hidden = true },
+					on_create = function()
+						vim.keymap.set("t", "<S-CR>", "<C-q>")
+					end,
+				},
 				prompt = " Files ❯ ",
 				fd_opts = "--type f --exclude '*.ttf' --exclude '*.woff*' --exclude '*.git'",
 				git_icons = true, -- show git icons?
 				header_prefix = "",
 			},
 			quickfix = {
-				winopts = { title = false },
-				prompt = "  Quickfix ❯ ",
+				winopts = {
+					title = false,
+					height = 0.4, -- hauteur en proportion de l'écran
+					width = 1.0, -- largeur (ici pleine largeur)
+					row = 1,
+					border = "rounded", -- optionnel : bordure arrondie
+				},
+				prompt = " Quickfix ❯ ",
 			},
 			git = {
 				branches = {
@@ -131,7 +144,12 @@ return {
 					["ctrl-s"] = actions.file_split,
 					["ctrl-v"] = actions.file_vsplit,
 					["ctrl-t"] = actions.file_tabedit,
-					["ctrl-q"] = actions.file_sel_to_qf,
+					["ctrl-q"] = function(selected, opts)
+						-- Directly opens fzf quickfix picker
+						actions.file_sel_to_qf(selected, opts)
+						FzfLua.quickfix()
+						vim.cmd.cclose()
+					end,
 				},
 			},
 		})
@@ -158,13 +176,13 @@ return {
 		-- Don't know why live_grep only when multiprocess is false
 		keymap.set("n", "<Leader>g", ":FzfLua live_grep multiprocess=false<CR>", { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>k", function()
-			local word = vim.fn.expand("<cword>")
-			require("fzf-lua").grep_cword({
-				rg_opts = "--column --line-number --no-heading --smart-case",
-				prompt = " Search in '" .. word .. "' ❯ ",
-			})
-		end, { desc = "Open FzfLua file selector" })
+		-- keymap.set("n", "<Leader>k", function()
+		-- 	local word = vim.fn.expand("<cword>")
+		-- 	require("fzf-lua").grep_cword({
+		-- 		rg_opts = "--column --line-number --no-heading --smart-case",
+		-- 		prompt = " Search in '" .. word .. "' ❯ ",
+		-- 	})
+		-- end, { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>G", function()
 			require("fzf-lua").files({
 				cmd = "fd --type d --hidden --exclude '.*'",
