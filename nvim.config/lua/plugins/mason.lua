@@ -202,12 +202,13 @@ return {
 		-- Keymaps
 		local keymap = vim.keymap
 		local opts = { silent = true, noremap = true }
-		keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", opts)
+		keymap.set("n", "ga", vim.lsp.buf.code_action, bufopts)
+		keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		keymap.set("n", "gd", goto_definition_filtered, opts)
-		keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+		keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		keymap.set("n", "gi", ":FzfLua lsp_implementations<CR>", opts)
-		keymap.set("n", "K", ":lua vim.lsp.buf.hover()<CR>", opts)
-		keymap.set("n", "<Leader>s", ":lua vim.lsp.buf.rename()<CR>", opts)
+		keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		keymap.set("n", "<Leader>s", vim.lsp.buf.rename, opts)
 		keymap.set(
 			"n",
 			"gr",
