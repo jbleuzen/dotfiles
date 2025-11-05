@@ -14,6 +14,9 @@ return {
 				["--pointer"] = " ", -- Pointer for the current line
 				["--marker"] = " •", -- Marker when selecting items
 			},
+			fzf_colors = {
+				["gutter"] = { "bg", "Normal" },
+			},
 			defaults = {
 				cwd_prompt = false,
 				header = false,
