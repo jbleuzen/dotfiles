@@ -11,7 +11,8 @@ return {
 			exec_empty_query = true, -- Displays results event if no search typed
 			fzf_opts = {
 				["--exact"] = true, -- Disables regular expression
-				["--pointer"] = " ",
+				["--pointer"] = " ", -- Pointer for the current line
+				["--marker"] = " •", -- Marker when selecting items
 			},
 			defaults = {
 				cwd_prompt = false,
@@ -31,17 +32,12 @@ return {
 					},
 				},
 			},
-			fzf_colors = {
-				["gutter"] = "-1", -- Hide the gutter used by the pointer
-			},
 			keymap = {
 				builtin = {
 					["<Esc>"] = "abort",
 					["<F1>"] = "toggle-help",
 					["<F2>"] = "toggle-fullscreen",
 					["<F3>"] = "toggle-preview-wrap",
-					-- nvim registers <C-/> as <C-_>, use insert mode
-					-- and press <C-v><C-/> should output ^_
 					["<C-<Space>>"] = "toggle-preview",
 					["<C-j>"] = "preview-page-down",
 					["<C-k>"] = "preview-page-up",
@@ -89,8 +85,24 @@ return {
 					width = 1.0, -- largeur (ici pleine largeur)
 					row = 1,
 					border = "rounded", -- optionnel : bordure arrondie
+					on_create = function()
+						-- creates a local buffer mapping translating <S-BS> to delete quickfix entry
+						vim.keymap.set("t", "<S-BS>", "<C-d>")
+					end,
 				},
 				prompt = " Quickfix ❯ ",
+				actions = {
+					["default"] = actions.git_switch,
+					["ctrl-d"] = {
+						fn = function(selected, opts)
+							local qf_list = vim.fn.getqflist()
+							table.remove(qf_list, selected)
+							-- Remplace la quickfix list par la nouvelle (sans l'élément supprimé)
+							vim.fn.setqflist(qf_list, "r")
+						end,
+						reload = true,
+					},
+				},
 			},
 			git = {
 				branches = {
@@ -147,7 +159,7 @@ return {
 					["ctrl-q"] = function(selected, opts)
 						-- Directly opens fzf quickfix picker
 						actions.file_sel_to_qf(selected, opts)
-						FzfLua.quickfix()
+						vim.api.nvim_command("silent! FzfLua quickfix")
 						vim.cmd.cclose()
 					end,
 				},
@@ -198,7 +210,7 @@ return {
 				},
 			})
 		end, { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>b", ":FzfLua git_branches<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>q", ":FzfLua quickfix<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>b", ":FzfLua git_branches<CR>", { desc = "Open FzfLua file selector", silent = true })
+		keymap.set("n", "<Leader>q", ":FzfLua quickfix<CR>", { desc = "Open FzfLua file selector", silent = true })
 	end,
 }
