@@ -26,7 +26,6 @@ return {
 					title = false,
 					title_pos = "center", -- 'left', 'center' or 'right'
 					title_flags = false,
-					backdrop = 50,
 					row = 0,
 					height = 0.65,
 					fullscreen = false,
@@ -171,7 +170,7 @@ return {
 
 		-- Keymaps
 		local keymap = vim.keymap
-		keymap.set("n", "<Leader>f", ":FzfLua files<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set("n", "<Leader>f", ":FzfLua files<CR>", { desc = "Open FzfLua file selector", silent = true })
 		keymap.set("n", "<Leader>F", function()
 			require("fzf-lua").files({
 				cmd = "fd --type d --hidden --exclude '.*'",
@@ -186,11 +185,16 @@ return {
 					end,
 				},
 			})
-		end, { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>r", ":FzfLua resume<CR>", { desc = "Open FzfLua file selector" })
+		end, { desc = "Open FzfLua file selector", silent = true })
+		keymap.set("n", "<Leader>r", ":FzfLua resume<CR>", { desc = "Open FzfLua file selector", silent = true })
 		-- Don't know why live_grep only when multiprocess is false
-		keymap.set("n", "<Leader>g", ":FzfLua live_grep multiprocess=false<CR>", { desc = "Open FzfLua file selector" })
-		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector" })
+		keymap.set(
+			"n",
+			"<Leader>g",
+			":FzfLua live_grep multiprocess=false<CR>",
+			{ desc = "Open FzfLua file selector", silent = true }
+		)
+		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector", silent = true })
 		-- keymap.set("n", "<Leader>k", function()
 		-- 	local word = vim.fn.expand("<cword>")
 		-- 	require("fzf-lua").grep_cword({
