@@ -119,3 +119,12 @@ mergeMkvs() {
   fi
   rm $TEMP_FILE
 }
+
+# Clean DNS cache
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  clear-DNS () {
+    sudo killall -HUP mDNSResponder
+    sudo killall -HUP mDNSResponderHelper
+    sudo killall -HUP mDNSResponder 2> /dev/null
+  }
+fi
