@@ -14,8 +14,8 @@ return {
 				-- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
 				border = "rounded",
 				icons = {
-					package_installed = " ",
-					package_pending = "󰇚 ",
+					package_installed = " ",
+					package_pending = " ",
 					package_uninstalled = "󰅖 ",
 				},
 			},
