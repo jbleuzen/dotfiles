@@ -128,7 +128,7 @@ return {
 			git = {
 				branches = {
 					prompt = " Branch ❯ ",
-					cmd = "git branch --sort=-committerdate --format='%(refname:short)'",
+					cmd = "git branch --sort=-committerdate",
 					preview = "git log {1} --no-merges -1 --pretty=%s",
 					winopts = {
 						title = false,
@@ -152,7 +152,7 @@ return {
 					},
 					actions = {
 						["default"] = actions.git_switch,
-						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = true },
+						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = false },
 						["ctrl-d"] = { fn = actions.git_branch_del, reload = true },
 					},
 					cmd_add = { "git", "checkout", "-b" },
