@@ -69,3 +69,12 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.expandtab = true
 	end,
 })
+
+-- gitcommit
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "gitcommit",
+	callback = function()
+		vim.opt_local.textwidth = 0
+		vim.opt_local.formatoptions:remove({ "t", "c", "r", "o" })
+	end,
+})
