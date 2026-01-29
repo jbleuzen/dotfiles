@@ -4,15 +4,17 @@ return {
 	config = function()
 		local actions = require("fzf-lua.actions")
 		local utils = require("fzf-lua.utils")
+		local path = require("fzf-lua.path")
 		local FzfLua = require("fzf-lua")
 
 		FzfLua.setup({
 			file_icon_padding = " ",
 			exec_empty_query = true, -- Displays results event if no search typed
 			fzf_opts = {
+				["--tiebreak"] = "begin", -- Proper sort of results (see https://github.com/ibhagwan/fzf-lua/issues/411#issuecomment-1125527931)
 				["--exact"] = true, -- Disables regular expression
-				["--pointer"] = " ", -- Pointer for the current line
-				["--marker"] = " •", -- Marker when selecting items
+				["--pointer"] = " ", -- Pointer for the current line
+				["--marker"] = " ", -- Marker when selecting items
 			},
 			fzf_colors = {
 				["gutter"] = { "bg", "Normal" },
@@ -25,7 +27,7 @@ return {
 				winopts = {
 					title = false,
 					title_pos = "center", -- 'left', 'center' or 'right'
-					title_flags = false,
+					title_flags = true,
 					row = 0,
 					height = 0.65,
 					fullscreen = false,
@@ -48,14 +50,20 @@ return {
 				},
 			},
 			grep = {
-				rg_opts = "--column --line-number --no-heading --smart-case --fixed-strings",
-				winopts = { title = false },
-				prompt = " Search ❯ ",
-				input_prompt = " Search for ❯ ",
-				fzf_opts = {
-					["--delimiter"] = ":",
-					["--with-nth"] = "4",
+				winopts = {
+					title = false,
+					on_create = function()
+						vim.keymap.set("t", "<S-CR>", "<C-q>")
+					end,
 				},
+				-- prompt = " Search ❯ ",
+				multiprocess = true, -- Breaks search withtout multiprocess to false
+				input_prompt = " Search for ❯ ",
+				-- fzf_opts = {
+				-- 	["--delimiter"] = ":",
+				-- 	["--with-nth"] = "4",
+				-- },
+				-- rg_opts = "--column --line-number --no-heading --smart-case --fixed-strings",
 				fn_transform = function(entry)
 					local file, line, position, _ = entry:match("([^:]+):(%d+):(%d+)(.+)")
 					if file and line then
@@ -66,6 +74,10 @@ return {
 					end
 					return entry
 				end,
+				actions = {
+					["ctrl-r"] = { actions.toggle_ignore },
+					["ctrl-g"] = { actions.grep_lgrep },
+				},
 			},
 			files = {
 				winopts = {
@@ -76,17 +88,19 @@ return {
 					end,
 				},
 				prompt = " Files ❯ ",
+				cwd_prompt = true,
+				cwd_prompt_shorten_len = 32, -- shorten prompt beyond this length
+				cwd_prompt_shorten_val = 1, -- shortened path parts length
 				fd_opts = "--type f --exclude '*.ttf' --exclude '*.woff*' --exclude '*.git'",
 				git_icons = true, -- show git icons?
-				header_prefix = "",
 			},
 			quickfix = {
 				winopts = {
 					title = false,
-					height = 0.4, -- hauteur en proportion de l'écran
-					width = 1.0, -- largeur (ici pleine largeur)
+					height = 0.4, -- 40% height of screen
+					width = 1.0, -- Full width
 					row = 1,
-					border = "rounded", -- optionnel : bordure arrondie
+					border = "rounded",
 					on_create = function()
 						-- creates a local buffer mapping translating <S-BS> to delete quickfix entry
 						vim.keymap.set("t", "<S-BS>", "<C-d>")
@@ -94,13 +108,18 @@ return {
 				},
 				prompt = " Quickfix ❯ ",
 				actions = {
-					["default"] = actions.git_switch,
+					["default"] = function(selected, opts)
+						-- Opens a file from quickfix in new listed buffer
+						local file = path.entry_to_file(selected[1], opts)
+						local bufnr = vim.fn.bufadd(file.bufname)
+						vim.fn.bufload(bufnr)
+						vim.api.nvim_set_current_buf(bufnr)
+						vim.api.nvim_win_set_cursor(0, { file.line, file.col })
+						vim.api.nvim_buf_set_option(bufnr, "buflisted", true)
+					end,
 					["ctrl-d"] = {
 						fn = function(selected, opts)
-							local qf_list = vim.fn.getqflist()
-							table.remove(qf_list, selected)
-							-- Remplace la quickfix list par la nouvelle (sans l'élément supprimé)
-							vim.fn.setqflist(qf_list, "r")
+							actions.list_del(selected, opts)
 						end,
 						reload = true,
 					},
@@ -133,7 +152,7 @@ return {
 					},
 					actions = {
 						["default"] = actions.git_switch,
-						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = false },
+						["ctrl-n"] = { fn = actions.git_branch_add, field_index = "{q}", reload = true },
 						["ctrl-d"] = { fn = actions.git_branch_del, reload = true },
 					},
 					cmd_add = { "git", "checkout", "-b" },
@@ -187,13 +206,7 @@ return {
 			})
 		end, { desc = "Open FzfLua file selector", silent = true })
 		keymap.set("n", "<Leader>r", ":FzfLua resume<CR>", { desc = "Open FzfLua file selector", silent = true })
-		-- Don't know why live_grep only when multiprocess is false
-		keymap.set(
-			"n",
-			"<Leader>g",
-			":FzfLua live_grep multiprocess=false<CR>",
-			{ desc = "Open FzfLua file selector", silent = true }
-		)
+		keymap.set("n", "<Leader>g", ":FzfLua live_grep<CR>", { desc = "Open FzfLua grep selector", silent = true })
 		keymap.set("n", "<Leader>k", ":FzfLua grep_cword<CR>", { desc = "Open FzfLua file selector", silent = true })
 		-- keymap.set("n", "<Leader>k", function()
 		-- 	local word = vim.fn.expand("<cword>")
