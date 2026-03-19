@@ -6,7 +6,19 @@ background = "#000"
 font-thicken = true
 adjust-cell-width = -1
 
-window-theme =dark
+fullscreen = true
+
+tab-inherit-working-directory = false
+
+window-theme = auto
+
+# Disable icons in toolbar
+bell-features=no-attention
+macos-titlebar-proxy-icon = hidden
+
+# Allow selecting text with Shift + Mouse selection
+copy-on-select = clipboard
+mouse-shift-capture = never
 
 ##############################################################################
 # Keybindings 
@@ -17,3 +29,5 @@ keybind = cmd+left=previous_tab
 keybind = cmd+right=next_tab
 keybind = cmd+alt+left=move_tab:-1
 keybind = cmd+alt+right=move_tab:1
+keybind = cmd+shift+r=reload_config
+keybind = cmd+shift+t=prompt_tab_title
