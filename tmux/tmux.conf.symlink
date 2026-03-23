@@ -243,7 +243,7 @@ set -wg mode-style bg=colour214,fg=colour232
 session="#[bold bg=colour148 fg=colour22] #S #[default]"
 sync="#{?pane_synchronized,#[bg=colour12 fg=colour21]  =  #[default],}"
 hostname="#{?SSH_CLIENT,#[fg=colour15 bg=colour124] @#h #[default],}"
-battery="#{?#{!=:#{battery_percentage},},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}"
+battery="#{?#{m:^[0-9]+$,#{battery_percentage}},#[bg=colour238 fg=colour250] #{battery_percentage}#{battery_icon_status},}"
 date="#[bg=colour240 fg=colour250] %d/%m/%Y"
 time="#[fg=colour0 bg=colour250] %H:%M"
 online="#{?SSH_CLIENT,#[fg=colour196 bg=colour52], #{online_status} }"
