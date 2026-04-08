@@ -161,7 +161,16 @@ return {
 
 		lspconfig("vuels", {})
 
-		lspconfig("tailwindcss", {})
+		lspconfig("tailwindcss", {
+			filetypes = {
+				"html",
+				"css",
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+			},
+		})
 
 		-- Automatically update diagnostics
 		-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
