@@ -5,6 +5,8 @@ alias tl="tmux ls"
 alias tn="tmux new -s "
 alias ts="tmux switch -t "
 ta() {
-  [[ -s `which wezterm` ]] && wezterm cli set-tab-title $1
-  tmux attach -t $1
+  SESSION_NAME=$(tmux ls -F '#S' | grep "$1" | head -1)
+  [[ "$TERM_PROGRAM" == "wezterm" ]] && wezterm cli set-tab-title $SESSION_NAME
+  [[ "$TERM_PROGRAM" == "ghostty" ]] &&  echo -ne "\e]0;$SESSION_NAME\a"
+  tmux attach -t $SESSION_NAME
 }
