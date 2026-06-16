@@ -10,6 +10,8 @@ fullscreen = true
 
 tab-inherit-working-directory = false
 
+shell-integration-features = no-title
+
 window-theme = auto
 
 # Disable icons in toolbar
