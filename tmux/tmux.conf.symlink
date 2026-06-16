@@ -287,3 +287,7 @@ set -g @vpn_offline_icon "#[fg=colour160]󰒘#[default]"
 # Initializes TMUX plugin manager.
 # Keep this line at the very bottom of tmux.conf.
 run-shell ~/.dotfiles/tmux/plugins/tpm/tpm
+
+# This binding MUST be set after tmux-navigator
+# > https://github.com/christoomey/vim-tmux-navigator/blob/master/vim-tmux-navigator.tmux#L6
+bind C-l next-window
