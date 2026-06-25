@@ -1,16 +1,8 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
+	"romus204/tree-sitter-manager.nvim",
+	dependencies = {}, -- tree-sitter CLI must be installed system-wide
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			highlight = {
-				enable = true,
-				disable = {},
-			},
-			indent = {
-				enable = true,
-				disable = {},
-			},
-			auto_install = true,
+		require("tree-sitter-manager").setup({
 			ensure_installed = {
 				"astro",
 				"bash",
@@ -33,12 +25,6 @@ return {
 				"vue",
 				"yaml",
 			},
-			autotag = {
-				enable = false,
-			},
 		})
-
-		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-		parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 	end,
 }
