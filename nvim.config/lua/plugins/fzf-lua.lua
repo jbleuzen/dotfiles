@@ -232,5 +232,24 @@ return {
 		end, { desc = "Open FzfLua file selector" })
 		keymap.set("n", "<Leader>b", ":FzfLua git_branches<CR>", { desc = "Open FzfLua file selector", silent = true })
 		keymap.set("n", "<Leader>q", ":FzfLua quickfix<CR>", { desc = "Open FzfLua file selector", silent = true })
+
+		-- Close picker when it loses focus either tmux or inside nvim
+		local fzf_focus_group = vim.api.nvim_create_augroup("FzfLuaCloseOnFocusLost", { clear = true })
+		vim.api.nvim_create_autocmd("FocusLost", {
+			group = fzf_focus_group,
+			callback = function()
+				if vim.bo.filetype == "fzf" then
+					FzfLua.win.close()
+				end
+			end,
+		})
+		vim.api.nvim_create_autocmd("WinEnter", {
+			group = fzf_focus_group,
+			callback = function()
+				if vim.bo.filetype ~= "fzf" and not vim.w.fzf_lua_preview then
+					FzfLua.win.close()
+				end
+			end,
+		})
 	end,
 }
