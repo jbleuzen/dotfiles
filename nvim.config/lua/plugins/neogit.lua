@@ -80,7 +80,7 @@ return {
 			-- Sorting keys: https://git-scm.com/docs/git-for-each-ref#_options
 			sort_branches = "-committerdate",
 			-- Change the default way of opening neogit
-			kind = "split",
+			kind = "tab",
 			-- Disable line numbers and relative line numbers
 			disable_line_numbers = true,
 			-- The time after which an output console is shown for slow running commands
@@ -318,9 +318,18 @@ return {
 			if vim.bo.filetype == "NeogitStatus" then
 				require("neogit").close()
 			else
-				require("neogit").open({ kind = "tab" })
+				require("neogit").open()
 			end
 		end
 		vim.keymap.set("n", "<F2>", toggleNeogit, { silent = true, noremap = true })
+
+		-- Remaps enter to open file from git log history
+		vim.api.nvim_create_autocmd("BufWinEnter", {
+			callback = function(args)
+				if vim.bo[args.buf].filetype == "NeogitCommitView" then
+					vim.keymap.set("n", "<CR>", "a", { buffer = args.buf, remap = true })
+				end
+			end,
+		})
 	end,
 }
