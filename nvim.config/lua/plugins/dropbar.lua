@@ -15,6 +15,7 @@ return {
 					local excluded_filetypes = {
 						"NvimTree",
 						"Neogit",
+						"gitcommit",
 						"fzf",
 						"lazy",
 						"mason",
