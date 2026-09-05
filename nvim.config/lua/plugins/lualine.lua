@@ -44,27 +44,27 @@ return {
 			},
 		}
 
+		local sectionZ = {
+			{
+				"location",
+				padding = { left = 0, right = 1 },
+			},
+		}
+
 		local nvimTreeExtension = {
 			sections = {
 				lualine_a = componentMode,
 				lualine_b = {
 					{
 						"branch",
+						padding = { left = 0, right = 1 },
 						icon = "",
 					},
 				},
 				lualine_y = {
 					"progress",
 				},
-				lualine_z = {
-					{
-						"searchcount",
-						separator = "|",
-					},
-					{
-						"location",
-					},
-				},
+				lualine_z = sectionZ,
 			},
 			filetypes = { "NvimTree" },
 		}
@@ -184,33 +184,7 @@ return {
 				lualine_y = {
 					"progress",
 				},
-				lualine_z = {
-					{
-						color = { fg = "#333333", bg = colors.orange },
-						function()
-							if vim.v.hlsearch == 0 then
-								return ""
-							end
-							local last_search = vim.fn.getreg("/")
-							if not last_search or last_search == "" then
-								return ""
-							end
-							local searchcount = vim.fn.searchcount({ maxcount = 0 })
-							return "Search '"
-								.. last_search
-								.. "' => ["
-								.. searchcount.current
-								.. "/"
-								.. searchcount.total
-								.. "]"
-						end,
-						separator = "|",
-					},
-					{
-						"location",
-						padding = { left = 1, right = 1 },
-					},
-				},
+				lualine_z = sectionZ,
 			},
 			inactive_sections = {
 				-- these are to remove the defaults
