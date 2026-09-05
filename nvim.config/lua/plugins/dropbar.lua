@@ -7,6 +7,9 @@ return {
 		local dropbar = require("dropbar")
 
 		dropbar.setup({
+			symbol = {
+				on_click = false,
+			},
 			bar = {
 				enable = function(buf, win, _)
 					local ft = vim.bo[buf].filetype
