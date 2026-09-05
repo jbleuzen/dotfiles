@@ -28,6 +28,7 @@ local function handleEscape()
 	if vim.bo.filetype == "undotree" then
 		vim.cmd("UndotreeToggle")
 	end
+	require("config.search").hide()
 end
 vim.keymap.set("n", "<Esc>", handleEscape, opts)
 
