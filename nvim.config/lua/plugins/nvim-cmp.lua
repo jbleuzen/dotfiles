@@ -44,10 +44,12 @@ return {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
 			},
+			sorting = {
+				priority_weight = 5,
+			},
 			sources = {
-				{ name = "nvim_lsp" },
-				-- { name = "luasnip" },
-				{ name = "buffer" },
+				{ name = "buffer", priority = 1000 },
+				{ name = "nvim_lsp", priority = 750 }, -- project symbols, then global (window, ...)
 			},
 			mapping = {
 				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -55,6 +57,10 @@ return {
 				["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				["<BS>"] = cmp.mapping(function(fallback)
+					fallback()
+					cmp.complete()
+				end, { "i" }),
 			},
 			map_cr = true, --  map <CR> on insert mode
 			map_complete = true, -- it will auto insert `(` (map_char) after select function or method item
