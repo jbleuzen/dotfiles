@@ -6,6 +6,7 @@ return {
 	},
 	config = function()
 		local mason = require("mason")
+		local colors = require("monokai").classic
 
 		mason.setup({
 			ui = {
@@ -172,21 +173,23 @@ return {
 			},
 		})
 
-		-- Automatically update diagnostics
-		-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		-- 	underline = true,
-		-- 	update_in_insert = true,
-		-- 	virtual_text = { spacing = 2, prefix = "●" },
-		-- 	severity_sort = true,
-		-- })
-		--
-		-- local signs = { Error = "E", Warn = "W", Info = "i", Hint = "?" }
-		--
-		-- for type, icon in pairs(signs) do
-		-- 	local hl = "DiagnosticSign" .. type
-		-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		-- end
-		--
+		-- Diagnostic gutter icons (same glyphs/colors as lualine's diagnostics component)
+		vim.diagnostic.config({
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.INFO] = "",
+					[vim.diagnostic.severity.HINT] = "",
+				},
+			},
+		})
+
+		vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = colors.red })
+		vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = colors.orange })
+		vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = colors.yellow })
+		vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = colors.aqua })
+
 		-- vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#ffffff]])
 
 		local function goto_definition_filtered()
