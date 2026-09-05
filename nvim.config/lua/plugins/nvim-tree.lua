@@ -39,6 +39,7 @@ return {
 
 			vim.keymap.set("n", "<Space>", change_root_to_node, opts("CD"))
 			vim.keymap.set("n", "-", change_root_to_parent, opts("Up"))
+			vim.keymap.set("n", "?", api.tree.toggle_help, opts("Toggle help"))
 		end
 
 		require("nvim-tree").setup({
@@ -99,7 +100,6 @@ return {
 		)
 		keymap.set("n", "<Leader>d", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
 		-- keymap.set("n", "<Space>", api.tree.change_root_to_node, { desc = "CD file tree", silent = true })
-		keymap.set("n", "?", api.tree.toggle_help, { desc = "Toggle nvim-tree help", silent = true })
 
 		-- -- custom mappings
 		-- local function change_root_to_node(node)
