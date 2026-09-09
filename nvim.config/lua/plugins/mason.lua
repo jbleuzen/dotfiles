@@ -92,19 +92,8 @@ return {
 					[vim.diagnostic.severity.HINT] = "",
 				},
 			},
-			virtual_text = {
-				prefix = function(diagnostic)
-					local icons = {
-						[vim.diagnostic.severity.ERROR] = "",
-						[vim.diagnostic.severity.WARN] = "",
-						[vim.diagnostic.severity.INFO] = "",
-						[vim.diagnostic.severity.HINT] = "",
-					}
-					return icons[diagnostic.severity]
-				end,
-				source = "if_many",
-				spacing = 2,
-			},
+			-- virtual_text handled by tiny-inline-diagnostic.nvim
+			virtual_text = false,
 			underline = true,
 			severity_sort = true,
 		})
