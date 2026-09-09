@@ -266,6 +266,79 @@ return {
 			},
 		})
 
+		-- Mode-aware highlight for the selected buffer (mirrors lualine mode colors)
+		local monokai = require("monokai").classic
+		local mode_colors = {
+			n = { bg = monokai.green, fg = "#005F00" },
+			i = { bg = monokai.aqua, fg = "#00303A" },
+			v = { bg = monokai.orange, fg = "#870000" },
+			V = { bg = monokai.orange, fg = "#870000" },
+			["\22"] = { bg = monokai.orange, fg = "#870000" }, -- visual block
+			s = { bg = monokai.orange, fg = "#870000" },
+			S = { bg = monokai.orange, fg = "#870000" },
+			["\19"] = { bg = monokai.orange, fg = "#870000" }, -- select block
+			R = { bg = "#D70000", fg = colors.white },
+			c = { bg = monokai.purple, fg = "#333333" },
+		}
+
+		local function mode_key(m)
+			-- normalize operator-pending / normal-in-terminal / terminal to normal
+			if m:sub(1, 1) == "n" or m == "" or m == "t" then
+				return "n"
+			end
+			return m:sub(1, 1)
+		end
+
+		-- Groups where the selected fg is plain text -> take the mode fg
+		local text_groups = {
+			"BufferLineBufferSelected",
+			"BufferLineDuplicateSelected",
+			"BufferLineHintSelected",
+			"BufferLineHintDiagnosticSelected",
+			"BufferLineInfoSelected",
+			"BufferLineWarningSelected",
+			"BufferLineErrorSelected",
+		}
+		-- Groups with an accent fg to keep -> only swap the bg
+		local accent_groups = {
+			"BufferLineModifiedSelected",
+			"BufferLineDiagnosticSelected",
+			"BufferLineInfoDiagnosticSelected",
+			"BufferLineWarningDiagnosticSelected",
+			"BufferLineErrorDiagnosticSelected",
+		}
+		-- Solid blocks -> fg == bg == mode bg
+		local block_groups = {
+			"BufferLineSeparatorSelected",
+			"BufferLineIndicatorSelected",
+			"BufferLinePickSelected",
+		}
+		local bold_set = { BufferLineHintSelected = true, BufferLineHintDiagnosticSelected = true }
+
+		local function apply_mode_hl(m)
+			local mc = mode_colors[mode_key(m or vim.fn.mode())] or mode_colors.n
+			for _, g in ipairs(text_groups) do
+				vim.api.nvim_set_hl(0, g, { fg = mc.fg, bg = mc.bg, bold = bold_set[g] })
+			end
+			for _, g in ipairs(accent_groups) do
+				local cur = vim.api.nvim_get_hl(0, { name = g })
+				vim.api.nvim_set_hl(0, g, { fg = cur.fg, bg = mc.bg })
+			end
+			for _, g in ipairs(block_groups) do
+				vim.api.nvim_set_hl(0, g, { fg = mc.bg, bg = mc.bg })
+			end
+		end
+
+		vim.api.nvim_create_autocmd({ "ModeChanged", "BufEnter", "BufWinEnter", "ColorScheme" }, {
+			callback = function()
+				local m = vim.api.nvim_get_mode().mode -- capture now, not in the deferred call
+				vim.schedule(function()
+					apply_mode_hl(m) -- defer so it runs after bufferline re-applies its own hl
+				end)
+			end,
+		})
+		apply_mode_hl()
+
 		-- Keymaps
 		local keymap = vim.keymap
 		keymap.set("n", "<left>", ":BufferLineCyclePrev<CR>", { silent = true })
