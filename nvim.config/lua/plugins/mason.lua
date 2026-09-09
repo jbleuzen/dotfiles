@@ -38,50 +38,12 @@ return {
 				"tailwindcss",
 				"ts_ls",
 				"yamlls",
-				-- "vetur-vls",
 			},
 
-			-- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-			-- This setting has no relation with the `ensure_installed` setting.
-			-- Can either be:
-			--   - false: Servers are not automatically installed.
-			--   - true: All servers set up via lspconfig are automatically installed.
-			--   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-			--       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
 			automatic_installation = true,
 		})
 
 		local lspconfig = vim.lsp.config
-		-- Use an on_attach function to only map the following keys
-		-- after the language server attaches to the current buffer
-		-- local on_attach = function(client, bufnr)
-		-- 	local function buf_set_option(...)
-		-- 		vim.api.nvim_buf_set_option(bufnr, ...)
-		-- 	end
-		-- 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-		--
-		-- 	-- Mappings.
-		-- 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-		-- 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-		-- 	-- Trigger code completion
-		-- 	vim.keymap.set("i", "<Tab>", "<C-x><C-o>", bufopts)
-		--
-		-- 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-		-- 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-		-- 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-		-- 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-		-- 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-		-- 	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-		-- 	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-		-- 	vim.keymap.set("n", "<space>wl", function()
-		-- 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		-- 	end, bufopts)
-		-- 	vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-		-- 	vim.keymap.set("n", "ga", vim.lsp.buf.code_action, bufopts)
-		-- 	vim.keymap.set("n", "<space>f", function()
-		-- 		vim.lsp.buf.format({ async = true })
-		-- 	end, bufopts)
-		-- end
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -109,59 +71,6 @@ return {
 			},
 		})
 
-		-- -- Need to install neovim npm package to make it work
-		-- -- npm install -g neovim
-		-- lspconfig.eslint.setup({
-		-- 	root_dir = lspconfig.util.root_pattern(
-		-- 		".eslintrc",
-		-- 		".eslintrc.js",
-		-- 		".eslintrc.cjs",
-		-- 		".eslintrc.yaml",
-		-- 		".eslintrc.yml",
-		-- 		".eslintrc.json",
-		-- 		"package.json"
-		-- 	),
-		-- 	on_attach = on_attach,
-		-- 	capabilities = capabilities,
-		-- 	settings = {
-		-- 		debug = true,
-		-- 		codeAction = {
-		-- 			disableRuleComment = {
-		-- 				enable = true,
-		-- 				location = "separateLine",
-		-- 			},
-		-- 			showDocumentation = {
-		-- 				enable = true,
-		-- 			},
-		-- 		},
-		-- 		codeActionOnSave = {
-		-- 			enable = true,
-		-- 			mode = "all",
-		-- 		},
-		-- 		experimental = {
-		-- 			useFlatConfig = false,
-		-- 		},
-		-- 		format = true,
-		-- 		nodePath = "",
-		-- 		onIgnoredFiles = "off",
-		-- 		packageManager = "npm",
-		-- 		problems = {
-		-- 			shortenToSingleLine = false,
-		-- 		},
-		-- 		quiet = false,
-		-- 		rulesCustomizations = {},
-		-- 		run = "onType",
-		-- 		useESLintClass = false,
-		-- 		validate = "on",
-		-- 		workingDirectory = {
-		-- 			mode = "location",
-		-- 		},
-		-- 	},
-		-- })
-		--
-
-		lspconfig("vuels", {})
-
 		lspconfig("tailwindcss", {
 			filetypes = {
 				"html",
@@ -183,6 +92,21 @@ return {
 					[vim.diagnostic.severity.HINT] = "",
 				},
 			},
+			virtual_text = {
+				prefix = function(diagnostic)
+					local icons = {
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.INFO] = "",
+						[vim.diagnostic.severity.HINT] = "",
+					}
+					return icons[diagnostic.severity]
+				end,
+				source = "if_many",
+				spacing = 2,
+			},
+			underline = true,
+			severity_sort = true,
 		})
 
 		vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = colors.red })

@@ -13,6 +13,12 @@ return {
 		local lspkind = require("lspkind")
 
 		cmp.setup({
+			performance = {
+				debounce = 120, -- wait after last keystroke before asking sources (default 60)
+				throttle = 60, -- min gap between filter passes (default 30)
+				fetching_timeout = 200,
+				max_view_entries = 20, -- cap rendered items
+			},
 			confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,
 				select = false,
@@ -48,8 +54,20 @@ return {
 				priority_weight = 5,
 			},
 			sources = {
-				{ name = "buffer", priority = 1000 },
-				{ name = "nvim_lsp", priority = 750 }, -- project symbols, then global (window, ...)
+				{
+					name = "buffer",
+					priority = 1000,
+					keyword_length = 3, -- don't scan the buffer for 1-2 char prefixes
+					max_item_count = 8,
+					option = {
+						-- index only the current buffer, skip very long lines
+						get_bufnrs = function()
+							return { vim.api.nvim_get_current_buf() }
+						end,
+						max_indexed_line_length = 200,
+					},
+				},
+				{ name = "nvim_lsp", priority = 750, keyword_length = 1, max_item_count = 20 }, -- project symbols, then global (window, ...)
 			},
 			mapping = {
 				["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -59,7 +77,9 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				["<BS>"] = cmp.mapping(function(fallback)
 					fallback()
-					cmp.complete()
+					if cmp.visible() then
+						cmp.complete() -- refresh only when the menu is already open
+					end
 				end, { "i" }),
 			},
 			map_cr = true, --  map <CR> on insert mode
