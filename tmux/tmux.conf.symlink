@@ -213,6 +213,8 @@ set -g pane-active-border-style fg=colour237,bg=colour16
 set -g pane-border-style fg=colour237,bg=colour234
 set -g window-style "bg=colour234"
 set -g window-active-style "bg=terminal"
+set -g popup-style "bg=terminal"
+set -g popup-border-style "fg=colour237,bg=terminal"
 # Display the pane name if it doesn't contain "local" or "NVIM" in it
 set -g pane-border-status top
 # #{?test,yes,no}
