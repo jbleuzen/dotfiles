@@ -1,38 +1,63 @@
 [alias]
 	revert = reset --hard HEAD
 	undo = reset --soft HEAD~1
+
 [user]
 	name = Johan Bleuzen
 	email = johan@bleuzen.fr
+
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 	ui = true
+
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+  pager = "if command -v delta >/dev/null 2>&1; then delta; else less -FRX; fi"
+
+
 [url "https://"]        
 	insteadOf = git://
+
 [branch]
 	autosetuprebase = always
+
 [push]
 	default = current
+
 [status]
 	showUntrackedFiles = all
+
 [tag]
   sort = v:refname
+
+[pull]
+	rebase = true
+
+[advice]
+	statusHints = false
+
+[init]
+	defaultBranch = main
+
+[interactive]
+  diffFilter = "if command -v delta >/dev/null 2>&1; then delta --color-only; else cat; fi"
+
+[merge]
+  conflictStyle = zdiff3
+
+[rerere]
+	enabled = true
+
+[remote "origin"]
+	prune = true
+
+[delta]
+  line-numbers = true
+  #side-by-side = true
 
 # Work
 [includeIf "gitdir:~/Bridge/"]
     path = ~/Bridge/.gitconfig
-[pull]
-	rebase = true
-[advice]
-	statusHints = false
-[init]
-	defaultBranch = main
-[rerere]
-	enabled = true
-[remote "origin"]
-	prune = true

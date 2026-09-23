@@ -4,10 +4,77 @@ return {
 		"nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim", -- optional - Diff integration
 		"ibhagwan/fzf-lua", -- optional
+		"m00qek/baleia.nvim", -- required for log_pager
 	},
 	config = function()
-		local neogit = require("neogit")
+		vim.g.baleia = require("baleia").setup({})
 
+		local function discreet_hunk_headers()
+			vim.api.nvim_set_hl(0, "NeogitHunkHeader", { link = "Comment" })
+			vim.api.nvim_set_hl(0, "NeogitHunkHeaderHighlight", { link = "Comment" })
+			vim.api.nvim_set_hl(0, "NeogitHunkHeaderCursor", { link = "CursorLine" })
+		end
+
+		discreet_hunk_headers()
+		vim.api.nvim_create_autocmd("ColorScheme", { callback = discreet_hunk_headers })
+
+		local function neogit_text_width()
+			for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+				local buf = vim.api.nvim_win_get_buf(win)
+				if vim.bo[buf].filetype:match("^Neogit") then
+					local info = vim.fn.getwininfo(win)[1]
+					return info.width - info.textoff
+				end
+			end
+		end
+
+		local function set_delta_width(width)
+			local pager = require("neogit.config").values.log_pager
+			if not pager then
+				return false
+			end
+			for i, arg in ipairs(pager) do
+				if arg == "--width" then
+					local new = tostring(width)
+					if pager[i + 1] == new then
+						return false -- rien n'a changé
+					end
+					pager[i + 1] = new
+					return true
+				end
+			end
+			return false
+		end
+
+		local function refresh_status()
+			local ok, status = pcall(require, "neogit.buffers.status")
+			local instance = ok and status.instance()
+			if instance then
+				-- update_diffs force le recalcul des diffs (sinon Neogit garde son cache)
+				instance:dispatch_refresh({ update_diffs = { "*:*" } }, "delta_resize")
+			end
+		end
+
+		-- Debounce : un redimensionnement tmux génère une rafale d'événements
+		local timer = vim.uv.new_timer()
+
+		vim.api.nvim_create_autocmd({ "VimResized", "WinResized", "BufWinEnter" }, {
+			callback = function()
+				timer:stop()
+				timer:start(
+					150,
+					0,
+					vim.schedule_wrap(function()
+						local width = neogit_text_width()
+						if width and set_delta_width(width) then
+							refresh_status()
+						end
+					end)
+				)
+			end,
+		})
+
+		local neogit = require("neogit")
 		neogit.setup({
 			-- Hides the hints at the top of the status buffer
 			disable_hint = true,
@@ -28,6 +95,20 @@ return {
 			-- "ascii"   is the graph the git CLI generates
 			-- "unicode" is the graph like https://github.com/rbong/vim-flog
 			graph_style = "unicode",
+			--   -- When set, used to format the diff. Requires *baleia* to colorize text with ANSI escape sequences. An example for `Delta` is `{ 'delta', '--width', '117' }`. For `Delta`, hyperlinks must be disabled when called by `neogit`, for text to be colorized properly.
+			log_pager = vim.fn.executable("delta") == 1 and {
+				"delta",
+				"--width",
+				tostring(vim.o.columns),
+				"--file-style",
+				"omit",
+				"--file-decoration-style",
+				"none",
+				"--hunk-header-style",
+				"omit",
+				"--hunk-header-decoration-style",
+				"none",
+			} or nil,
 			-- Used to generate URL's for branch popup action "pull request".
 			git_services = {
 				["github.com"] = {
