@@ -232,7 +232,7 @@ return {
 				kind = "floating",
 			},
 			popup = {
-				kind = "floating",
+				kind = "split",
 			},
 			signs = {
 				-- { CLOSED, OPENED }
